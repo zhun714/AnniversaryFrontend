@@ -35,7 +35,16 @@
 	        {
 	            "root": "package-shouye",
 	            "pages": [
-	            ]
+	            {
+                    "path" : "xueyuan/xueyuan",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "学院风采",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
 	          }, {
 	            "root": "package-huodong",
 	            "pages": [

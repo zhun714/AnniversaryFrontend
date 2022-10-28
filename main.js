@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import { $http } from '@escook/request-miniprogram'
-
+import store from '@/store/store.js'
 uni.$http = $http
 
 $http.beforeRequest = function (options) {
