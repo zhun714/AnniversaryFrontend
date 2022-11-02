@@ -13,6 +13,7 @@ $http.beforeRequest = function (options) {
 } 
 $http.afterRequest = function () {
   uni.hideLoading()
+  
 }
 
 uni.$showMsg = function (title = '数据加载失败！', duration = 1500) {
