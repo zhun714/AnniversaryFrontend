@@ -1,7 +1,7 @@
 {
   "name": "prxdong",
   "version": "1.0.0",
-  "description": "",
+  "description": "uni-app",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,5 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "@escook/request-miniprogram": "^0.2.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhun714/prxd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zhun714/prxd/issues"
+  },
+  "homepage": "https://github.com/zhun714/prxd#readme"
 }
