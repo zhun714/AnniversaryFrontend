@@ -15,7 +15,7 @@
 	      src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16670134621865534298.png"
 	    />
 	  </view>
-<button class="flex-col items-center text-wrapper" @click="getUserProfile()"><text class="text_4">一键登录</text></button>
+	     <button class="flex-col items-center text-wrapper" @click="getUserProfile"><text class="text_4">一键登录</text></button>
 	</view>
 	
 </template>
@@ -44,12 +44,10 @@
 				desc:'秋雅',
 				success:(res)=>
 				{
-                     this.login(false),
-					uni.switchTab({
-						url:'/pages/banji/banji'
-					})
+                     this.login(false)
 				},
-				fail: () => {
+				fail: (res) => {
+					console.log(res)
 					uni.$showMsg('登录失败!')
 				},
 			})	
