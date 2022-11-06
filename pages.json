@@ -48,7 +48,80 @@
 	          }, {
 	            "root": "package-huodong",
 	            "pages": [
-	            ]
+				{
+				    "path" : "jiemudan/jiemudan",
+				    "style" :                                                                                    
+				{
+				    "navigationBarTitleText": "院庆活动",
+				    "enablePullDownRefresh": false
+				}
+				
+				},
+				{
+				    "path" : "yunheying/yunheying",
+				    "style" :                                                                                    
+				{
+				    "navigationBarTitleText": "院庆活动",
+				    "enablePullDownRefresh": false
+				}
+				
+				},
+				{
+				    "path" : "danrenyunheying/danrenyunheying",
+				    "style" :                                                                                    
+				{
+				    "navigationBarTitleText": "单人云合影",
+				    "enablePullDownRefresh": false
+				}
+				
+				},
+				{
+				    "path" : "danren_upload/danren_upload",
+				    "style" :                                                                                    
+				{
+				    "navigationBarTitleText": "上传人像",
+				    "enablePullDownRefresh": false
+				}
+				
+				},
+				{
+				    "path" : "duorenyunheying/duorenyunheying",
+				    "style" :                                                                                    
+				{
+				    "navigationBarTitleText": "多人云合影",
+				    "enablePullDownRefresh": false
+				}
+				
+				},
+				{
+				    "path" : "duoren_upload/duoren_upload",
+				    "style" :                                                                                    
+				{
+				    "navigationBarTitleText": "上传人像",
+				    "enablePullDownRefresh": false
+				}
+				
+				},
+				{
+				    "path" : "yunzhufu/yunzhufu",
+				    "style" :                                                                                    
+				{
+				    "navigationBarTitleText": "云祝福",
+				    "enablePullDownRefresh": false
+				}
+				
+				},
+				{
+				    "path" : "yuncanguan/yuncanguan",
+				    "style" :                                                                                    
+				{
+				    "navigationBarTitleText": "云参观",
+				    "enablePullDownRefresh": false
+				}
+				
+				}
+					
+	        ]
 	          },{
 	            "root": "package-banji",
 	            "pages": [
