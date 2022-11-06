@@ -1,8 +1,5 @@
+
 <template>
-<<<<<<< HEAD
-	<view></view>
-</template>
-=======
   <view class="flex-col page">
     <view class="flex-col space-y-18 group">
       <view class="flex-col space-y-4 group_2">
@@ -48,20 +45,12 @@
         </view>
       </view>
     </view>
->>>>>>> huodong
 
   </view>
 </template>
-<script>
-<<<<<<< HEAD
-	
-</script>
 
-<style>
-	
-=======
+<script>
   export default {
-    components: {},
     data() {
       return {};
     },
@@ -106,7 +95,7 @@
   };
 </script>
 
-<style scoped lang="css">
+<style scoped lang="scss">
   .page {
     background-color: #d14735;
     width: 100%;
@@ -256,5 +245,4 @@
   .space-y-10 > image:not(:first-child) {
     margin-top: 18.99rpx;
   }
->>>>>>> huodong
 </style>
