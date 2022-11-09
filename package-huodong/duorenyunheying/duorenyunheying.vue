@@ -33,7 +33,7 @@
         </view>
       </view>
       <view class="flex-col section_4">
-        <view class="flex-col items-center button" @click="changetoduoren_upload()"><text class="font_1 text_5">上传人像</text></view>
+        <view class="flex-col items-center button" @tap="actionSheetTap"><text class="font_1 text_5">上传人像</text></view>
       </view>
     </view>
   </view>
@@ -43,14 +43,28 @@
   export default {
     components: {},
     data() {
-      return {};
+      return {
+		   buttonRect: {}
+	  };
     },
     methods: {
-		changetoduoren_upload(){
-			uni.navigateTo({
-				url:'/package-huodong/duoren_upload/duoren_upload'
-			})
-		}
+		actionSheetTap() {
+					const that = this;
+					uni.showActionSheet({
+						title: '标题',
+						itemList: ['拍摄', '从相册选择'],
+						popover: {
+							top: that.buttonRect.top * 2 + that.buttonRect.height,
+							left: that.buttonRect.left + that.buttonRect.width / 2
+						},
+						success: e => {
+							uni.showToast({
+								title: '点击了第' + e.tapIndex + '个选项',
+								icon: 'none'
+							});
+						}
+					});
+				}
 	},
   };
 </script>
