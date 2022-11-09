@@ -130,8 +130,14 @@
 					title:'提示',
 					content:'确认退出登录吗？',
 					success:(res)=>{
-						this.login(true)
-				
+					
+						if (res.confirm) {
+									this.login(true);
+									uni.$showMsg('退出成功!');
+								} 
+								 if (res.cancel) {
+										uni.$showMsg('已取消!');
+								}
 					}
 				})
 			}

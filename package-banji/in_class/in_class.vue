@@ -17,15 +17,12 @@
     </view>
   </view>
   
-  <view class="flex-col space-y-15 list">
-	  
+  
   <view v-for="(item,index) in classmates">
-   <my-classmates :classmate="item"></my-classmates>
-
-   </view>
+  	  
+  <my-classmates :classmate="item"></my-classmates>	
   
-  </view>
-  
+    </view>
 </view>
 
 </template>
@@ -83,6 +80,11 @@ export default {
     };
   },
   methods: {
+	  openzl()
+	  {
+	  	this.$refs['popupDialog'].open();
+	  	
+	  },
 	  outclass()
 	  {
 		 

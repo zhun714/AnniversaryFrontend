@@ -1,8 +1,11 @@
 <template>
-		<view class="flex-row justify-center list-item" @click="gotoinformationpage(classmate)">
 
-		   	   <view class="switch"></view>
-		  <view class="flex-col items-start space-y-15 group_2" >
+		
+
+		<view class="flex-row justify-center list-item">
+
+		   	   <view class="switch"  @click="openzl"></view>
+		  <view class="flex-col items-start space-y-15 group_2"  @click="openzl">
 		
 		    <text class="font_2">{{classmate.hisname}}</text>
 		    <text class="font_3">学号：{{classmate.hisxuehao}}</text>
@@ -11,12 +14,26 @@
 		  <image
 		    class="image_2"
 		    src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16670441323576679658.png"
+		  @click="openzl"
 		  />
 
-		</view>
+		  <!-- 弹出层视图，注意这里的ref="popup"，这里背景特意标红了，方便看到效果 -->
+		  <uni-popup ref="popupzl" type="dialog" >
+			  <view style="background-color: whitesmoke; width: 18rem; height: 27rem; border-radius: 25px;" @click="closezl">
+			<my-information></my-information>
+			  </view>
+
+		  </uni-popup>
+	
+		
+		  	</view>
+
 </template>
 
 <script>
+
+
+
 
 export default {
   components:
@@ -41,13 +58,15 @@ export default {
 	  };
   },
   methods: {
-     gotoinformationpage(classmate)
-	 {
-		
-		uni.navigateTo({
-		    url:"/package-banji/classmateinformation/classmateinformation?classmate"+ encodeURIComponent(JSON.stringify(classmate)) 
-		});
-	 }
+		openzl()
+			{
+				this.$refs['popupzl'].open();
+				
+			},
+			closezl()
+			{
+		     	this.$refs['popupzl'].close();
+			}
   },
 };
 </script>
