@@ -66,25 +66,10 @@
 			})
 		},
 		changetoyunzhufu(){
-			uni.navigateTo({
-				url:'/package-huodong/yunzhufu/yunzhufu'
+			uni.switchTab({
+				url:'/pages/shouye/shouye'
 			})
-			uni.createSelectorQuery().select("text[class='font_4 text_18']").boundingClientRect(data=>{//目标节点、也可以是最外层的父级节点
 			
-			　　uni.createSelectorQuery().select("view[class='flex-row group_13']").boundingClientRect((res)=>{//最外层盒子节点
-			　　
-			　　　　uni.pageScrollTo({
-			　　　　
-			　　　　　　duration:0,//过渡时间必须为0，uniapp bug，否则运行到手机会报错
-			　　　　　　
-			　　　　　　scrollTop:res.top - data.top,//滚动到实际距离是元素距离顶部的距离减去最外层盒子的滚动距离
-			　　　　　　
-			　　　　})
-			　　　　
-			　　}).exec()
-			　　
-			}).exec()
-
 		},
 		changetoyuncanguan(){
 			uni.navigateTo({
