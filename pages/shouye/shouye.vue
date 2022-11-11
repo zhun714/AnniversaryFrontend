@@ -61,7 +61,7 @@
 	        <view class="section_4"></view>
 	        <view class="section_5"></view>
 	        <view class="section_6"></view>
-	        <view class="flex-col items-start text-wrapper_3"><text class="font_4 text_11">更 多 +</text></view>
+	        <view class="flex-col items-start text-wrapper_3" @click="gotoxiaoyoufc()"><text class="font_4 text_11">更 多 +</text></view>
 	        <image
 	          class="image_6"
 	          src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6353f1ea5a7e3f0310e61ff3/6353f319fe65f70012e4f328/16669445130077024615.png"
@@ -82,7 +82,7 @@
 	            </view>
 	          </view>
 	          <view class="flex-row group_13">
-	            <view class="flex-col items-start text-wrapper_4"><text class="font_4 text_18">写下你的祝福</text></view>
+	            <view class="flex-col items-start text-wrapper_4"></view>
 	            <view class="flex-col items-center text-wrapper_5"><text class="font_4">发送</text></view>
 	          </view>
 	        </view>
@@ -106,10 +106,15 @@
 		},
 		methods: {
 			changetoxueyuann(){
-				uni.navigateTo({
-					url:'/package-shouye/xueyuan/xueyuan'
-				})
-			}
+      uni.navigateTo({
+        url:'/package-shouye/xueyuan/xueyuan'
+      })			},
+      gotoxiaoyoufc(){
+        console.log(1111),
+        uni.navigateTo({
+          url:'/package-shouye/xiaoyou/xiaoyou'
+        })
+      }
 		}
 	}
 </script>
