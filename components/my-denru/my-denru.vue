@@ -44,7 +44,14 @@
 				desc:'秋雅',
 				success:(res)=>
 				{
+
                      this.login(false)
+
+                     
+					uni.switchTab({
+						url:'/pages/banji/banji'
+					}),
+					this.login(false)
 				},
 				fail: (res) => {
 					console.log(res)

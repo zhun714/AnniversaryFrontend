@@ -1,40 +1,32 @@
 <template>
   <view class="flex-col page">
-    <view class="flex-col group">
-      <view class="flex-col items-center section">
-        <view class="flex-col items-center text-wrapper">
-          <text class="text_2">建议使用半身或全身正面照，照片不超过20M</text>
-        </view>
+    <view class="section"></view>
+	<swiper class="bigImg" :current="current">
+		<swiper-item v-for="(big,index) in lists" :key="index">
+		<image
+		  class="image"
+		  :src="big.picture_url"
+		  mode="scaleToFill"
+		/>
+	    </swiper-item>
+	  </swiper>
+    <view class="flex-col items-center section_2">
+      <view class="flex-col items-center text-wrapper">
+        <text class="text">建议使用半身或全身正面照，照片不超过20M</text>
       </view>
-      <view class="flex-col section_2">
-        <view class="flex-col space-y-14">
-          <view class="flex-row space-x-39">
-            <view class="section_3"></view>
-            <view class="section_3"></view>
-          </view>
-          <view class="flex-row justify-between">
-            <text class="font_2">东门</text>
-            <text class="font_2 text_3">北门</text>
-          </view>
-        </view>
-        <view class="flex-col space-y-14 group_2">
-          <view class="flex-row space-x-39">
-            <view class="section_3"></view>
-            <view class="section_3"></view>
-          </view>
-          <view class="flex-row justify-between group_3">
-            <text class="font_2">西门</text>
-            <text class="font_2 text_4">南门</text>
-          </view>
-        </view>
-        <view class="flex-row space-x-39 group_4">
-          <view class="section_3"></view>
-          <view class="section_3"></view>
-        </view>
+    </view>
+    <view class="grid">
+      <view class="flex-col items-start space-y-14 grid-item" :key="index" v-for="(small, index) in lists" @click='changeBigPic(index)'>
+        <image
+          class="image_2"
+          :src="small.picture_url"
+		  :class="[index == current ? 'active' : '']"
+        />
+        <text class="font_1">{{small.picture_name}}</text>
       </view>
-      <view class="flex-col section_4">
-        <view class="flex-col items-center button" @click="changetoduoren_upload()"><text class="font_1 text_5">上传人像</text></view>
-      </view>
+    </view>
+    <view class="flex-col section_3">
+      <view class="flex-col items-center button" @tap="actionSheetTap"><text class="text_2">上传人像</text></view>
     </view>
   </view>
 </template>
@@ -43,107 +35,161 @@
   export default {
     components: {},
     data() {
-      return {};
+      return {
+		  buttonRect: {},
+		  current: 0,//轮播图索引
+		  lists: [
+		  			{
+						sp:1,
+		  				picture_name:'东门',
+		  				picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784402302093.png"
+		  			},
+		  			{
+						sp:2,
+		  				picture_name:'北门',
+		  				picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784447443523.png"
+		  			},
+		  			{
+						sp:3,
+		  				picture_name:'西门',
+		  				picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784426983374.png"
+		  			},
+		  			{
+						sp:4,
+		  				picture_name:'南门',
+		  				picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784433466945.png"
+		  			},
+		  			{
+						sp:5,
+		  				picture_name:'福友阁',
+		  				picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784456651986.png"
+		  			},
+		  			{
+						sp:6,
+		  				picture_name:'图书馆',
+		  				picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784456815493.png"
+		  			}		
+		  		],
+		
+	  };
     },
     methods: {
-		changetoduoren_upload(){
-			uni.navigateTo({
-				url:'/package-huodong/duoren_upload/duoren_upload'
-			})
-		}
+		actionSheetTap() {
+					const that = this;
+					uni.showActionSheet({
+						title: '选择上传方式',
+						itemList: ['拍摄', '从相册选择'],
+						popover: {
+							top: that.buttonRect.top * 2 + that.buttonRect.height,
+							left: that.buttonRect.left + that.buttonRect.width / 2
+						},
+						success(res) {
+						  console.log(res.tapIndex)
+						  let sourceType = 'camera'
+						  if (res.tapIndex == 0) {
+						    sourceType = 'camera'
+						  } else if (res.tapIndex == 1) {
+						    sourceType = 'album'
+						  }
+						  var _this = this
+						  uni.chooseMedia({
+						    count: 1,// 最多可以选择的图片张数，默认9
+						    sizeType: ['original', 'compressed'],// original 原图，compressed 压缩图，默认二者都有
+						    sourceType: [sourceType],// album 从相册选图，camera 使用相机，默认二者都有
+						    success: function (res) {
+								_this.imgShow = res.tempFilePaths[0]
+						    },
+						  })
+						},
+						
+					});
+				},
+		//点击小图切换指定大图
+		changeBigPic(index){
+			this.current = index;
+		},
 	},
   };
+    
 </script>
 
-<style scoped lang="css">
+<style scoped lang="scss">
   .page {
-    background-color: #cccccc;
+    background-color: #ffffff;
     width: 100%;
     overflow-y: auto;
     overflow-x: hidden;
     height: 100%;
-  }
-  .font_1 {
-    font-size: 34.18rpx;
-    font-family: SourceHanSansCN;
-    line-height: 32.28rpx;
-    color: #ffffff;
-  }
-  .group {
-    padding-top: 415.82rpx;
-    flex: 1 1 auto;
-    border-top: solid 2.72rpx #ffffff;
-    overflow-y: auto;
-  }
-  .section {
-    padding: 26.58rpx 0 28.48rpx;
-    background-color: #ffffff;
-  }
-  .text-wrapper {
-    padding: 37.97rpx 0;
-    background-color: #f2f2f2;
-    border-radius: 9.49rpx;
-    width: 620.89rpx;
-  }
-  .text_2 {
-    color: #808080;
-    font-size: 22.78rpx;
-    font-family: SourceHanSansCN;
-    line-height: 21.84rpx;
-  }
-  .section_2 {
-    padding: 18.99rpx 62.66rpx 0 64.56rpx;
-    background-color: #ffffff;
-    height: 679.75rpx;
-  }
-  .section_3 {
-    flex: 1 1 273.42rpx;
-    background-color: #cccccc;
-    width: 273.42rpx;
-    height: 151.9rpx;
-  }
-  .font_2 {
-    font-size: 26.58rpx;
-    font-family: SourceHanSansCN;
-    line-height: 24.68rpx;
-    color: #383838;
-  }
-  .text_3 {
-    margin-right: 220.25rpx;
-  }
-  .group_2 {
-    margin-top: 56.96rpx;
-  }
-  .space-y-14 > view:not(:first-child),
-  .space-y-14 > text:not(:first-child),
-  .space-y-14 > image:not(:first-child) {
-    margin-top: 26.58rpx;
-  }
-  .group_3 {
-    padding: 0 3.8rpx;
-  }
-  .text_4 {
-    margin-right: 216.46rpx;
-  }
-  .group_4 {
-    margin: 56.96rpx 0 -15.19rpx;
-  }
-  .space-x-39 > view:not(:first-child),
-  .space-x-39 > text:not(:first-child),
-  .space-x-39 > image:not(:first-child) {
-    margin-left: 74.05rpx;
-  }
-  .section_4 {
-    padding: 20.89rpx 0 34.18rpx;
-    background-color: #ffffff;
-  }
-  .button {
-    margin: 0 37.97rpx;
-    padding: 34.18rpx 0 30.38rpx;
-    background-color: #d14735;
-    border-radius: 9.49rpx;
-  }
-  .text_5 {
-    line-height: 31.33rpx;
+    .section {
+      background-color: #d14735;
+      height: 112.03rpx;
+    }
+	.bigImg{width:100%;height:14rem;}
+	.bigImg image{width:100%;height:14rem;}
+    .image {
+      width: 750rpx;
+      height: 417.72rpx;
+    }
+    .section_2 {
+      padding: 26.58rpx 0 28.48rpx;
+      background-color: #ffffff;
+      .text-wrapper {
+        padding: 37.97rpx 0;
+        background-color: #f2f2f2;
+        border-radius: 9.49rpx;
+        width: 620.89rpx;
+        .text {
+          color: #808080;
+          font-size: 22.78rpx;
+          font-family: SourceHanSansCN;
+          line-height: 21.84rpx;
+        }
+      }
+    }
+    .grid {
+      margin-top: 18.99rpx;
+      padding: 0 28.48rpx;
+      height: 659.81rpx;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 24.68rpx;
+      .space-y-14 {
+        & > view:not(:first-child),
+        & > text:not(:first-child),
+        & > image:not(:first-child) {
+          margin-top: 26.58rpx;
+        }
+        .image_2 {
+          width: 273.42rpx;
+          height: 153.8rpx;
+        }
+        .font_1 {
+          font-size: 26.58rpx;
+          font-family: SourceHanSansCN;
+          line-height: 24.68rpx;
+          color: #383838;
+        }
+      }
+      .grid-item {
+        padding: 0 36.08rpx;
+      }
+    }
+    .section_3 {
+      margin-top: 3.8rpx;
+      padding: 18.99rpx 0 34.18rpx;
+      background-color: #ffffff;
+      .button {
+        margin: 0 37.97rpx;
+        padding: 34.18rpx 0 30.38rpx;
+        background-color: #d14735;
+        border-radius: 9.49rpx;
+        .text_2 {
+          color: #ffffff;
+          font-size: 34.18rpx;
+          font-family: SourceHanSansCN;
+          line-height: 31.33rpx;
+        }
+      }
+    }
   }
 </style>
