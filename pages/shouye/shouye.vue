@@ -41,49 +41,93 @@
 	  </view>
 	  <view class="flex-col group_6">
 	    <view class="flex-col items-start space-y-8 section_2">
-	      <view class="flex-row group_7">
+	      <view class="flex-row group_7" style="">
 	        <view class="flex-col items-start group_8">
 	          <image
 	            class="image_5"
 	            src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6353f1ea5a7e3f0310e61ff3/6353f319fe65f70012e4f328/16669447039702860196.png"
 	          />
-	          <view class="flex-row justify-between section_3">
-	            <view class="flex-col space-y-29 group_9">
-	              <text class="font_4 text_9">林慧民</text>
+            
+            <!-- 轮播图 -->
+            
+	          <swiper 
+            autoplay="true" indicator-dots="true" interval="2000" class="flex-row justify-between section_3"
+             style="left: 3.4rem;border-radius: 37.01rpx;
+              overflow:hidden; "
+            
+             >
+              <swiper-item style=" border-radius: 37.01rpx;overflow:hidden;">
+                <view class="flex-row justify-between section_3" style="border-radius: 37.01rpx;">
+	            <view class="flex-col space-y-29 group_9" style=" border-radius: 37.01rpx;margin-left: 2rem;">
+	              <text class="font_4 text_9" >林慧民</text>
 	              <text class="text_10">1977年入福州大学计算数学专业学习，1982年2月在福州大学计算机系计算机...</text>
 	            </view>
 	            <image
 	              class="image_4"
 	              src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6353f1ea5a7e3f0310e61ff3/6353f319fe65f70012e4f328/16669445132748524185.png"
+               
 	            />
-	          </view>
+              </view>
+              </swiper-item>
+              
+              <swiper-item style=" border-radius: 37.01rpx;overflow:hidden;">
+                <view class="flex-row justify-between section_3" style=" border-radius: 37.01rpx;">
+                <view class="flex-col space-y-29 group_9" style=" border-radius: 37.01rpx;margin-left: 2rem;">
+                  <text class="font_4 text_9">林慧民</text>
+                  <text class="text_10">1977年入福州大学计算数学专业学习，1982年2月在福州大学计算机系计算机...</text>
+                </view>
+                <image
+                  class="image_4"
+                  src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6353f1ea5a7e3f0310e61ff3/6353f319fe65f70012e4f328/16669445132748524185.png"
+                />
+                </view>
+                </swiper-item>
+              
+              <swiper-item style=" border-radius: 37.01rpx;overflow:hidden;">
+                <view class="flex-row justify-between section_3" style=" border-radius: 37.01rpx;">
+                <view class="flex-col space-y-29 group_9" style=" border-radius: 37.01rpx;margin-left: 2rem;">
+                  <text class="font_4 text_9">林慧民</text>
+                  <text class="text_10">1977年入福州大学计算数学专业学习，1982年2月在福州大学计算机系计算机...</text>
+                </view>
+                <image
+                  class="image_4"
+                  src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6353f1ea5a7e3f0310e61ff3/6353f319fe65f70012e4f328/16669445132748524185.png"
+                />
+                </view>
+                </swiper-item>
+              
+	          </swiper>
+            
 	        </view>
-	        <view class="section_4"></view>
-	        <view class="section_5"></view>
-	        <view class="section_6"></view>
-	        <view class="flex-col items-start text-wrapper_3"><text class="font_4 text_11">更 多 +</text></view>
+
+	        <view class="flex-col items-start text-wrapper_3" style="margin-top: -4rem;" @click="gotoxiaoyoufc()"><text class="font_4 text_11">更 多 +</text></view>
 	        <image
 	          class="image_6"
 	          src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6353f1ea5a7e3f0310e61ff3/6353f319fe65f70012e4f328/16669445130077024615.png"
+           style="top: 15rem ;"
 	        />
-	        <text class="font_1 text_12">云祝福</text>
+	        <text class="font_1 text_12"  style="top: 16rem ;">云祝福</text>
 	      </view>
-	      <view class="flex-col items-end group_10">
+	      <view class="flex-col items-end group_10" style="margin-top: -3rem;margin-left: 0.05rem;">
 	        <view class="flex-col space-y-24 section_7">
-	          <view class="flex-col space-y-32 section_8">
-	            <view class="flex-col items-start space-y-18 group_11">
-	              <text class="font_5 text_13">祝福母校越来越好~~</text>
-	              <text class="font_5 text_14">祝福计算机与大数据学院越来越好~~</text>
-	            </view>
-	            <text class="font_5 text_15">四十载弦歌不辍、砥砺奋进~~</text>
-	            <view class="flex-col space-y-16 group_12">
-	              <text class="font_5 text_16">四十年风雨，积淀下沉沉步履~~</text>
-	              <text class="font_5 text_17">祝各位校友身体健康，万事顺意~~</text>
-	            </view>
+            
+            <!-- 弹幕 -->
+            
+            
+  
+            
+	         <view class="flex-col space-y-32 section_8">
+              <uni-notice-bar  
+     text="祝福母校越来越好 ! ! !" speed="80"  scrollable="true" backgroundColor="#f2897b" color="white"> </uni-notice-bar>
+  <uni-notice-bar text="四十年的风雨兼程，福大几经沧桑，奋发图强，赢得桃李满天下，为祖国培养了数万计的人才" speed="80"  scrollable="true" backgroundColor="#f2897b" color="white"> </uni-notice-bar>
+    <uni-notice-bar text=" 四十载弦歌不辍、砥砺奋进~~" speed="120"  scrollable="true" backgroundColor="#f2897b" color="white"> </uni-notice-bar>
+      <uni-notice-bar text=" 四十年风雨，积淀下沉沉步履~~祝福母校越来越好 ! ! !" speed="60"  scrollable="true" backgroundColor="#f2897b" color="white"> </uni-notice-bar>
+        <uni-notice-bar text="祝各位校友身体健康，万事顺意~~" speed="100"  scrollable="true" backgroundColor="#f2897b" color="white"> </uni-notice-bar>
 	          </view>
+            
 	          <view class="flex-row group_13">
-	            <view class="flex-col items-start text-wrapper_4"><text class="font_4 text_18">写下你的祝福</text></view>
-	            <view class="flex-col items-center text-wrapper_5"><text class="font_4">发送</text></view>
+	            <input class="flex-col items-center text-wrapper_5" style="width: 14rem;"></input>
+              <view class="font_4" style="padding-top: 0.8rem; background-color: blanchedalmond; width: 3rem;text-align: center;border-radius: 5px;">发送</view>
 	          </view>
 	        </view>
 	        <image
@@ -98,18 +142,29 @@
 </template>
 
 <script>
+
 	export default {
+   
+
+	
 		data() {
 			return {
 				
 			}
 		},
 		methods: {
+      
+      
 			changetoxueyuann(){
-				uni.navigateTo({
-					url:'/package-shouye/xueyuan/xueyuan'
-				})
-			}
+      uni.navigateTo({
+        url:'/package-shouye/xueyuan/xueyuan'
+      })			},
+      gotoxiaoyoufc(){
+        console.log(1111),
+        uni.navigateTo({
+          url:'/package-shouye/xiaoyou/xiaoyou'
+        })
+      }
 		}
 	}
 </script>
@@ -352,7 +407,7 @@ text {
           height: 225.97rpx;
         }
         .section_3 {
-          padding-left: 62.34rpx;
+
           background-color: #d14735;
           border-radius: 37.01rpx;
           width: 633.12rpx;
@@ -568,4 +623,8 @@ text {
     line-height: 32.14rpx;
   }
 }
+
+
+
+
 </style>

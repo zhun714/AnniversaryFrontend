@@ -28,9 +28,9 @@
 	    {
 	        "enablePullDownRefresh": false
 	    }
-	    
 	}
 	   
+        
     ],
 	 "subPackages": [
 	        {
@@ -40,7 +40,90 @@
                     "path" : "xueyuan/xueyuan",
                     "style" :                                                                                    
                 {
+                
                     "navigationBarTitleText": "学院风采",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "xiaoyou/xiaoyou",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "校友风采",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "xiaoyou1/xiaoyou1",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "xiaoyou2/xiaoyou2",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "xiaoyou4/xiaoyou4",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "xiaoyou5/xiaoyou5",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "xiaoyou3/xiaoyou3",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "keyan/keyan",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                
+                ,{
+                    "path" : "jianshe1/jianshe1",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "jianshe2/jianshe2",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
                     "enablePullDownRefresh": false
                 }
                 
