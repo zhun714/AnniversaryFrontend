@@ -5,8 +5,7 @@
 		  <view class="flex-col space-y-30">
 		    <view class="flex-col section">
 		      <view class="flex-col items-center space-y-11 section_2">
-		        <text class="text">何帆</text>
-		        <text class="text_2">032002509</text>
+		        <text class="text">{{name}}</text>
 		      </view>
 		      <view class="flex-col items-center image-wrapper">
 		        <image
@@ -56,7 +55,7 @@
 		              class="image_7"
 		              src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16672829079450875005.png"
 		            />
-		            <text class="font_1 text_5">  意见反馈</text>
+		            <text class="font_1 text_5"> 意见反馈</text>
 		          </view>
 		          <image
 		            class="image_3 image_8"
@@ -86,10 +85,13 @@
 </template>
 
 <script>
-	import { mapMutations} from 'vuex';
+	import { mapState,mapMutations} from 'vuex';
 	
 	export default {
-
+      computed:
+	  {
+		  ...mapState(['name'])
+	  },
 		data() {
 			return {
 			

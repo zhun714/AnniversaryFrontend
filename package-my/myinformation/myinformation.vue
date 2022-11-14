@@ -12,74 +12,274 @@
 	           src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16672829678343166060.png"
 	         />
 	       </view>
-	       <view class="flex-row justify-between section_3" @click="chooseimage()">
+	       <view class="flex-row justify-between section_3">
 	         <view class="flex-row space-x-26">
 	           <image
 	             class="image_3"
 	             src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16672829678479916743.png"
-	           />
-	           <text class="text_2">何帆</text>
+	            @click="chooseimage()"
+			   />
+	           
+			    <text class="text_2" @click="changename()">{{name}}</text>
 	         </view>
 	         <image
 	           class="image_4"
 	           src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16672829678400163723.png"
-	         />
+	         @click="chooseimage()" 
+			 />
 	       </view>
 	     </view>
-	     <view class="flex-col space-y-18">
-	       <view class="flex-col space-y-13 section_4">
-	         <text class="font_1 text_3">学号</text>
-	         <input class="font_1 text_4" placeholder="032002509"></input>
-	         <view class="divider"></view>
-	         <text class="font_1 text_5">年级</text>
-	         <input class="font_1 text_6" placeholder="2020级"></input>
-	         <view class="divider"></view>
-	         <text class="font_1 text_7">学院</text>
-	         <input class="font_1 text_8" placeholder="计算机与大数据学院"></input>
-	       </view>
-	       <view class="flex-col space-y-13 section_5">
-	         <text class="font_1 text_9">手机号码</text>
-	         <input class="font_1 text_10" placeholder="请填写您的手机号码"></input>
-	         <view class="divider view"></view>
-	         <text class="font_1 text_11">邮箱</text>
-	         <input  class="font_1 text_12" placeholder="请填写您的邮箱"></input >
-	       </view>
-	       <view class="flex-col space-y-13 section_6">
-	         <text class="font_1 text_13">单位名称</text>
-	         <input class="font_1 text_14" placeholder="请填写您的单位名称"></input>
-	         <view class="divider"></view>
-	         <text class="font_1 text_15">现任职务</text>
-	         <input class="font_1 text_16" placeholder="请填写您的现任职务"></input>
-	         <view class="divider"></view>
-	         <text class="font_1 text_17">行业</text>
-	         <input class="font_1 text_18" placeholder="请填写您的行业"></input>
-	       </view>
+		 
+	  <!-- 表单 -->
+	  	<view style="margin: 0.7rem;width: 90%;">
+	  		<uni-forms ref="form" :modelValue="formData" :rules="rules" >
+				<uni-forms-item label="学院" name="xueyuan" >
+					<uni-easyinput type="text" v-model="formData.xueyuan" placeholder="计算机与大数据学院" />
+				</uni-forms-item>
+				
+				<uni-forms-item label="GitHub" name="github" >
+					<uni-easyinput type="text" v-model="formData.github" placeholder="请输入账号昵称" />
+				</uni-forms-item>
+				
+				<uni-forms-item label="邮箱" name="email">
+					<uni-easyinput type="text" v-model="formData.email" placeholder="dcloud@email.com" />
+				</uni-forms-item>
+				
+				<uni-forms-item label="单位名称" name="danwei" >
+					<uni-easyinput type="text" v-model="formData.danwei" placeholder="请输入您的单位名称" />
+				</uni-forms-item>
+				
+				<uni-forms-item label="职务" name="zhiwu" >
+					<uni-easyinput type="text" v-model="formData.zhiwu" placeholder="请输入您的现任职务" />
+				</uni-forms-item>
+				
+	  			<uni-forms-item label="行业" name="hanye" >
+	  				<uni-easyinput type="text" v-model="formData.hanye" placeholder="请输入您所从事行业" />
+	  			</uni-forms-item>
+				
+				<uni-forms-item label="出生日期" name="birthday" >
+					<uni-easyinput type="text" v-model="formData.birthday" placeholder="请输入您的生日" />
+					</uni-forms-item>
+					
+				<uni-forms-item label="兴趣爱好" name="aihao" >
+					<uni-easyinput type="text" v-model="formData.aihao" placeholder="请输入您兴趣爱好" />
+				</uni-forms-item>
+			
+				
+	  		</uni-forms>
+	  		<button @click="submit" style="background-color: red;width: 45%;border-radius: 15px;">提交</button>
+	  	</view>
+	  
+	  
 	     </view>
+		 
+		 <!-- 弹出层视图，注意这里的ref="popup"，这里背景特意标红了，方便看到效果 -->
+		 <uni-popup ref="popupDialog" type="dialog" >
+		 		   <view style="background-color: orchid;border-radius: 10px;width: 18rem;height: 4rem;">
+		 			<text style="margin-left: 6.5rem;">请输入姓名</text>
+					<input type="text" placeholder="张三" style="width: 80%;margin-left: 1.8rem;background-color: antiquewhite;" @input="oninput">
+					<button style="height: 2rem;border-radius: 10px;background-color: orchid;" @click="tijiao()">提交</button>
+		 		   </view>
+		 	</uni-popup>
+		 
 	   </view>
+
 	</view>
 </template>
 
 <script>
+import{mapState,mapMutations}from 'vuex'
+
 	export default {
+		onShow:function(){
+			this.formData=uni.getStorageSync('storage_key')
+		},
+		computed:
+		{
+			...mapState(['name'])
+		},
 		data() {
 			return {
-				
-			};
+				// 表单数据 
+				              //input的名字
+				            inputcontent:'',
+							
+							formData: {
+								xueyuan: '计算机与大数据学院',
+								github: '',
+								email: 'dcloud@email.com',
+								danwei:'',
+								zhiwu:'',
+								hanye:'',
+								birthday:'',
+								aihao:''
+			},
+			
+			rules: {
+				//xueyuan
+				xueyuan: {
+					rules: [{
+							required: false,
+							errorMessage: '错误',
+						},
+						{
+							minLength: 3,
+							maxLength: 20,
+							errorMessage: '学院长度在 {minLength} 到 {maxLength} 个字符',
+						}
+					]
+				},
+				//
+				danwei: {
+					rules: [{
+							required: false,
+							errorMessage: '错误',
+						},
+						{
+							minLength: 1,
+							maxLength: 20,
+							errorMessage: '单位长度在 {minLength} 到 {maxLength} 个字符',
+						}
+					]
+				},
+				//zhiwu
+				zhiwu: {
+					rules: [{
+							required: false,
+							errorMessage: '错误',
+						},
+						{
+							minLength: 1,
+							maxLength: 10,
+							errorMessage: '职务长度在 {minLength} 到 {maxLength} 个字符',
+						}
+					]
+				},
+				//hanye
+				hanye: {
+					rules: [{
+							required: false,
+							errorMessage: '错误',
+						},
+						{
+							minLength: 3,
+							maxLength: 20,
+							errorMessage: '行业长度在 {minLength} 到 {maxLength} 个字符',
+						}
+					]
+				},
+				//birthday
+				birthday: {
+					rules: [{
+							required: false,
+							errorMessage: '错误',
+						},
+						{
+							minLength: 3,
+							maxLength: 20,
+							errorMessage: '生日格式为2000年1月1日',
+						}
+					]
+				},
+				//兴趣爱好
+				aihao: {
+					rules: [{
+							required: false,
+							errorMessage: '错误',
+						},
+						{
+							minLength: 3,
+							maxLength: 20,
+							errorMessage: '请少于{maxLength}个字',
+						}
+					]
+				},
+				//
+				xueyuan: {
+					rules: [{
+							required: false,
+							errorMessage: '错误',
+						},
+						{
+							minLength: 3,
+							maxLength: 20,
+							errorMessage: '学院长度在 {minLength} 到 {maxLength} 个字符',
+						}
+					]
+				},
+				// 对name字段进行必填验证
+							github: {
+								rules: [{
+										required: false,
+										errorMessage: '请输入github账号昵称',
+									},
+									{
+										minLength: 1,
+										maxLength: 20,
+										errorMessage: '请输入正确github账号昵称',
+									}
+								]
+							},
+							// 对email字段进行必填验证
+							email: {
+								rules: [{
+									format: 'email',
+									errorMessage: '请输入正确的邮箱地址',
+								}]
+							}
+						}
+					}
+			
 		},
+		
+		
+		
+		
 		methods:
 		{
+			...mapMutations(['change_name']),
+			   oninput(e)
+			   {
+				   this.inputcontent=  e.target.value
+			   },
+				submit() {
+						this.$refs.form.validate().then(res=>{
+							
+							
+							uni.showToast({
+								title: "提交成功",
+								duration: 600
+							})
+							
+						}),
+						uni.setStorageSync('storage_key', this.formData);
+						
+						},
+						
+			
 			chooseimage()
 			{
 			   uni.chooseImage({
 			   	count:1,
 				sizeType:['original', 'compressed'],
-				sourceType: ['album'], //从相册选择
+				sourceType: ['album','camera'], //从相册选择
 				success: function (res) {
-						uni.navigateTo({
-							url:'/subpkg/myinformation/information'
-						})
+				
 					}
 			   })
+			},
+			changename()
+			{
+				this.$refs['popupDialog'].open();
+			},
+			tijiao()
+			{     
+				
+                  if(this.inputcontent)
+				  {
+					  this.change_name(this.inputcontent)  
+				  }
+				this.$refs['popupDialog'].close();
 			}
 		}
 	}

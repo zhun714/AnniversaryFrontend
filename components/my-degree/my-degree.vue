@@ -5,25 +5,39 @@
 
  <view style=" margin-left: 6rem;margin-top: 1rem;margin-bottom: 1rem;"><text class="font_1 text1">加入班级</text></view>
  
- <view>
-	 
- 	<view> <text class="font_2" style="font-size: 1rem; margin-left:1rem;">学号</text></view>
- 	 <view class="flex-col"><input type="text" placeholder="请输入学号" style="margin-left:1rem;margin: 1rem;"></view>
-	 
- 	 <text style="font-size: 1rem; margin-left:1rem;">学历</text>
- 	 <view  style="margin:0.5rem;">
-	      <uni-data-select  v-model="value"
-      :localdata="range"
-      @change="change" ></uni-data-select>
- 	 </view>
- <view> <text style="font-size: 1rem; margin-left:1rem;">专业</text></view>
-  <view><input type="text" placeholder="请输入专业" style="margin-left:1rem;margin: 1rem;"></view>
- 	<view> <text style="font-size: 1rem; margin-left:1rem;">年级</text></view>
- 	 <view><input type="text" placeholder="请输入年级" style="margin-left:1rem;margin: 1rem;"></view>
- 	<view> <text style="font-size: 1rem; margin-left:1rem;">班级</text></view>
- 	 <view><input type="text" placeholder="请输入班级" style="margin-left:1rem;margin: 1rem;"></view>
- </view>
- 
+ <!-- 表单 -->
+	  	<view style="margin: 1rem;width: 90%;">
+			
+	  		<uni-forms ref="form" :modelValue="formData" :rules="rules" >
+				<uni-forms-item label="学号" name="xueyuan" >
+					<uni-easyinput type="text" v-model="formData.xuehao" placeholder="请输入学号" />
+				</uni-forms-item>
+				
+			<uni-forms-item label="学历" name="xueyuan" >
+				<view>
+				<uni-data-select v-model="value"
+				:localdata="range"
+				@change="change" >
+				</uni-data-select>
+				</view>
+				</uni-forms-item>
+			
+			<uni-forms-item label="专业" name="xueyuan" >
+				<uni-easyinput type="text" v-model="formData.zhuanye" placeholder="请输入专业" />
+			</uni-forms-item>
+			
+			<uni-forms-item label="年级" name="xueyuan" >
+				<uni-easyinput type="text" v-model="formData.nianji" placeholder="请输入年级" />
+			</uni-forms-item>
+				
+				<uni-forms-item label="班级	" name="xueyuan" >
+					<uni-easyinput type="text" v-model="formData.banji" placeholder="请输入班级" />
+				</uni-forms-item>
+				
+	  		</uni-forms>
+	
+		 </view>
+      
 
 
 </view>
@@ -38,6 +52,31 @@
 		name:"my-degree",
 		data() {
 			return {
+				formData:
+				{
+					xuehao:'',
+					xueli:'',
+					zhuanye:'',
+					nianji:'',
+					banji:''
+				},
+				rules: {
+					//xueyuan
+					
+					xueyuan: {
+						rules: [{
+								required: false,
+								errorMessage: '错误',
+							},
+							{
+								minLength: 3,
+								maxLength: 20,
+								errorMessage: '长度在 {minLength} 到 {maxLength} 个字符',
+							}
+						]
+					},
+					
+					},
 	      value: 0,
 	      range: [
 	        { value: 1, text: "本科" },

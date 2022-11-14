@@ -7,7 +7,8 @@ const store = new Vuex.Store({
 		token:true,//true表示未登录渲染一键登录页面
 		degree_bk:false,//0表示未加入班级，1表示本科，2表示硕士，3表示博士
 		degree_ss:false,
-		degree_bs:false
+		degree_bs:false,
+		name: '未定义姓名'
 	},
 	mutations:{
 		login(state,token)
@@ -26,6 +27,10 @@ const store = new Vuex.Store({
 		change_degree_bs(state,degree_bs)//degree修改函数
 		{
 			state.degree_bs = degree_bs
+		},
+		change_name(state,name)
+		{
+			state.name = name
 		}
 		
 	},
