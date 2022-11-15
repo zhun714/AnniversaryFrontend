@@ -12,7 +12,7 @@
           <text class="font_1">我的班级：</text>
           <text class="font_1">2020级计算机5班</text>
         </view>
-        <view class="flex-col items-center text-wrapper" @click="outclass()"><text class="text">退出班级</text></view>
+        <view class="flex-col items-center text-wrapper" @click="outclass()"><text class="text">退出</text></view>
       </view>
     </view>
   </view>
@@ -28,9 +28,12 @@
 </template>
 
 <script>
+import{mapState,mapMutations}from 'vuex'
 
 export default {
-  components: {},
+  components: {
+	  ...mapState(['degree_bk','degree_ss','degree_bs','token'])
+  },
   data() {
     return {
 	  	classmates:[

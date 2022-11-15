@@ -5,7 +5,7 @@
   
 </view>
 <view v-else>
-	<mine></mine>>
+	<mine></mine>
 </view>
 </template>
 

@@ -21,8 +21,9 @@
     class="image_2"
     src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16672829079276309967.png"
   />
-  <view class="flex-col items-center text-wrapper"><text class="text_3">分享</text></view>
+  <view class="flex-col items-center text-wrapper" style="position: fixed;margin-top: 38rem;margin-left:0rem;"><text class="text_3">分享</text></view>
 </view>
+
 </template>
 
 <script>
