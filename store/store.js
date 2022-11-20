@@ -8,7 +8,8 @@ const store = new Vuex.Store({
 		degree_bk:false,//0表示未加入班级，1表示本科，2表示硕士，3表示博士
 		degree_ss:false,
 		degree_bs:false,
-		name: '未定义姓名'
+		name: '未定义姓名',
+		id:'',//用户id值
 	},
 	mutations:{
 		login(state,token)
@@ -31,6 +32,10 @@ const store = new Vuex.Store({
 		change_name(state,name)
 		{
 			state.name = name
+		},
+		change_id(state,id)
+		{
+			state.id = id
 		}
 		
 	},

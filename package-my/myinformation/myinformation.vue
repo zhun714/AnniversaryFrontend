@@ -34,7 +34,7 @@
 	  	<view style="margin: 0.7rem;width: 90%;">
 	  		<uni-forms ref="form" :modelValue="formData" :rules="rules" >
 				<uni-forms-item label="学院" name="xueyuan" >
-					<uni-easyinput type="text" v-model="formData.xueyuan" placeholder="计算机与大数据学院" />
+					<uni-easyinput type="text" v-model="formData.xueyuan" placeholder="请输入学院" />
 				</uni-forms-item>
 				
 				<uni-forms-item label="GitHub" name="github" >
@@ -75,10 +75,10 @@
 		 
 		 <!-- 弹出层视图，注意这里的ref="popup"，这里背景特意标红了，方便看到效果 -->
 		 <uni-popup ref="popupDialog" type="dialog" >
-		 		   <view style="background-color: orchid;border-radius: 10px;width: 18rem;height: 4rem;">
+		 		   <view style="background-color:white;border-radius: 10px;width: 18rem;height: 4rem;">
 		 			<text style="margin-left: 6.5rem;">请输入姓名</text>
-					<input type="text" placeholder="张三" style="width: 80%;margin-left: 1.8rem;background-color: antiquewhite;" @input="oninput">
-					<button style="height: 2rem;border-radius: 10px;background-color: orchid;" @click="tijiao()">提交</button>
+					<input type="text" placeholder="张三" style="width: 80%;margin-left: 1.8rem;background-color:whitesmoke;" @input="oninput">
+					<button style="height: 2rem;border-radius: 10px;background-color: white;" @click="tijiao()">提交</button>
 		 		   </view>
 		 	</uni-popup>
 		 
@@ -91,20 +91,26 @@
 import{mapState,mapMutations}from 'vuex'
 
 	export default {
-		onShow:function(){
-			this.formData=uni.getStorageSync('storage_key')
-		},
+	mounted() {
+	
+			this.getbyid()
+		if(uni.getStorageSync('storage_key'))
+		{
+			console.log('缓存存在')
+			this.formData = uni.getStorageSync('storage_key')
+		}
+		else console.log('缓存不存在显示多种输入行')
+	},
 		computed:
 		{
-			...mapState(['name'])
+			...mapState(['name','id'])
 		},
 		data() {
 			return {
 				// 表单数据 
 				              //input的名字
 				            inputcontent:'',
-							
-							formData: {
+						formData: {
 								xueyuan: '计算机与大数据学院',
 								github: '',
 								email: 'dcloud@email.com',
@@ -113,7 +119,7 @@ import{mapState,mapMutations}from 'vuex'
 								hanye:'',
 								birthday:'',
 								aihao:''
-			},
+		                 },
 			
 			rules: {
 				//xueyuan
@@ -228,7 +234,7 @@ import{mapState,mapMutations}from 'vuex'
 								}]
 							}
 						}
-					}
+					};
 			
 		},
 		
@@ -238,22 +244,79 @@ import{mapState,mapMutations}from 'vuex'
 		methods:
 		{
 			...mapMutations(['change_name']),
+			updatebyid()
+			{
+				uni.request({
+					url:'http://43.139.44.201:8081/user/save', //仅为示例，并非真实接口地址。
+					
+					data:{
+					        
+					     "dormitory": "32#111",
+					       "email": this.formData.email,
+					       "graduationTime": "2018-07-01",
+					       "id": this.id,
+					       "name": this.name,
+					       "sex": 0,
+					       "sid": 9866
+						 
+						  				
+					  },
+						  	
+					   method: 'POST',
+					   header: {
+					       'content-type': 'application/json'  //自定义请求头信息
+					   },
+						  									
+					   success: (res) => {
+						   console.log(res)
+						   console.log('id',this.id)
+						   }
+				})
+			},
+			getbyid()//获取id的数据
+			{
+		
+				uni.request({
+					url:'http://43.139.44.201:8081/user/data/'+this.id,//仅为示例，并非真实接口地址。
+						  	
+					   method: 'GET',
+					   header: {
+					       'content-type': 'application/json'  //自定义请求头信息
+					   },
+						  									
+					   success: (res) => {
+						   if(res.data.errMsg=="请求成功.")
+						   {
+							   console.log('getbyid2',res)
+							   this.change_name(res.data.data.name)
+						           console.log(res.data.data.email)
+							   this.formData.email=res.data.data.email	
+							
+				//======================================================================================================这里可以添加很多需要获取的信息			   
+						   }
+					
+						   }
+				})
+			},
 			   oninput(e)
 			   {
 				   this.inputcontent=  e.target.value
 			   },
 				submit() {
+								console.log(this.formData),
 						this.$refs.form.validate().then(res=>{
 							
-							
+						
 							uni.showToast({
 								title: "提交成功",
 								duration: 600
 							})
 							
 						}),
-						uni.setStorageSync('storage_key', this.formData);
-						
+						console.log('formdata',this.formData)
+				
+						this.updatebyid()
+						  uni.setStorageSync('storage_key',this.formData)
 						},
 						
 			
@@ -278,6 +341,7 @@ import{mapState,mapMutations}from 'vuex'
                   if(this.inputcontent)
 				  {
 					  this.change_name(this.inputcontent)  
+					  this.updatebyid()
 				  }
 				this.$refs['popupDialog'].close();
 			}

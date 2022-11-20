@@ -4,8 +4,8 @@
 
 		  <view class="section_7"></view>
 		  <view class="flex-col items-center space-y-18 group_4 view_3">
-		    <text class="text_2">周嘉晟</text>
-		    <text class="font_2 text_3">032002522</text>
+		    <text class="text_2">{{classmate.name}}</text>
+		    <text class="font_2 text_3">{{classmate.sid}}</text>
 		  </view>
 		  <view class="flex-col space-y-6 group_4 view_5">
 		    <view class="flex-row space-x-12">
@@ -20,7 +20,7 @@
 		        class="image_5"
 		        src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16679098327034347153.png"
 		      />
-		      <text class="font_2 text_5">1246511834@qq.com</text>
+		      <text class="font_2 text_5">{{classmate.email}}</text>
 		    </view>
 		  </view>
 		</view>
@@ -30,6 +30,17 @@
 <script>
 	export default {
 		name:"my-information",
+		props:
+		{
+			  classmate:
+			  {
+				  type: Object,
+				  default:
+				  {
+					  
+				  },
+			  }
+		},
 		data() {
 			return {
 				

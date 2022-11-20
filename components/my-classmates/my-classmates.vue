@@ -5,11 +5,11 @@
 		<view class="flex-row justify-center list-item">
 
 		   	   <view class="switch"  @click="openzl"></view>
-		  <view class="flex-col items-start space-y-15 group_2"  @click="openzl">
+		  <view class="flex-col items-start space-y-15 group_2"  @click="openzl" style=" width: 55%; ">
 		
-		    <text class="font_2">{{classmate.hisname}}</text>
-		    <text class="font_3">学号：{{classmate.hisxuehao}}</text>
-		    <text class="font_3 text_2">电话：{{classmate.histel}}</text>
+		    <text class="font_2" >{{classmate.name}}</text>
+		    <text class="font_3">学号：{{classmate.sid}}</text>
+		    <text class="font_3 text_2" >email：{{classmate.email}}</text>
 		  </view>
 		  <image
 		    class="image_2"
@@ -20,7 +20,7 @@
 		  <!-- 弹出层视图，注意这里的ref="popup"，这里背景特意标红了，方便看到效果 -->
 		  <uni-popup ref="popupzl" type="dialog" >
 			  <view style="background-color: whitesmoke; width: 18rem; height: 27rem; border-radius: 25px;" @click="closezl">
-			<my-information></my-information>
+			<my-information :classmate="classmate"></my-information>
 			  </view>
 
 		  </uni-popup>

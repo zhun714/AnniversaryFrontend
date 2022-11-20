@@ -88,19 +88,48 @@
 	import { mapState,mapMutations} from 'vuex';
 	
 	export default {
+	
+		mounted() {
+			
+		            console.log(this.id)
+			       this.getbyid()//单纯获取名字
+				
+		},
       computed:
 	  {
-		  ...mapState(['name'])
+		  ...mapState(['name','id'])
 	  },
+
 		data() {
 			return {
-			
+			 tempid: this.id
 			};
 		},
 		methods:
 		{
-			 ...mapMutations(['login']),
-			 
+			 ...mapMutations(['login','change_name']),
+			 getbyid()//获取id的数据
+			 {
+				 console.log(2222)
+			 	uni.request({
+			 		url:'http://43.139.44.201:8081/user/data/'+ this.id, //仅为示例，并非真实接口地址。
+			 			  	
+			 		   method: 'GET',
+			 		   header: {
+			 		       'content-type': 'application/json'  //自定义请求头信息
+			 		   },
+			 			  									
+			 		   success: (res) => {
+			 			   if(res.data.errMsg=="请求成功.")
+			 			   {
+			 				   console.log('getbyid',res)
+			 				   this.change_name(res.data.data.name)
+			 	//======================================================================================================这里可以添加很多需要获取的信息			   
+			 			   }
+			 		
+			 			   }
+			 	})
+			 },
 			gotomyinformation()
 			{
                  
@@ -134,6 +163,7 @@
 					success:(res)=>{
 					
 						if (res.confirm) {
+							       uni.clearStorageSync('storage_key')
 									this.login(true);
 									uni.$showMsg('退出成功!');
 								} 
