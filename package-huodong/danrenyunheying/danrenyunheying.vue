@@ -38,6 +38,7 @@
       return {
 		  buttonRect: {},
 		  current: 0,//轮播图索引
+		  itemList: [],
 		  lists: [
 		  			{
 						sp:1,
@@ -73,7 +74,30 @@
 		
 	  };
     },
+	onLoad() {
+	            /* 列表 */
+	            this.getList();
+	},
+	onPullDownRefresh() {
+	            /* 下拉的时候更新 */
+	            this.getList();
+	},
     methods: {
+		getList(){
+			uni.request({
+				url:'http://43.139.44.201:8081/background',
+				method:'GET',
+				header:{
+					'content-type':'application/json',
+				},
+				success:(res)=>{
+					console.log(res.data);
+					this.itemList =res.data.dataList;
+					console.log(this.itemList);
+				}
+			})
+			
+		},
 		actionSheetTap() {
 					const that = this;
 					uni.showActionSheet({

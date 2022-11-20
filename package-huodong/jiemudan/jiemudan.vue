@@ -26,10 +26,10 @@
         <view class="flex-col items-center section_2">
           <view class="flex-col group_7">
             <view class="flex-col list">
-              <view class="flex-col space-y-5" :key="i" v-for="(item, i) in lists">
+              <view class="flex-col space-y-5" :key="i" v-for="(item, i) in itemList">
                 <view class="flex-col group_8">
                   <view class="section_3"></view>
-                  <view class="flex-col items-center text-wrapper_3"><text class="font_2">《{{item.title}}》</text></view>
+                  <view class="flex-col items-center text-wrapper_3"><text class="font_2">《{{item.name}}》</text></view>
                 </view>
                 <text class="font_3 text_4">表演：{{item.type}}</text>
               </view>
@@ -80,6 +80,7 @@
     components: {},
     data() {
       return {
+		itemList: [],
         lists: [
 			{
 				type:'诗朗诵',
@@ -116,7 +117,32 @@
 		],
       };
     },
-    methods: {},
+	onLoad() {
+	            /* 列表 */
+	            this.getList();
+	},
+	onPullDownRefresh() {
+	            /* 下拉的时候更新 */
+	            this.getList();
+	},
+    methods: {
+		getList(){
+			uni.request({
+				url:'http://43.139.44.201:8081/program',
+				method:'GET',
+				header:{
+					'content-type':'application/json',
+				},
+				success:(res)=>{
+					console.log(res.data);
+					this.itemList =res.data.dataList;
+					console.log(this.itemList);
+				}
+			})
+			
+		},
+		
+	},
   };
 </script>
 
