@@ -28,37 +28,73 @@
    
            return
 			{
-				
+				openid:''
 			}
   
 		},
 	//获取用户基本信息
 	methods:
 	{
-		 ...mapMutations(['login']),
-		 
-		getUserProfile()
+		 ...mapMutations(['login','change_id']),
+		getlist()//请求接口
 		{
-			uni.getUserProfile(
-			{
-				desc:'秋雅',
-				success:(res)=>
-				{
+						 uni.request({
+							 
+						 			    url: 'http://43.139.44.201:8081/user/add', //仅为示例，并非真实接口地址。
+						 			 data:{
+									         
+						                         "openId": this.openid,//微信接口拿openid
+									   },
+						 				method: 'POST',
+						 			    header: {
+						 			        'content-type': 'application/json'  //自定义请求头信息
+						 			    },
+											
+						 			    success: (res) => {
+						                        //这里要写判断
+												if(res.data.errMsg=="请求成功.")
+												{
+													console.log('id数据',res)
+													this.change_id(res.data.data.id)//获取全局id值
+						
+													console.log('id数据',res.data.data.id)
+												}
+						 			    }
+							});
+		
+		},
+		getUserProfile()//获取openid
+		{
+		   
+             uni.login({
+         	provider: 'weixin',
+         	success: res => {
+         		let appid = 'wx99234b032bbfeca6'
+         		let secret = 'd33f882341c90834e7edf490ff9bb639'
+         		let url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appid + '&secret=' + secret + '&js_code=' +res.code ;
+				console.log(res)
+         	uni.request({
+         		url: url ,
+         		success: result => {
+         		this.openid = result.data.openid;
+				console.log(result)
+				
+				this.getlist()//获取id值
+				this.login(false)
+                uni.$showMsg('登录成功!');
+				
+         	},
+			fail() {
+				uni.$showMsg('登录失败!');
+			}
+         		});
+				
+         		}
+         	});
 
-                     this.login(false)
+        },
 
-                     
-					uni.switchTab({
-						url:'/pages/banji/banji'
-					}),
-					this.login(false)
-				},
-				fail: (res) => {
-					console.log(res)
-					uni.$showMsg('登录失败!')
-				},
-			})	
-		}
+		
 	},
 
 

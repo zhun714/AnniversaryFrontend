@@ -48,7 +48,7 @@
     <view class="flex-col space-y-19" style="">                                                                             
       <view class="flex-col list-item" style="">
 		  
-        <view class="flex-col items-start section" v-if="degree_bk&& !token" @click="gotoclass()" style="  background-color: #f2f2f2;
+        <view class="flex-col items-start section" v-if="degree_bk&& !token" @click="gotoclass(1)" style="  background-color: #f2f2f2;
   border-radius: 0.94rem;
   filter: drop-shadow(0px 0.13rem 0.13rem #00000040) blur(0.024rem);
   background-image: url('https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16678750158783354295.png');
@@ -56,7 +56,7 @@
   background-repeat: no-repeat;
   height: 7.81rem;
   " >
-          <text class="font_1 text_2">2020级本科计算机{{class_bk.classNo}}班</text>
+          <text class="font_1 text_2">{{class_bk.grade}}级本科{{class_bk.major}}{{class_bk.classNo}}班</text>
           <image
             class="image"
             src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16678750158823721052.png"
@@ -66,7 +66,7 @@
 		
 <view style="background-color: white;" v-if="degree_bk"><text>\n</text></view>
 
-	  <view class="flex-col items-start section" v-if="degree_ss&& !token" @click="gotoclass()"  style="  background-color: #f2f2f2;
+	  <view class="flex-col items-start section" v-if="degree_ss&& !token" @click="gotoclass(2)"  style="  background-color: #f2f2f2;
   border-radius: 0.94rem;
   filter: drop-shadow(0px 0.13rem 0.13rem #00000040) blur(0.024rem);
   background-image: url('https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16678750158783354295.png');
@@ -74,7 +74,7 @@
   background-repeat: no-repeat;
   height: 7.81rem;
 ">
-	    <text class="font_1 text_2" >2020级研究生计算机5班</text>
+	    <text class="font_1 text_2" >{{class_ss.grade}}级研究生{{class_ss.major}}{{class_ss.classNo}}班</text>
 	    <image
 	      class="image"
 	      src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16678750158823721052.png"
@@ -86,14 +86,14 @@
 
 <view style="background-color: white;" v-if="degree_ss"><text>\n</text></view>
 
-	  <view class="flex-col items-start section" v-if="degree_bs&& !token" @click="gotoclass()"  style="  background-color: #f2f2f2;
+	  <view class="flex-col items-start section" v-if="degree_bs&& !token" @click="gotoclass(3)"  style="  background-color: #f2f2f2;
   border-radius: 0.94rem;
   filter: drop-shadow(0px 0.13rem 0.13rem #00000040) blur(0.024rem);
   background-image: url('https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16678750158783354295.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   height: 7.81rem;">
-	    <text class="font_1 text_2">2020级博士生计算机5班</text>
+	    <text class="font_1 text_2">{{class_bs.grade}}级博士生{{class_bs.major}}{{class_bs.classNo}}班</text>
 	    <image
 	      class="image"
 	      src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16678750158823721052.png"
@@ -146,29 +146,37 @@ import{mapState,mapMutations}from 'vuex'
 	export default {
 		computed:
 		{
-			...mapState(['degree_bk','degree_ss','degree_bs','token'])
+			...mapState(['degree_bk','degree_ss','degree_bs','token','id'])
 		},
 		data() {
 			return {
 			  temp:'' ,
-			  class_bk:
+			  class_bk://本科生渲染班级数据
 			  {
-			           classNo: -1,
-			            grade: -1,                        major: ""//专业
+			
 			  },
+			  class_ss://硕士生渲染班级数据
+			  {
+			  			
+			  },
+			  class_bs://博士生渲染班级数据
+			  {
+				  
+			  }
 			};
 		},
-		onLoad() {
-            this.getstorage()//获取班级信息
-		},
 		onShow() {
-			
+			console.log(onload)
+		console.log(this.id)
+			this.getbanji()//获得加入了哪些班级
+           	 
 		},
 		methods:
 		{
 			 ...mapMutations(['change_degree_bk','change_degree_ss','change_degree_bs']),
 			 // 请求
-			 getlist(){
+			 getlist()//请求接口
+			 {
 			                   if(this.$refs['_degree'].value==1)this.temp="本科";
 							     if(this.$refs['_degree'].value==2)this.temp="硕士";
 								   if(this.$refs['_degree'].value==3)this.temp="博士";
@@ -177,13 +185,13 @@ import{mapState,mapMutations}from 'vuex'
 				 			    url: 'http://43.139.44.201:8081/UserClass/add', //仅为示例，并非真实接口地址。
 				 			 data:{
 								    "academy": "计算机与大数据学院",
-								     "cid": 112233,
-								     "classNo": 1,
-								     "grade": 2020,
-								     "major": "计算机类",
-								     "sid": "032002509",
+								
+								     "classNo":  this.$refs['_degree'].valuebj,
+								     "grade":  this.$refs['_degree'].valuenj,
+								     "major": this.$refs['_degree'].valuezy,
+								     "sid":   this.$refs['_degree'].formData.xuehao,
 								     "stage": this.temp,
-								     "uid": 2
+								     "uid": this.id//用户id，后期要更改
 							   },
 				 				method: 'POST',
 				 			    header: {
@@ -191,55 +199,194 @@ import{mapState,mapMutations}from 'vuex'
 				 			    },
 									
 				 			    success: (res) => {
-									
-				 			    if(this.$refs['_degree'].value==1&&res.statusCode==200)
+				
+									console.log(res)
+									console.log(this.$refs['_degree'].value)
+				 			    if(this.$refs['_degree'].value==1&&res.data.errMsg=="请求成功.")
 				 			    {
+									console.log(res)
 				 			    	this.change_degree_bk(true);//改全局变量
-								uni.setStorageSync('bjxx_bk',res)
+								uni.setStorageSync('bjxx_bk',res.data.data),
 								this.getstorage()
 				 		
 				 			    }
-				 			        if(this.$refs['_degree'].value==2&&res.statusCode==200)
+					
+				 			        if(this.$refs['_degree'].value==2&&res.data.errMsg=="请求成功.")
 				 			        {
+											console.log(res)
 				 			        	this.change_degree_ss(true);
-				 			        	uni.setStorageSync('storage_degreess',this.$refs['_degree'].value);
+				 			        	uni.setStorageSync('bjxx_ss',res.data.data),
+										this.getstorage()
 				 			        }
-				 			        if(this.$refs['_degree'].value==3&&res.statusCode==200)
+					
+				 			        if(this.$refs['_degree'].value==3&&res.data.errMsg=="请求成功.")
 				 			        {
+										console.log(res)
 				 			        	this.change_degree_bs(true);
-				 			        		uni.setStorageSync('storage_degreebs',this.$refs['_degree'].value);
+										
+				 			        uni.setStorageSync('bjxx_bs',res.data.data)	
+										this.getstorage()
 				 			        }
+									
+									//未加入	
+										if(res.data.errMsg!="请求成功.")
+										{
+											uni.showModal({
+												title:"提示",
+												content:"加入失败，请重新填写信息！",
+												showCancel:false
+											})
+										}
+			
 				 			    }
 				 			});
 
 			 },
+	 		getbanji()//获得这个账号加入的班级
+			{
+				uni.request({
+									 
+							    url: 'http://43.139.44.201:8081/UserClass/getClassById/' +this.id, //仅为示例，并非真实接口地址。
+								method: 'POST',
+							    header: {
+							        'content-type': 'application/json'  //自定义请求头信息
+							    },
+													
+							    success: (res) => {
+		
+									res.data.dataList.forEach((item) =>{
+										console.log("正在遍历数组")
+									  console.log(item.stage)
+									  if(item.stage=="本科")
+									  {
+									  	console.log('neibu')
+									  	this.change_degree_bk(true)
+									  	this.class_bk =item
+									  }
+									  else if(item.stage=="硕士")
+									  {
+										  console.log('我是硕士')
+									  	this.change_degree_ss(true)
+									  	this.class_ss = item
+									  }
+									  else  if(item.stage=="博士")
+									  {
+									  	this.change_degree_bs(true)
+									  	this.class_bs = item
+									  }
+									})
+			
+								},
+								})
+			},
 			 getstorage()//获取本地缓存
 			 {
-				 this.class_bk.classNo=uni.getStorageSync('bjxx_bk').data.classNo,
-				 console.log(this.class_bk.classNo)
+				 this.class_bk=uni.getStorageSync('bjxx_bk'),
+				 console.log(this.class_bk.grade),
+				 this.class_ss=uni.getStorageSync('bjxx_ss'),
+				 console.log(this.class_ss.grade)
+				 this.class_bs=uni.getStorageSync('bjxx_bs'),
+				 console.log(this.class_ss.grade)
+				 
 			 },
-			 outclassbk()
+			 
+			 outclassbk()//退出班鸡的三个学历
 			 {
 				 uni.showModal({
 				 	title: '提示',
 				 	content: '确认退出本科班级吗？',
 				 	success:(res)  =>{
-				 	
-				 				if (res.confirm) this.change_degree_bk(false);
+				 	             
+		 if (res.confirm)
+		              {
+						  console.log('班级情况',this.class_bk)
+								   uni.request({
+								   		
+								   			    url: 'http://43.139.44.201:8081/UserClass/delete', //仅为示例，并非真实接口地址。
+								   			 data:{
+								   								    "academy": "计算机与大数据学院",
+								   								     "cid": this.class_bk.cid,
+								   								     "classNo":  this.class_bk.classNo,
+								   								     "grade": this.class_bk.grade ,
+								   								     "major": this.class_bk.major,
+								   								     "sid":   this.class_bk.sid,
+								   								     "stage": "本科",
+								   								     "uid": this.id//用户id，后期要更改
+								   					 },
+								   				method: 'DELETE',
+								   			    header: {
+								   			        'content-type': 'application/json'  //自定义请求头信息
+								   			           },
+								   									
+								   			    success: (res) => {
+								   									  console.log(res)
+																	  if(res.data.errMsg=="删除成功")
+																	  {
+																		  	this.change_degree_bk(false),
+																			uni.removeStorageSync('bjxx_bk'),//移除本科信息
+																			 uni.$showMsg('退出成功!')
+																	  }
+																	  else
+																	  {
+																		  uni.$showMsg('退出失败!')
+																	  }
+								   								}
+								   			});	
+		
+						
+						}
 				 		
 				 	}
 				 });
-
-				
 			 },
+
+		
+	
 			 outclassss()
 			 {
 				 uni.showModal({
 				 	title: '提示',
 				 	content: '确认退出硕士班级吗？',
 				 	success:(res)  =>{
-	
-				 				if (res.confirm) this.change_degree_ss(false);
+	                            
+		 	             
+		 if (res.confirm)
+		              {
+								   uni.request({
+								   			
+								   			    url: 'http://43.139.44.201:8081/UserClass/delete', //仅为示例，并非真实接口地址。
+								   			 data:{
+								   								    "academy": "计算机与大数据学院",
+								   								 "cid": this.class_ss.cid,
+								   								     "classNo":  this.class_ss.classNo,
+								   								     "grade": this.class_ss.grade ,
+								   								     "major": this.class_ss.major,
+								   								     "sid":   this.class_ss.sid,
+								   								     "stage": "硕士",
+								   								     "uid": this.id//用户id，后期要更改
+								   					 },
+								   				method: 'DELETE',
+								   			    header: {
+								   			        'content-type': 'application/json'  //自定义请求头信息
+								   			           },
+								   									
+								   			    success: (res) => {
+								   									  console.log(res)
+																	  if(res.data.errMsg=="删除成功")
+																	  {
+																		  	this.change_degree_ss(false),
+																			uni.removeStorageSync('bjxx_ss'),//移除硕士信息
+																			 uni.$showMsg('退出成功!')
+																	  }
+																	  else
+																	  {
+															              uni.$showMsg('退出失败!')
+																	  }
+								   								}
+								   			});	
+		
+						
+						}								
 				 		} 
 				 	
 				 });
@@ -252,19 +399,67 @@ import{mapState,mapMutations}from 'vuex'
 				 	content: '确认退出博士班级吗？',
 				 	success:(res)  =>{
 		
-				 				if (res.confirm) this.change_degree_bs(false);
+		 	             
+		 if (res.confirm)
+		              {
+								   uni.request({
+								   			
+								   			    url: 'http://43.139.44.201:8081/UserClass/delete', //仅为示例，并非真实接口地址。
+								   			 data:{
+								   								    "academy": "计算机与大数据学院",
+								   								   "cid": this.class_bs.cid,
+								   								     "classNo":  this.class_bs.classNo,
+								   								     "grade": this.class_bs.grade ,
+								   								     "major": this.class_bs.major,
+								   								     "sid":   this.class_bs.sid,
+								   								     "stage": "本科",
+								   								     "uid": this.id//用户id，后期要更改
+								   					 },
+								   				method: 'DELETE',
+								   			    header: {
+								   			        'content-type': 'application/json'  //自定义请求头信息
+								   			           },
+								   									
+								   			    success: (res) => {
+								   									  console.log(res)
+																	  if(res.data.errMsg=="删除成功")
+																	  {
+																		  	this.change_degree_bs(false),
+																			uni.removeStorageSync('bjxx_bs'),//移除本科信息
+																			  uni.$showMsg('退出成功!')
+																	  }
+																	  else
+																	  {
+																	  	      uni.$showMsg('退出失败!')
+																	  }
+								   								}
+								   			});	
+		
+						
+						}
 		
 				 	}
 				 });
 			 		
 			 },
-			gotoclass()
+			gotoclass(tmd)//去班级页面，需要传参数
 			{
-				uni.navigateTo({
-					url:'/package-banji/in_class/in_class'
+				//根据tmd
+				console.log('tmd',tmd)
+			   if(tmd==1) 	uni.navigateTo({
+					url:'/package-banji/in_class/in_class?id=1&class_bk=' + encodeURIComponent(JSON.stringify(this.class_bk))
+				})
+				
+				if(tmd==2) 		uni.navigateTo({
+					url:'/package-banji/in_class/in_class?id=2&class_ss=' + encodeURIComponent(JSON.stringify(this.class_ss))//少=号，id能传但是class_ss没有传
+				})
+				
+				if(tmd==3) 		uni.navigateTo({
+					url:'/package-banji/in_class/in_class?id=3&class_bs=' + encodeURIComponent(JSON.stringify(this.class_bs))
 				})
 			},
-			openbj()
+			
+			openbj()//加入班级按钮
 			{
 				if(!this.token)
 				{
@@ -279,7 +474,7 @@ import{mapState,mapMutations}from 'vuex'
 
 				
 			},
-			goback()
+			goback()//取消
 			{
 
 				this.$refs['popupDialog'].close();
@@ -287,10 +482,7 @@ import{mapState,mapMutations}from 'vuex'
 			},
 			gointo()//加入
 	        {
-					    this.getlist()
-		
-			uni.setStorageSync('storage_message',this.$refs['_degree'].formData);
-		
+					    this.getlist()//和后端申请数据
 			   this.$refs['popupDialog'].close();
 			}
 		
@@ -298,6 +490,8 @@ import{mapState,mapMutations}from 'vuex'
 
 	}
 </script>
+
+
 
 <style lang="scss">
 	

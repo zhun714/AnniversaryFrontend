@@ -10,14 +10,14 @@
       <view class="flex-row justify-between">
         <view class="flex-col items-start space-y-4 group">
           <text class="font_1">我的班级：</text>
-          <text class="font_1">2020级计算机5班</text>
+          <text class="font_1">{{class_bk_t.grade}}级{{class_bk_t.stage}}{{class_bk_t.major}}{{class_bk_t.classNo}}班</text>
         </view>
         <view class="flex-col items-center text-wrapper" @click="outclass()"><text class="text">退出</text></view>
       </view>
     </view>
   </view>
   
-  
+  <!-- 组件，个人 -->
   <view v-for="(item,index) in classmates">
   	  
   <my-classmates :classmate="item"></my-classmates>	
@@ -31,58 +31,86 @@
 import{mapState,mapMutations}from 'vuex'
 
 export default {
+	onLoad: function(option)//加载本科博士硕士班级资料-同学资料
+	{
+	
+		if(option.id==1)
+		{ 
+               	console.log("这里是本科")
+				this.getclass_bk(JSON.parse(decodeURIComponent(option.class_bk)) )
+		}
+	    if(option.id==2)
+	    { 
+
+			console.log("这里是硕士")
+             this.getclass_bk(JSON.parse(decodeURIComponent(option.class_ss)))
+	    }
+		if(option.id==3)
+		{ 
+	             console.log("这里是博士")
+				 this.getclass_bk(JSON.parse(decodeURIComponent(option.class_bs)))
+		}
+			this.getlist()
+	},
   components: {
 	  ...mapState(['degree_bk','degree_ss','degree_bs','token'])
   },
   data() {
     return {
+		class_bk_t:
+		{
+			
+		},
+		
+		//同学资料
 	  	classmates:[
-	    {
-	  	  hisname: "周嘉晟2",
-	  	  hisxuehao: "032002522",
-	  	  histel: "123456",
-		  hisemail:"123456@qq.com"
-	    },
-	    {
-	  	  hisname: "周嘉晟3",
-	  	  hisxuehao: "032002522",
-	  	  histel: "123456",
-		    hisemail:"123456@qq.com"
-	    },
-	    {
-	  	  hisname: "周嘉晟4",
-	  	  hisxuehao: "032002522",
-	  	  histel: "123456",
-		    hisemail:"123456@qq.com"
-	    },
-		{
-		  hisname: "周嘉晟5",
-		  hisxuehao: "032002522",
-		  histel: "123456",
-		    hisemail:"123456@qq.com"
-		},
-		{
-		  hisname: "周嘉晟6",
-		  hisxuehao: "032002522",
-		  histel: "123456",
-		    hisemail:"123456@qq.com"
-		},
-		{
-		  hisname: "周嘉晟7",
-		  hisxuehao: "032002522",
-		  histel: "123456",
-		    hisemail:"123456@qq.com"
-		},
-		{
-		  hisname: "周嘉晟8",
-		  hisxuehao: "032002522",
-		  histel: "123456",
-		    hisemail:"123456@qq.com"
-		}
+	        {
+				
+			}
 	    ]
     };
   },
   methods: {
+	  
+	  getlist()//请求接口
+	  {
+	  				 uni.request({
+	  					 
+	  				 			    url: 'http://43.139.44.201:8081/UserClass/page', //仅为示例，并非真实接口地址。
+	  				 			 data:{
+	  							         
+	  				                     "cid" :  this.class_bk_t.cid,
+	  								     "pageNo": 1,
+	  								     "pageSize": 20,    
+	 
+	  				
+	  							   },
+	  				 				method: 'POST',
+	  				 			    header: {
+	  				 			        'content-type': 'application/json'  //自定义请求头信息
+	  				 			    },
+	  									
+	  				 			    success: (res) => {
+	  				
+	  							         console.log('查看同学',res)
+										 if(res.data.errMsg=="请求成功.")
+										 {
+											 this.classmates=res.data.dataList
+										 }
+	  			
+	  				 			    }
+	  					});
+	  
+	  },
+	  
+	  
+	  
+	  
+	  
+	  getclass_bk(tmd)
+	  {
+		this.class_bk_t=tmd  
+	  },
 	  openzl()
 	  {
 	  	this.$refs['popupDialog'].open();
