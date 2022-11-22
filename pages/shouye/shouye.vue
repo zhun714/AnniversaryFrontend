@@ -1,5 +1,5 @@
 <template>
-	<view class="flex-col page">
+	<scroll-view enable-flex="true" class="flex-col page" :scroll-top="scrollTop" scroll-y="true">
 	  <image
 	    class="image"
 	    src="/static/shouye/标题.png"
@@ -138,7 +138,7 @@
 	    </view>
 	    <view class="flex-col items-center button"><text class="font_1 text_8">校友风采</text></view>
 	  </view>
-	</view>
+	</scroll-view>
 </template>
 
 <script>
@@ -165,9 +165,20 @@
          total:0,
          xiaoyous:
          {
-         }
+         },
+				scrollTop: 0,
+				old: {
+									scrollTop: 0
+								}
+			
+
 			}
     
+		},
+		onLoad() {
+		            /* 列表 */
+					var data = uni.getStorageSync("data");
+		            if(data=='one'){this.gotobottom();}
 		},
 		methods: {
       requestxyfc()
@@ -240,81 +251,41 @@
       
       
 			changetoxueyuann(){
-      uni.navigateTo({
-        url:'/package-shouye/xueyuan/xueyuan'
-      })			},
-      gotoxiaoyoufc(){
-        console.log(1111),
-        uni.navigateTo({
-          url:'/package-shouye/xiaoyou/xiaoyou'
-        })
-      }
+				uni.navigateTo({
+					url:'/package-shouye/xueyuan/xueyuan'
+				})
+			},
+			gotoxiaoyoufc(){
+			  console.log(1111),
+			  uni.navigateTo({
+			    url:'/package-shouye/xiaoyou/xiaoyou'
+			  })
+			},
+			gotobottom(){
+				 setTimeout(()=>{
+				          uni.pageScrollTo({
+				              scrollTop: 2000000,    //滚动到页面的目标位置（单位px）
+				              duration: 0  ,  //滚动动画的时长，默认300ms，单位 ms
+							  success:function(e){
+							  console.log('调用成功',e)
+							  },
+							  complete:function(e){
+							  console.log('调用完成',e)
+							  },
+							  fail:function(e){
+							  console.log('调用失败',e)
+							  }
+				          });
+				},3)
+				
+			}
+			
 		}
 	}
 </script>
 
 <style lang="scss">
 
-
-page {
-  width: 100vw;
-  height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', 'Microsoft Yahei', sans-serif;
-}
-
-view,
-image,
-text {
-  box-sizing: border-box;
-  flex-shrink: 0;
-}
-
-.flex-row {
-  display: flex;
-  flex-direction: row;
-}
-
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.justify-start {
-  justify-content: flex-start;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.justify-end {
-  justify-content: flex-end;
-}
-
-.justify-evenly {
-  justify-content: space-evenly;
-}
-
-.justify-around {
-  justify-content: space-around;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
-
-.items-start {
-  align-items: flex-start;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.items-end {
-  align-items: flex-end;
-}
 .page {
   background-color: #f4f4f4;
   height: 100%;

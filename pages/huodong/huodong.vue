@@ -65,16 +65,35 @@
 				url:'/package-huodong/yunheying/yunheying'
 			})
 		},
+		
 		changetoyunzhufu(){
 			uni.switchTab({
-				url:'/pages/shouye/shouye'
+				url:'/pages/shouye/shouye',
+				success:function (e){
+							var page = getCurrentPages().pop();//当前页面
+							if (page == undefined || page == null) {
+								return;
+							} else{
+									uni.setStorageSync('data','one');
+									page.onLoad();
+
+							}
+						;
+				 }
 			})
 			
 		},
 		changetoyuncanguan(){
 			uni.navigateTo({
-				url:'/package-huodong/yuncanguan/yuncanguan'
+				url:'/package-huodong/yuncanguan/yuncanguan',
+				
 			})
+			/*let url = 'https://www.expoon.com/9737/panorama'  // URL是要跳转的外部地址 作为参数
+			      uni.navigateTo({
+			        url: '/package-huodong/yuncanguan/yuncanguan' + url
+			        // page.json定义的路径 传url 到webview界面去接收 实现跳转
+			      })*/
+			
 		}
 	},
   };
