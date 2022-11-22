@@ -7,7 +7,7 @@
     />
 </view>
     <view class="flex-row"></view>
-      
+
   <view class="tab_nav" style="width:8.2rem;   ">
 	<view class="navTitle" v-for="(item,index) in navList" :key="index" >
 		<view :class="{'active':isActive === index}" @click="checked(index)"  >
@@ -27,15 +27,13 @@
 <view class="nav_item" v-if="isActive==2">
 	  <xyky></xyky>
 </view>
-
-
-
         </view>
 </template>
 
 
 <script>
   export default {
+    
     components: {},
   data() {
   			return {
@@ -72,7 +70,7 @@
       clickNav(e){
         console.log(e)
         this.navIndex=e
-      }
+      },    
     },
   }
   
@@ -460,12 +458,8 @@
       color: #383838;
     }
   }
-
-
-
 .tab_nav{
 	display: flex;
-
 	align-items: center;
 }
 .tab_nav  .navTitle {
@@ -478,11 +472,8 @@
 	color: #ffffff; 
   background-color: #d47d71;
 }
-
-
 .active {
 	position: relative;
   background-color: #d24735;
 }
-
 </style>

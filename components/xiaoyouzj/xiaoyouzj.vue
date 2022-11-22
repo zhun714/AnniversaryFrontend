@@ -1,12 +1,13 @@
 <template>
-<view class="flex-row justify-between section_2" @click="gotoxiaoyou(xiaoyou)">
+<view class="flex-row justify-between section_2" @click="gotoxiaoyou()">
     <image
       class="image_4"
-      src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635646825a7e3f03100b3c41/6369c2cdf9b4a40011de4f01/16679820049776775263.png"
+      :src=qrurl
     />
     <view class="flex-col space-y-22 group_4">
       <text class="font_1 text_3">{{xiaoyou.name}}</text>
-      <text class="font_1 text_4">{{xiaoyou.jieshao}}</text>
+          <text class="font_1 text_4">{{xiaoyou.position}}</text>
+      <text class="font_1 text_4">{{xiaoyou.brief}}</text>
     </view>
     <image
       class="image_5"
@@ -16,11 +17,16 @@
 </template>
 
 <script>
+  
   export default {
+    mounted() {
+      this.change()
+      console.log(this.qrurl)
+    },
     name:"xiaoyouzj",
     data() {
       return {
-        
+      qrurl:'',
       };
     },
     props:
@@ -36,7 +42,12 @@
     },
     methods:
     {
-      gotoxiaoyou(xiaoyou)
+
+      change()
+      {
+        this.qrurl =this.xiaoyou.photo
+      },
+      gotoxiaoyou()
       {
         uni.navigateTo({
           url:'/package-shouye/xiaoyou1/xiaoyou1'

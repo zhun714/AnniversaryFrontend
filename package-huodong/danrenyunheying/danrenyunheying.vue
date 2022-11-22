@@ -1,8 +1,11 @@
 <template>
   <view class="flex-col page">
-    <view class="section"></view>
-	<swiper class="bigImg" :current="current">
-		<swiper-item v-for="(big,index) in lists" :key="index">
+    <view class="section">	
+</view>
+
+	<swiper class="bigImg" :current="current" style="position: relative;">
+	 <swiper-item v-for="(big,index) in lists" :key="index">
+		<image :src="base" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
 		<image
 		  class="image"
 		  :src="big.picture_url"
@@ -39,6 +42,7 @@
 		  buttonRect: {},
 		  current: 0,//轮播图索引
 		  itemList: [],
+		  base:'',
 		  lists: [
 		  			{
 						sp:1,
@@ -108,20 +112,49 @@
 							left: that.buttonRect.left + that.buttonRect.width / 2
 						},
 						success(res) {
-						  console.log(res.tapIndex)
+							console.log('ft',that.base)
+						  console.log('21231',res)
 						  let sourceType = 'camera'
 						  if (res.tapIndex == 0) {
 						    sourceType = 'camera'
 						  } else if (res.tapIndex == 1) {
 						    sourceType = 'album'
 						  }
-						  var _this = this
+						  var _this = that;
 						  uni.chooseMedia({
 						    count: 1,// 最多可以选择的图片张数，默认9
-						    sizeType: ['original', 'compressed'],// original 原图，compressed 压缩图，默认二者都有
+						    sizeType: ['original', 'compressed'],
+							mediaType:['image'],// original 原图，compressed 压缩图，默认二者都有
 						    sourceType: [sourceType],// album 从相册选图，camera 使用相机，默认二者都有
-						    success: function (res) {
-								_this.imgShow = res.tempFilePaths[0]
+							
+						    success:(res) =>{
+								console.log('st',_this.base)
+								console.log(sourceType),
+								console.log('111', res.tempFiles[0].tempFilePath)
+								var _that=_this;
+								const tempFilePath = res.tempFiles[0].tempFilePath;
+										uni.uploadFile({
+											url: 'http://43.139.44.201:8081/getface', //仅为示例，非真实的接口地址
+											filePath: tempFilePath,
+											header:{
+												'content-type':'multipart/form-data',
+											},
+											name: 'file',
+
+											success: (uploadFileRes) => {
+												        /// 通过微信小程序自带方法将base64转为二进制去除特殊符号，再转回base64
+														// console.log(JSON.parse(uploadFileRes.data).data)
+														// var base64Image = uploadFileRes.data.data // 后台返回的base64数据
+																												
+													var imgData = JSON.parse(uploadFileRes.data).data.replace(/[\r\n]/g, '').replace(/\ +/g, "")
+													
+												    // var base64Data = uni.arrayBufferToBase64(uni.base64ToArrayBuffer(JSON.parse(uploadFileRes.data).data));
+												        /// 拼接请求头，data格式可以为image/png或者image/jpeg等，看需求
+												    _that.base = "data:image/png;base64," + imgData 
+					                          // console.log(uploadFileRes.data);
+												// console.log('tt',_that.base)
+											}
+									});
 						    },
 						  })
 						},

@@ -35,26 +35,38 @@
 </template>
 
 <script>
+  
   export default {
-      
+      onShow() {
+        this.requestxyfc()
+      },
     data() {
       return {
-       xiaoyous:[
-         {
-           name: "林慧民",
-           jieshao: "整体橱柜根据常委会看v"
-         },
-         {
-           name: "林慧民1",
-           jieshao: "整体橱柜根据常委会看v"
-         },
-         {
-           name: "林慧民2",
-           jieshao: "整体橱柜根据常委会看v"
-         }
+       xiaoyous:
+       {
          
-       ]
+       }
       };
+    },
+    methods:
+    {
+      requestxyfc()
+      {
+        uni.request({
+          url:'http://43.139.44.201:8081/alumnus',
+ 
+          
+          method:'GET',
+          header:{
+            'content-type':'application/json' ,//自定义请求头信息
+          }, 
+          success: (res) => {
+           console.log('这里是杰出校友返回',res.data.dataList)
+           this.xiaoyous= res.data.dataList
+  
+          }
+        })
+      }
     }
     }
 </script>

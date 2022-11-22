@@ -59,12 +59,12 @@
               <swiper-item style=" border-radius: 37.01rpx;overflow:hidden;">
                 <view class="flex-row justify-between section_3" style="border-radius: 37.01rpx;">
 	            <view class="flex-col space-y-29 group_9" style=" border-radius: 37.01rpx;margin-left: 2rem;">
-	              <text class="font_4 text_9" >林慧民</text>
-	              <text class="text_10">1977年入福州大学计算数学专业学习，1982年2月在福州大学计算机系计算机...</text>
+	              <text class="font_4 text_9" >{{xiaoyous[0].name}}</text>
+	              <text class="text_10">{{xiaoyous[0].brief}}</text>
 	            </view>
 	            <image
 	              class="image_4"
-	              src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6353f1ea5a7e3f0310e61ff3/6353f319fe65f70012e4f328/16669445132748524185.png"
+	              :src= "xiaoyous[0].photo"
                
 	            />
               </view>
@@ -73,12 +73,12 @@
               <swiper-item style=" border-radius: 37.01rpx;overflow:hidden;">
                 <view class="flex-row justify-between section_3" style=" border-radius: 37.01rpx;">
                 <view class="flex-col space-y-29 group_9" style=" border-radius: 37.01rpx;margin-left: 2rem;">
-                  <text class="font_4 text_9">林慧民</text>
-                  <text class="text_10">1977年入福州大学计算数学专业学习，1982年2月在福州大学计算机系计算机...</text>
+                  <text class="font_4 text_9">{{xiaoyous[1].name}}</text>
+                  <text class="text_10">{{xiaoyous[1].brief}}</text>
                 </view>
                 <image
                   class="image_4"
-                  src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6353f1ea5a7e3f0310e61ff3/6353f319fe65f70012e4f328/16669445132748524185.png"
+                 :src= "xiaoyous[1].photo"
                 />
                 </view>
                 </swiper-item>
@@ -86,12 +86,12 @@
               <swiper-item style=" border-radius: 37.01rpx;overflow:hidden;">
                 <view class="flex-row justify-between section_3" style=" border-radius: 37.01rpx;">
                 <view class="flex-col space-y-29 group_9" style=" border-radius: 37.01rpx;margin-left: 2rem;">
-                  <text class="font_4 text_9">林慧民</text>
-                  <text class="text_10">1977年入福州大学计算数学专业学习，1982年2月在福州大学计算机系计算机...</text>
+                  <text class="font_4 text_9">{{xiaoyous[2].name}}</text>
+                  <text class="text_10">{{xiaoyous[2].brief}}</text>
                 </view>
                 <image
                   class="image_4"
-                  src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6353f1ea5a7e3f0310e61ff3/6353f319fe65f70012e4f328/16669445132748524185.png"
+                 :src= "xiaoyous[2].photo"
                 />
                 </view>
                 </swiper-item>
@@ -116,18 +116,18 @@
             
   
             
-	         <view class="flex-col space-y-32 section_8">
-              <uni-notice-bar  
-     text="祝福母校越来越好 ! ! !" speed="80"  scrollable="true" backgroundColor="#f2897b" color="white"> </uni-notice-bar>
-  <uni-notice-bar text="四十年的风雨兼程，福大几经沧桑，奋发图强，赢得桃李满天下，为祖国培养了数万计的人才" speed="80"  scrollable="true" backgroundColor="#f2897b" color="white"> </uni-notice-bar>
-    <uni-notice-bar text=" 四十载弦歌不辍、砥砺奋进~~" speed="120"  scrollable="true" backgroundColor="#f2897b" color="white"> </uni-notice-bar>
-      <uni-notice-bar text=" 四十年风雨，积淀下沉沉步履~~祝福母校越来越好 ! ! !" speed="60"  scrollable="true" backgroundColor="#f2897b" color="white"> </uni-notice-bar>
-        <uni-notice-bar text="祝各位校友身体健康，万事顺意~~" speed="100"  scrollable="true" backgroundColor="#f2897b" color="white"> </uni-notice-bar>
+	         <view class="flex-col space-y-32 section_8" style="height: 20rem;white-space:pre-wrap;">
+   
+  <uni-notice-bar  v-if="bless[total-2].bless" :text="bless[total-2].bless+'。    —— ——  '+bless[total-2].createBy" speed="100"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar>
+         <uni-notice-bar  v-if="bless[total-3].bless" :text="bless[total-3].bless+'。    —— ——  '+bless[total-3].createBy"  speed="200"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar>
+           <uni-notice-bar  v-if="bless[total-4].bless" :text="bless[total-4].bless+'。    —— ——  '+bless[total-4].createBy"    speed="90"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar>
+             <uni-notice-bar  v-if="bless[total-5].bless" :text="bless[total-5].bless+'。    —— ——  '+bless[total-5].createBy"  speed="150"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar>
+               <uni-notice-bar  v-if="bless[total-6].bless" :text="bless[total-6].bless+'。    —— ——  '+bless[total-6].createBy"   speed="88"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar> 
 	          </view>
             
 	          <view class="flex-row group_13">
-	            <input class="flex-col items-center text-wrapper_5" style="width: 14rem;"></input>
-              <view class="font_4" style="padding-top: 0.8rem; background-color: blanchedalmond; width: 3rem;text-align: center;border-radius: 5px;">发送</view>
+	            <input class="flex-col items-center text-wrapper_5" style="width: 14rem;" @input="onKeyInput"></input>
+              <view class="font_4" style="padding-top: 0.8rem; background-color: blanchedalmond; width: 3rem;text-align: center;border-radius: 5px;" @click="submitzf()">发送</view>
 	          </view>
 	        </view>
 	        <image
@@ -144,15 +144,99 @@
 <script>
 
 	export default {
+    
+
+    onShow() {
+      console.log(11111)
+      this.hanshu()
+      this.requestxyfc()
+    },
    
 
 	
 		data() {
 			return {
-				
+        img1:"",
+				 bless:
+         {
+           
+         },
+         blesstemp:"",
+         total:0,
+         xiaoyous:
+         {
+         }
 			}
+    
 		},
 		methods: {
+      requestxyfc()
+      {
+        uni.request({
+          url:'http://43.139.44.201:8081/alumnus',
+       
+          
+          method:'GET',
+          header:{
+            'content-type':'application/json' ,//自定义请求头信息
+          },
+          success: (res) => {
+           console.log('这里是杰出校友返回',res.data.dataList)
+           this.xiaoyous= res.data.dataList,
+           console.log('获得的杰出校友治疗',this.xiaoyous)
+            this.img1=this.xiaoyous[0].photo
+            console.log(this.img1)
+          }
+        })
+      },
+ onKeyInput: function(event) {
+            this.blesstemp = event.target.value
+        },
+      submitzf()
+      {
+        if(!this.blesstemp)console.log("请重新输入");
+        else
+        {
+          uni.request({
+            url:'http://43.139.44.201:8081/bless/save/11}',
+            data:this.blesstemp,
+            method:'POST',
+            header:{
+              'content-type':'application/json' ,//自定义请求头信息
+            },
+            success: (res) => {
+              console.log(res)
+           if(res.data.errMsg=="请求成功.")  
+           {
+             uni.$showMsg('已收到您的祝福!')
+             this.hanshu()
+           }
+              },
+              })
+        }
+      
+      },
+      
+      hanshu(){
+         uni.request({
+           url:'http://43.139.44.201:8081/bless',
+           data:{
+              "pageNo": 2,
+               "pageSize": 1000//这里需要动态获得pagesize
+           },
+           
+           method:'POST',
+           header:{
+             'content-type':'application/json' ,//自定义请求头信息
+           },
+           success: (res) => {
+            console.log('这里是祝福返回',res)
+            this.total=res.data.total
+             this.bless=res.data.dataList
+              console.log(this.bless);
+           }
+         })
+       },
       
       
 			changetoxueyuann(){
