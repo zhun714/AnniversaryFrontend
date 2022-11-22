@@ -1,5 +1,5 @@
 <template>
-	<view class="flex-col page">
+	<scroll-view enable-flex="true" class="flex-col page" :scroll-top="scrollTop" scroll-y="true">
 	  <image
 	    class="image"
 	    src="/static/shouye/标题.png"
@@ -94,22 +94,51 @@
 	    </view>
 	    <view class="flex-col items-center button"><text class="font_1 text_8">校友风采</text></view>
 	  </view>
-	</view>
+	</scroll-view>
 </template>
 
 <script>
 	export default {
 		data() {
 			return {
-				
+				scrollTop: 0,
+				old: {
+									scrollTop: 0
+								}
+			
 			}
+		},
+		onLoad() {
+		            /* 列表 */
+					var data = uni.getStorageSync("data");
+		            if(data=='one'){this.gotobottom();}
 		},
 		methods: {
 			changetoxueyuann(){
 				uni.navigateTo({
 					url:'/package-shouye/xueyuan/xueyuan'
 				})
+			},
+			gotobottom(){
+				 setTimeout(()=>{
+				          uni.pageScrollTo({
+				              scrollTop: 2000000,    //滚动到页面的目标位置（单位px）
+				              duration: 0  ,  //滚动动画的时长，默认300ms，单位 ms
+							  success:function(e){
+							  console.log('调用成功',e)
+							  },
+							  complete:function(e){
+							  console.log('调用完成',e)
+							  },
+							  fail:function(e){
+							  console.log('调用失败',e)
+							  }
+				          });
+				},3)
+				
 			}
+			
+			
 		}
 	}
 </script>
@@ -123,7 +152,10 @@ page {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', 'Microsoft Yahei', sans-serif;
 }
-
+scroll-view{
+ height:auto!important;
+ width: 100%;
+}
 view,
 image,
 text {
