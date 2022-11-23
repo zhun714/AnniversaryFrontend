@@ -3,7 +3,7 @@
 	
 
 	
-    <view class="section"><text style="align-items: center;float:right;margin-top: 30rpx;" @click="canimg()">一键提交合成照片</text></view>
+    <view class="section"><text v-if="base!=''" style="align-items: center;float:right;margin-top: 30rpx;" @click="canimg()">一键提交合成照片</text></view>
 	
 
 		<view class="" style="position: fixed;top: 9999999px;">

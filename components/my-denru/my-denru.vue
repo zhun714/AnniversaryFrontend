@@ -40,7 +40,7 @@
 		{
 						 uni.request({
 							 
-						 			    url: 'http://43.139.44.201:8081/user/add', //仅为示例，并非真实接口地址。
+						 			    url: 'https://www.prxdong.top:8081/user/add', //仅为示例，并非真实接口地址。
 						 			 data:{
 									         
 						                         "openId": this.openid,//微信接口拿openid

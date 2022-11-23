@@ -2,7 +2,7 @@
 	<scroll-view enable-flex="true" class="flex-col page" :scroll-top="scrollTop" scroll-y="true">
 	  <image
 	    class="image"
-	    src="/static/shouye/标题.png"
+	    src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6353f1ea5a7e3f0310e61ff3/6353f319fe65f70012e4f328/16669447039635294661.png"
 	  />
 	  <view class="flex-col space-y-31 section">
 	    <view class="flex-col space-y-9">
@@ -184,7 +184,7 @@
       requestxyfc()
       {
         uni.request({
-          url:'http://43.139.44.201:8081/alumnus',
+          url:'https://www.prxdong.top:8081/alumnus',
        
           
           method:'GET',
@@ -209,7 +209,7 @@
         else
         {
           uni.request({
-            url:'http://43.139.44.201:8081/bless/save/11}',
+            url:'https://www.prxdong.top:8081/bless/save/11}',
             data:this.blesstemp,
             method:'POST',
             header:{
@@ -230,7 +230,7 @@
       
       hanshu(){
          uni.request({
-           url:'http://43.139.44.201:8081/bless',
+           url:'https://www.prxdong.top:8081/bless',
            data:{
               "pageNo": 2,
                "pageSize": 1000//这里需要动态获得pagesize

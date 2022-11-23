@@ -53,7 +53,7 @@
       requestxyfc()
       {
         uni.request({
-          url:'http://43.139.44.201:8081/alumnus',
+          url:'https://www.prxdong.top:8081/alumnus',
  
           
           method:'GET',

@@ -76,7 +76,7 @@ export default {
 	  {
 	  				 uni.request({
 	  					 
-	  				 			    url: 'http://43.139.44.201:8081/UserClass/page', //仅为示例，并非真实接口地址。
+	  				 			    url: 'https://www.prxdong.top:8081/UserClass/page', //仅为示例，并非真实接口地址。
 	  				 			 data:{
 	  							         
 	  				                     "cid" :  this.class_bk_t.cid,

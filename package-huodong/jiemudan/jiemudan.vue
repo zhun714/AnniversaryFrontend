@@ -128,7 +128,7 @@
     methods: {
 		getList(){
 			uni.request({
-				url:'http://43.139.44.201:8081/program',
+				url:'https://www.prxdong.top:8081/program',
 				method:'GET',
 				header:{
 					'content-type':'application/json',

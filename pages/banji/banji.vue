@@ -182,7 +182,7 @@ import{mapState,mapMutations}from 'vuex'
 								   if(this.$refs['_degree'].value==3)this.temp="博士";
 				 uni.request({
 					 
-				 			    url: 'http://43.139.44.201:8081/UserClass/add', //仅为示例，并非真实接口地址。
+				 			    url: 'https://www.prxdong.top:8081/UserClass/add', //仅为示例，并非真实接口地址。
 				 			 data:{
 								    "academy": "计算机与大数据学院",
 								
@@ -246,7 +246,7 @@ import{mapState,mapMutations}from 'vuex'
 			{
 				uni.request({
 									 
-							    url: 'http://43.139.44.201:8081/UserClass/getClassById/' +this.id, //仅为示例，并非真实接口地址。
+							    url: 'https://www.prxdong.top:8081/UserClass/getClassById/' +this.id, //仅为示例，并非真实接口地址。
 								method: 'POST',
 							    header: {
 							        'content-type': 'application/json'  //自定义请求头信息
@@ -302,7 +302,7 @@ import{mapState,mapMutations}from 'vuex'
 						  console.log('班级情况',this.class_bk)
 								   uni.request({
 								   		
-								   			    url: 'http://43.139.44.201:8081/UserClass/delete', //仅为示例，并非真实接口地址。
+								   			    url: 'https://www.prxdong.top:8081/UserClass/delete', //仅为示例，并非真实接口地址。
 								   			 data:{
 								   								    "academy": "计算机与大数据学院",
 								   								     "cid": this.class_bk.cid,
@@ -354,7 +354,7 @@ import{mapState,mapMutations}from 'vuex'
 		              {
 								   uni.request({
 								   			
-								   			    url: 'http://43.139.44.201:8081/UserClass/delete', //仅为示例，并非真实接口地址。
+								   			    url: 'https://www.prxdong.top:8081/UserClass/delete', //仅为示例，并非真实接口地址。
 								   			 data:{
 								   								    "academy": "计算机与大数据学院",
 								   								 "cid": this.class_ss.cid,
@@ -404,7 +404,7 @@ import{mapState,mapMutations}from 'vuex'
 		              {
 								   uni.request({
 								   			
-								   			    url: 'http://43.139.44.201:8081/UserClass/delete', //仅为示例，并非真实接口地址。
+								   			    url: 'https://www.prxdong.top:8081/UserClass/delete', //仅为示例，并非真实接口地址。
 								   			 data:{
 								   								    "academy": "计算机与大数据学院",
 								   								   "cid": this.class_bs.cid,
