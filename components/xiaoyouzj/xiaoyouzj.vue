@@ -50,8 +50,9 @@
       gotoxiaoyou()
       {
         uni.navigateTo({
-          url:'/package-shouye/xiaoyou1/xiaoyou1'
+          url:'/package-shouye/xiaoyou1/xiaoyou1?id=' + this.xiaoyou.id
         })
+		console.log("这个校友的id传值", this.xiaoyou.id)
       }
     }
   }

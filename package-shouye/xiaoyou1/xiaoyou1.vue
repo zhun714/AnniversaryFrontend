@@ -10,7 +10,7 @@
         src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635646825a7e3f03100b3c41/6369c2cdf9b4a40011de4f01/16679828879459055625.png"
       />
       <view class="flex-col group_2">
-        <text class="text">当前位置：首页&gt;&gt;校友风采&gt;&gt;林惠民</text>
+        <text class="text">当前位置：首页&gt;&gt;校友风采&gt;&gt;{{xyzl.name}}</text>
         <view class="section"></view>
         <view class="section_2"></view>
       </view>
@@ -20,17 +20,17 @@
         class="image_3"
         src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635646825a7e3f03100b3c41/6369c2cdf9b4a40011de4f01/16679820049614183363.png"
       />
-      <text class="text_2">林慧民</text>
+      <text class="text_2">{{xyzl.name}}</text>
     </view>
     <view class="flex-col group_4">
       <view class="flex-col items-center text-wrapper">
         <text class="text_3">
-          1977年入福州大学计算数学专业学习，1982年2月在福州大学计算机系计算机软件专业获得学士学位；1986年6月在中国科学院软件研究所获得计算机科学理论专业博士学位。1997年当选为中科院院士。林惠民研究员长期从事计算机程序，特别是并发程序的形式语义学及形式化方法的研究。他在进程代数的验证工具、消息传送进程的语义理论和π-演算的公理化等方向上取得了突破性进展，其主要贡献包括：1996年获中国科学院自然科学一等奖（唯一获奖人）。他学风严谨，勇于开拓创新，取得了一系列国际领先水平的成果，受到国际同行的公认，是在国际上有影响的计算机科学家。
+         {{xyzl.brief}}
         </text>
       </view>
       <image
         class="image_4"
-        src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635646825a7e3f03100b3c41/6369c2cdf9b4a40011de4f01/16679828879376468468.png"
+        :src="xyzl.photo"
       />
     </view>
     <view class="section_3"></view>
@@ -39,11 +39,43 @@
 
 <script>
   export default {
+	  onLoad: function(option)//加载校友id
+	  {
+		  console.log("获得的option.id",option.id)
+		  this.getlist(option.id)
+	  },
     components: {},
     data() {
-      return {};
+      return {
+		  //接受用的校友资料
+		  xyzl:
+		  {
+			  
+		  }
+	  };
     },
-    methods: {},
+    methods: {
+		
+		getlist(tmd)
+		{
+			console.log("tmd的值",tmd)
+			uni.request({
+			  url:'https://www.prxdong.top:8081/alumnus/'+tmd,
+			       
+			  
+			  method:'POST',
+			  header:{
+			    'content-type':'application/json' ,//自定义请求头信息
+			  },
+			  success: (res) => {
+			   console.log('这里是校友质料返回',res)
+	           this.xyzl=res.data.dataList[0]
+			   console.log("拿到的质料",this.xyzl)
+			  }
+			})
+		}
+		
+	},
   };
 </script>
 

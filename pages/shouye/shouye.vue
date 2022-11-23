@@ -142,9 +142,14 @@
 </template>
 
 <script>
+	
+import{mapState,mapMutations}from 'vuex'
 
 	export default {
-    
+    computed:
+    {
+    	...mapState(['token'])
+    },
 
     onShow() {
       console.log(11111)
@@ -205,7 +210,12 @@
         },
       submitzf()
       {
-        if(!this.blesstemp)console.log("请重新输入");
+		  console.log("这里是登录状态",this.token)
+
+		if(this.token==true)
+		{
+			   uni.$showMsg('亲，登录后才能发表祝福噢!')
+		}
         else
         {
           uni.request({

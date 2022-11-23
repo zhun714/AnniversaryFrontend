@@ -1,72 +1,33 @@
 <template>
- <view class="flex-col space-y-18 page">
-   <view class="flex-row group">
-     <image
-       class="image"
-       src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635646825a7e3f03100b3c41/6369c2cdf9b4a40011de4f01/16679828879459055625.png"
-     />
-     <view class="flex-col group_2">
-       <text class="font_1 text">当前位置：首页&gt;&gt;学院风采&gt;&gt;科研成果</text>
-       <view class="section"> </view>
-     </view>
-   </view>
-   <view class="flex-col space-y-13 group_3" style="margin-top: 3rem;">
-     <view class="flex-row justify-center group_4" >
-       <image
-         class="image_2"
-         src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635646825a7e3f03100b3c41/6369c2cdf9b4a40011de4f01/16679820049614183363.png"
-      style="margin-top: -4.5rem;"
-       />
-       <text class="text_2"  style="margin-top: -9rem;">科研成果</text>
-     </view>
-     <view class="flex-col space-y-12">
-       <view class="flex-col space-y-18 list-item" :key="i" v-for="(item, i) in list_kycg">
-		   
-      
-		 
-		 <shouye-kycg :kycg="item"></shouye-kycg>
-		 
-       </view>
-     </view>
-   </view>
- </view>
+	<view  class="flex-col space-y-18 list-item">
+         <view class="flex-row justify-between">
+           <text class="font_1 text_3">{{kycg.title}}</text>
+           <text class="font_2 text_4">{{kycg.rank}}</text>
+         </view>
+         <text class="font_3 text_5">{{kycg.description}}</text>
+		 </view>
 </template>
 
 <script>
-export default {
-	mounted() {
-		this.getlist()
-	},
-  components: {},
-  data() {
-    return {
-      list_kycg:{},
-    };
-  },
-  methods: {
-	  getlist()
-	  {
-		   console.log("这里是getlist——科研成果")
-		  uni.request({
-		    url:'https://www.prxdong.top:8081/achievement/科研成果',     
-
-		    method:'GET',
-		    header:{
-		      'content-type':'application/json' ,//自定义请求头信息
-		    },
-		    success: (res) => {
-				if(res.data.errMsg=="请求成功.")
-				{
-					console.log('这里是科研究成果返回',res)
-					this.list_kycg=res.data.dataList
-					console.log("this.list_kycg数据",this.list_kycg)
-				}
-		  
-		    }
-		  })
-	  }
-  },
-};
+	export default {
+		name:"shouye-kycg",
+		props:
+		{
+			  kycg:
+			  {
+				  type: Object,
+				  default:
+				  {
+					  
+				  },
+			  }
+		},
+		data() {
+			return {
+				
+			};
+		}
+	}
 </script>
 
 <style lang="scss">

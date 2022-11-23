@@ -3,11 +3,11 @@
 	
 
 	
-    <view class="section"><text v-if="base!=''" style="align-items: center;float:right;margin-top: 30rpx;" @click="canimg()">一键提交合成照片</text></view>
+    <view class="section"><text v-if="base!=''" style="align-items: center;float: right;margin-top: 30rpx;" @click="canimg()">一键提交合成照片</text></view>
 	
 
-		<view class="" style="position: fixed;top: 9999999px;">
-			<canvas style=" background-color: blue;width: 26rem;height: 20rem;" canvas-id="firstCanvas"></canvas>
+		<view class="" style="">
+			<canvas style=" background-color: blue;width: 98%;height: 18rem; position: fixed;top: 9999999px;" canvas-id="firstCanvas"></canvas>
 		</view>
 			
 
@@ -58,9 +58,14 @@
 </template>
 
 <script>
+		import {mapState } from 'vuex';
   export default {
-    components: {},
+	computed:
+	{
+		...mapState(['openid'])
+	},
     data() {
+	
       return {
 		  temp:100,
 		  x: 0,
@@ -124,28 +129,63 @@
 	onShow() {
 	
 	},
+	destroyed(){
+		var that=this
+		uni.request({
+		  url:'https://www.prxdong.top:8081/delFace?openId='+that.openid ,
+		       
+		  
+		  method:'POST',
+		  header:{
+		    'content-type':'application/json' ,//自定义请求头信息
+		  },
+		  success: (res) => {
+              console.log('12312',res)
+		  }
+		})
+	},
 	onPullDownRefresh() {
 	            /* 下拉的时候更新 */
 	            this.getList();
 	},
     methods: {
+		tempssasad(val)
+		{
+			let that = this
+			uni.getImageInfo({
+				
+				src:val ,//背景图路径,我用的网络图片,本地的没试过
+			
+				success(res) {
+					
+					console.log('图片路径',res.path)
+					that.base=res.path
+                    console.log("1111",that.base)
+				}
+			})
+		},
 		img() {
+			this.tempssasad(this.base)
 			let that = this
 			console.log("this.big.picture_url",that.itemList[that.current])
-			console.log("ba	se",that.base)
+			console.log("base",that.base)
+			
 			uni.getImageInfo({
 				
 				src:that.itemList[that.current].photo,//背景图路径,我用的网络图片,本地的没试过
 			
 				success(res) {
+					
 					console.log('图片路径',res.path)
+			       
+					console.log("2222",that.base)
 					var ctx = uni.createCanvasContext("firstCanvas") // 使用画布创建上下文 图片
-					ctx.drawImage(res.path, 0, 0, 375,224) // 设置图片坐标及大小，括号里面的分别是（图片路径，x坐标，y坐标，width，height）
-			
+					ctx.drawImage( res.path, 0, 0, 390,300) // 设置图片坐标及大小，括号里面的分别是（图片路径，x坐标，y坐标，width，height）
+					console.log('czhjknl',that.base)
 		            console.log(that.old.x,"这里是x")
-				
-			
-            ctx.drawImage(that.base,that.old.x,that.old.y, 50,50)
+				   console.log("base内部",that.base)
+			          
+            ctx.drawImage(that.base,that.old.x,that.old.y, 50,100)
 					ctx.save(); //保存
 					ctx.draw() //绘制
 				}
@@ -202,6 +242,7 @@
 		    this.old.y = e.detail.y
 		},
 		getList(){
+			
 			uni.request({
 				url:'https://www.prxdong.top:8081/background/page',
 				method:'POST',
@@ -252,7 +293,7 @@
 										var _that=_this;
 										const tempFilePath = res.tempFiles[0].tempFilePath;
 												uni.uploadFile({
-													url: 'https://www.prxdong.top:8081/getface', //仅为示例，非真实的接口地址
+													url: 'https://www.prxdong.top:8081/getface?openId='+_that.openid , //仅为示例，非真实的接口地址
 													filePath: tempFilePath,
 													header:{
 														'content-type':'multipart/form-data',
@@ -260,17 +301,19 @@
 													name: 'file',
 		
 													success: (uploadFileRes) => {
+														      uni.$showMsg('请耐心等待!')
+																console.log("uploadFileRes",uploadFileRes)
 														        /// 通过微信小程序自带方法将base64转为二进制去除特殊符号，再转回base64
 																// console.log(JSON.parse(uploadFileRes.data).data)
 																// var base64Image = uploadFileRes.data.data // 后台返回的base64数据
 																														
-															var imgData = JSON.parse(uploadFileRes.data).data.replace(/[\r\n]/g, '').replace(/\ +/g, "")
+															// var imgData = JSON.parse(uploadFileRes.data).data.replace(/[\r\n]/g, '').replace(/\ +/g, "")
 															
 														    // var base64Data = uni.arrayBufferToBase64(uni.base64ToArrayBuffer(JSON.parse(uploadFileRes.data).data));
 														        /// 拼接请求头，data格式可以为image/png或者image/jpeg等，看需求
-														    _that.base = "data:image/png;base64," + imgData 
+														    _that.base = JSON.parse(uploadFileRes.data).data
 							                          // console.log(uploadFileRes.data);
-														// console.log('tt',_that.base)
+														console.log('tt',_that.base)
 													}
 											});
 								    },
