@@ -31,11 +31,6 @@
 	  </swiper>
 			 </movable-area>
 			
-  
-
-
-
-
 			
     <view class="flex-col items-center section_2">
       <view class="flex-col items-center text-wrapper">
