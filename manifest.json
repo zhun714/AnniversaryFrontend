@@ -65,7 +65,8 @@
             "checkSiteMap" : false,
             "minified" : false
         },
-        "usingComponents" : true
+        "usingComponents" : true,
+		"lazyCodeLoading": "requiredComponents"
     },
     "vueVersion" : "2"
 }

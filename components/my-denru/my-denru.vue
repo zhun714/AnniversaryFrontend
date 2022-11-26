@@ -28,14 +28,15 @@
    
            return
 			{
-				openid:''
+				openid:'';
+
 			}
   
 		},
 	//获取用户基本信息
 	methods:
 	{
-		 ...mapMutations(['login','change_id']),
+		 ...mapMutations(['login','change_id','get_openid']),
 		getlist()//请求接口
 		{
 						 uni.request({
@@ -56,28 +57,29 @@
 												{
 													console.log('id数据',res)
 													this.change_id(res.data.data.id)//获取全局id值
-						
+						                          
 													console.log('id数据',res.data.data.id)
 												}
 						 			    }
 							});
 		
 		},
+
 		getUserProfile()//获取openid
 		{
-		   
+
              uni.login({
          	provider: 'weixin',
          	success: res => {
-         		let appid = 'wx99234b032bbfeca6'
-         		let secret = 'd33f882341c90834e7edf490ff9bb639'
-         		let url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appid + '&secret=' + secret + '&js_code=' +res.code ;
-				console.log(res)
+        
+		
          	uni.request({
-         		url: url ,
+         		url:  'https://www.prxdong.top:8081/user/getOpenId/' + res.code,
          		success: result => {
+					// console.log("这里是换取的值",result.data.openid)
          		this.openid = result.data.openid;
-				console.log(result)
+				   this.get_openid(result.data.openid)//全局openid
+		
 				
 				this.getlist()//获取id值
 				this.login(false)

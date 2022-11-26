@@ -10,6 +10,7 @@ const store = new Vuex.Store({
 		degree_bs:false,
 		name: '未定义姓名',
 		id:'',//用户id值
+		openid:''//用户openid
 	},
 	mutations:{
 		login(state,token)
@@ -36,6 +37,10 @@ const store = new Vuex.Store({
 		change_id(state,id)
 		{
 			state.id = id
+		},
+		get_openid(state,openid)
+		{
+			state.openid = openid
 		}
 		
 	},

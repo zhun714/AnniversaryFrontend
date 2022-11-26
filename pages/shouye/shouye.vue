@@ -53,7 +53,7 @@
 	          <swiper 
             autoplay="true" indicator-dots="true" interval="2000" class="flex-row justify-between section_3"
              style="left: 3.4rem;border-radius: 37.01rpx;
-              overflow:hidden; "
+              overflow:hidden; height:350rpx"
             
              >
               <swiper-item style=" border-radius: 37.01rpx;overflow:hidden;">
