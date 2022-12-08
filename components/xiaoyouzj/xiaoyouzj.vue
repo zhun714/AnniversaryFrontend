@@ -5,9 +5,9 @@
       :src=qrurl
     />
     <view class="flex-col space-y-22 group_4">
-      <text class="font_1 text_3">{{xiaoyou.name}}</text>
-          <text class="font_1 text_4">{{xiaoyou.position}}</text>
-      <text class="font_1 text_4">{{xiaoyou.brief}}</text>
+      <text class="font_1 text_3" style="margin-left: 100rpx;font-size: 30rpx;font-weight: bold;">{{xiaoyou.name}}</text>
+          <text class="font_1 text_4" style="margin-left: 20rpx;font-size: 24rpx;font-weight: bold;margin-top:30rpx ;">{{xiaoyou.position}}</text>
+      <text class="font_1 text_4" style="margin-top:10rpx ;">{{xiaoyou.brief}}</text>
     </view>
     <image
       class="image_5"
@@ -69,7 +69,8 @@
   .image_4 {
     border-radius: 0.5rem;
     width: 8.31rem;
-    height: 10.63rem;
+    height: 12.63rem;
+	margin-top: 2rem;
   }
   .space-y-22 {
     & > view:not(:first-child),

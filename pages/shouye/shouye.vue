@@ -60,7 +60,7 @@
                 <view class="flex-row justify-between section_3" style="border-radius: 37.01rpx;">
 	            <view class="flex-col space-y-29 group_9" style=" border-radius: 37.01rpx;margin-left: 2rem;">
 	              <text class="font_4 text_9" >{{xiaoyous[0].name}}</text>
-	              <text class="text_10">{{xiaoyous[0].brief}}</text>
+	              <text class="text_10" style="margin-top: 10px;display:block;height:220rpx;overflow: hidden;text-overflow: ellipsis;">{{xiaoyous[0].brief}}</text>
 	            </view>
 	            <image
 	              class="image_4"
@@ -74,7 +74,7 @@
                 <view class="flex-row justify-between section_3" style=" border-radius: 37.01rpx;">
                 <view class="flex-col space-y-29 group_9" style=" border-radius: 37.01rpx;margin-left: 2rem;">
                   <text class="font_4 text_9">{{xiaoyous[1].name}}</text>
-                  <text class="text_10">{{xiaoyous[1].brief}}</text>
+                  <text class="text_10" style="margin-top: 10px;display:block;height:220rpx;overflow: hidden;text-overflow: ellipsis;">{{xiaoyous[1].brief}}</text>
                 </view>
                 <image
                   class="image_4"
@@ -86,8 +86,8 @@
               <swiper-item style=" border-radius: 37.01rpx;overflow:hidden;">
                 <view class="flex-row justify-between section_3" style=" border-radius: 37.01rpx;">
                 <view class="flex-col space-y-29 group_9" style=" border-radius: 37.01rpx;margin-left: 2rem;">
-                  <text class="font_4 text_9">{{xiaoyous[2].name}}</text>
-                  <text class="text_10">{{xiaoyous[2].brief}}</text>
+                  <text class="font_4 text_9" >{{xiaoyous[2].name}}</text>
+                  <text class="text_10" style="margin-top: 10px;display:block;height:220rpx;overflow: hidden;text-overflow: ellipsis;">{{xiaoyous[2].brief}}</text>
                 </view>
                 <image
                   class="image_4"
@@ -100,13 +100,13 @@
             
 	        </view>
 
-	        <view class="flex-col items-start text-wrapper_3" style="margin-top: -4rem;" @click="gotoxiaoyoufc()"><text class="font_4 text_11">更 多 +</text></view>
+	        <view class="flex-col items-start text-wrapper_3" style="margin-top: -3rem;" @click="gotoxiaoyoufc()"><text class="font_4 text_11">更 多 +</text></view>
 	        <image
 	          class="image_6"
 	          src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6353f1ea5a7e3f0310e61ff3/6353f319fe65f70012e4f328/16669445130077024615.png"
-           style="top: 15rem ;"
+           style="top: 14rem ;"
 	        />
-	        <text class="font_1 text_12"  style="top: 16rem ;">云祝福</text>
+	        <text class="font_1 text_12"  style="top: 15rem ;">云祝福</text>
 	      </view>
 	      <view class="flex-col items-end group_10" style="margin-top: -3rem;margin-left: 0.05rem;">
 	        <view class="flex-col space-y-24 section_7">
