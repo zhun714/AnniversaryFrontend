@@ -56,7 +56,7 @@
   background-repeat: no-repeat;
   height: 7.81rem;
   " >
-          <text class="font_1 text_2">{{class_bk.grade}}级本科{{class_bk.major}}{{class_bk.classNo}}班</text>
+          <text class="font_1 text_2" style="">{{class_bk.grade}}级本科{{class_bk.major}}{{class_bk.classNo}}班</text>
           <image
             class="image"
             src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16678750158823721052.png"
@@ -66,7 +66,7 @@
 		
 <view style="background-color: white;" v-if="degree_bk"><text>\n</text></view>
 
-	  <view class="flex-col items-start section" v-if="degree_ss&& !token" @click="gotoclass(2)"  style="  background-color: #f2f2f2;
+	  <view class="flex-col items-start section" v-if="degree_ss&& !token" @click="gotoclass(2)"  style="background-color: #f2f2f2;
   border-radius: 0.94rem;
   filter: drop-shadow(0px 0.13rem 0.13rem #00000040) blur(0.024rem);
   background-image: url('https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16678750158783354295.png');
@@ -74,13 +74,13 @@
   background-repeat: no-repeat;
   height: 7.81rem;
 ">
-	    <text class="font_1 text_2" >{{class_ss.grade}}级研究生{{class_ss.major}}{{class_ss.classNo}}班</text>
+	    <text class="font_1 text_2" style="">{{class_ss.grade}}级研究生{{class_ss.major}}{{class_ss.classNo}}班</text>
 	    <image
 	      class="image"
 	      src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16678750158823721052.png"
   
 		/>
-    <view class="flex-col items-center text-wrapper" @tap.stop="outclassss()"><text class="font_2">退出班级</text></view>
+    <view class="flex-col items-center text-wrapper" @tap.stop="outclassss()" ><text class="font_2">退出班级</text></view>
 	  </view>
 
 
@@ -93,7 +93,7 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
   height: 7.81rem;">
-	    <text class="font_1 text_2">{{class_bs.grade}}级博士生{{class_bs.major}}{{class_bs.classNo}}班</text>
+	    <text class="font_1 text_2" style="font-size: 1">{{class_bs.grade}}级博士生{{class_bs.major}}{{class_bs.classNo}}班</text>
 	    <image
 	      class="image"
 	      src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16678750158823721052.png"
@@ -167,7 +167,7 @@ import{mapState,mapMutations}from 'vuex'
 		},
 		onShow() {
 			console.log(onload)
-		console.log(this.id)
+		   console.log(this.id)
 			this.getbanji()//获得加入了哪些班级
            	 
 		},
@@ -180,6 +180,7 @@ import{mapState,mapMutations}from 'vuex'
 			                   if(this.$refs['_degree'].value==1)this.temp="本科";
 							     if(this.$refs['_degree'].value==2)this.temp="硕士";
 								   if(this.$refs['_degree'].value==3)this.temp="博士";
+								   console.log('学号',this.$refs['_degree'].formData.xuehao)
 				 uni.request({
 					 
 				 			    url: 'https://www.prxdong.top:8081/UserClass/add', //仅为示例，并非真实接口地址。
@@ -253,7 +254,7 @@ import{mapState,mapMutations}from 'vuex'
 							    },
 													
 							    success: (res) => {
-		
+		                            console.log('加入了什么班级',res)
 									res.data.dataList.forEach((item) =>{
 										console.log("正在遍历数组")
 									  console.log(item.stage)
@@ -598,13 +599,13 @@ import{mapState,mapMutations}from 'vuex'
             top: 0.53rem;
           }
           .text-wrapper {
-            margin-top: 2.5rem;
+            margin-top: 3.5rem;
             padding: 0.5rem 0 0.38rem;
             background-color: #f2efef;
             border-radius: 0.38rem;
             box-shadow: 0px 0.13rem 0.25rem #00000040;
             width: 4.69rem;
-            position: relative;
+            position: absolute;
             .font_2 {
               font-size: 0.88rem;
               font-family: SourceHanSansCN;

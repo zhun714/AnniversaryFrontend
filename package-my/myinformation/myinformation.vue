@@ -14,19 +14,11 @@
 	       </view>
 	       <view class="flex-row justify-between section_3">
 	         <view class="flex-row space-x-26">
-	           <image
-	             class="image_3"
-	             src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16672829678479916743.png"
-	            @click="chooseimage()"
-			   />
-	           
+	      
+	           <view  class="image_3" style="background-color: #db9f9c;border-radius: 15%;font-size: 1.8rem;color: white;padding-top: 1rem;padding-left: 5%;">{{name.substr(-2,2)}}</view>
 			    <text class="text_2" @click="changename()">{{name}}</text>
 	         </view>
-	         <image
-	           class="image_4"
-	           src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16672829678400163723.png"
-	         @click="chooseimage()" 
-			 />
+	   
 	       </view>
 	     </view>
 		 
@@ -37,8 +29,8 @@
 					<uni-easyinput type="text" v-model="formData.xueyuan" placeholder="请输入学院" />
 				</uni-forms-item>
 				
-				<uni-forms-item label="GitHub" name="github" >
-					<uni-easyinput type="text" v-model="formData.github" placeholder="请输入账号昵称" />
+				<uni-forms-item label="学号" name="github" >
+					<uni-easyinput type="text" v-model="formData.github" placeholder="请输入学号" />
 				</uni-forms-item>
 				
 				<uni-forms-item label="邮箱" name="email">
@@ -93,7 +85,7 @@ import{mapState,mapMutations}from 'vuex'
 	export default {
 	mounted() {
 	
-			this.getbyid()
+		this.getbyid()
 		if(uni.getStorageSync('storage_key'))
 		{
 			console.log('缓存存在')
@@ -251,13 +243,13 @@ import{mapState,mapMutations}from 'vuex'
 					
 					data:{
 					        
-					     "dormitory": "32#111",
+					     "dormitory": this.formData.danwei,
 					       "email": this.formData.email,
 					       "graduationTime": "2018-07-01",
 					       "id": this.id,
 					       "name": this.name,
 					       "sex": 0,
-					       "sid": 9866
+					        "sid":this.formData.github
 						 
 						  				
 					  },

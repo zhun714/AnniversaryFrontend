@@ -8,9 +8,7 @@
         style="margin-left: -0.8rem;"
       />
       <view class="" style="margin-top: -0.5rem;">
-        <text class="font_1 text" style="margin-top: -20rem;margin-left: 0.05rem;        color: #383838;
-        font-size: 0.75rem;
-        line-height: 0.69rem;">当前位置：首页&gt;&gt;学院风采&gt;&gt;学院简介</text>
+        
         <image
           class="image_2"
           src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635646825a7e3f03100b3c41/6369c2cdf9b4a40011de4f01/3b5e13e71f57775b96e21ebad346710a.png"

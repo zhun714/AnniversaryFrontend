@@ -7,11 +7,8 @@
 		      <view class="flex-col items-center space-y-11 section_2">
 		        <text class="text">{{name}}</text>
 		      </view>
-		      <view class="flex-col items-center image-wrapper">
-		        <image
-		          class="image"
-		          src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16672829079345025397.png"
-		        />
+		      <view class="flex-col items-center image-wrapper" style="height: 6rem;background-color: #db9f9c;">
+		       <text class="text" style="font-size: 1.8rem;color: white;padding-top: 24%">{{name.substr(-2,2)}}</text>
 		      </view>
 		    </view>
 		    <view class="flex-col space-y-15 group">
@@ -88,29 +85,32 @@
 	import { mapState,mapMutations} from 'vuex';
 	
 	export default {
-	
+	computed:
+	{
+			  ...mapState(['name','id'])
+	},
 		mounted() {
-			
-		            console.log(this.id)
-			       this.getbyid()//单纯获取名字
-				
+			     
+		      
+					
+			       this.getbyid()//单纯获取名字	
+
 		},
-      computed:
-	  {
-		  ...mapState(['name','id'])
-	  },
 
 		data() {
 			return {
-			 tempid: this.id
+			 tempid: this.id,
+			str: '',
 			};
 		},
 		methods:
 		{
 			 ...mapMutations(['login','change_name']),
+
 			 getbyid()//获取id的数据
 			 {
-				 console.log(2222)
+				 console.log('获取姓名数据')
+
 			 	uni.request({
 			 		url:'https://www.prxdong.top:8081/user/data/'+ this.id, //仅为示例，并非真实接口地址。
 			 			  	
@@ -124,6 +124,7 @@
 			 			   {
 			 				   console.log('getbyid',res)
 			 				   this.change_name(res.data.data.name)
+		                       
 			 	//======================================================================================================这里可以添加很多需要获取的信息			   
 			 			   }
 			 		

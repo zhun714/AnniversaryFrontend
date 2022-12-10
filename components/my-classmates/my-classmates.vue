@@ -2,10 +2,10 @@
 
 		
 
-		<view class="flex-row justify-center list-item">
+		<view class="flex-row justify-center list-item" style="position: relative;">
 
-		   	   <view class="switch"  @click="openzl"></view>
-		  <view class="flex-col items-start space-y-15 group_2"  @click="openzl" style=" width: 55%; ">
+		   	   <view class="switch"  @click="openzl" style="background-color: #db9f9c;"><text style="font-size: 1.3rem;color: white;margin-left: 23%;position: absolute;top: 40rpx;">{{classmate.name.substr(-2,2)}}</text></view>
+		  <view class="flex-col items-start space-y-15 group_2"  @click="openzl" style=" width: 55%; margin-left: 3rem;">
 		
 		    <text class="font_2" >{{classmate.name}}</text>
 		    <text class="font_3">学号：{{classmate.sid}}</text>
@@ -54,10 +54,11 @@ export default {
   data() {
 	 
     return { 
-
+            str:''
 	  };
   },
   methods: {
+	     
 		openzl()
 			{
 				this.$refs['popupzl'].open();

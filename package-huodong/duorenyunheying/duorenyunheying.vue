@@ -22,8 +22,8 @@
 		  :src="big.photo"
 		  mode="scaleToFill"
 		/>
-		<movable-view :x="x" :y="y" direction="all" @change="onChange" >
-			<image :src="base" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		<movable-view :x="x" :y="y" direction="all" :key="index" v-for="(small, index) in base"  @change="onChange()">
+			<image :src="small" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
 		</movable-view>
 
 
@@ -64,53 +64,27 @@
 	{
 		...mapState(['openid'])
 	},
+
     data() {
 	
       return {
 		  temp:100,
 		  x: 0,
 		  y: 0,
-		  old: {
+		  old: [{
 		      x: 0,
 		      y: 0
-		  },
+		  }],
 		  buttonRect: {},
 		  current: 0,//轮播图索引
 		  itemList: [],
-		  base:'',
+		  base:[],
+		  int:0,
+		  cnt:0,
 		  pageNo:1,
 		  pageSize:20,
 		  lists: [
-		  		// 	{
-						// sp:1,
-		  		// 		picture_name:'东门',
-		  		// 		picture_url:"https://tse1-mm.cn.bing.net/th/id/OIP-C.QPH1IBosDYBqaU3O6wV3YAHaEo?w=283&h=180&c=7&r=0&o=5&pid=1.7"
-		  		// 	},
-		  		// 	{
-						// sp:2,
-		  		// 		picture_name:'北门',
-		  		// 		picture_url:"https://ts1.cn.mm.bing.net/th/id/R-C.8e283246276fad2c01e8d0e300bb4540?rik=umflFIIvM%2f%2b%2b6Q&riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50118%2f7084.jpg_wh1200.jpg&ehk=1HQoa7wYy9xnf0HqsFbQQJAv79HJnBest1U0atuLHSQ%3d&risl=&pid=ImgRaw&r=0"
-		  		// 	},
-		  		// 	{
-						// sp:3,
-		  		// 		picture_name:'西门',
-		  		// 		picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784426983374.png"
-		  		// 	},
-		  		// 	{
-						// sp:4,
-		  		// 		picture_name:'南门',
-		  		// 		picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784433466945.png"
-		  		// 	},
-		  		// 	{
-						// sp:5,
-		  		// 		picture_name:'福友阁',
-		  		// 		picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784456651986.png"
-		  		// 	},
-		  		// 	{
-						// sp:6,
-		  		// 		picture_name:'图书馆',
-		  		// 		picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784456815493.png"
-		  		// 	}		
+		
 		  		],
 		
 	  };
@@ -127,7 +101,7 @@
 				})
 	},
 	onShow() {
-	
+
 	},
 	destroyed(){
 		var that=this
@@ -157,15 +131,27 @@
 				src:val ,//背景图路径,我用的网络图片,本地的没试过
 			
 				success(res) {
-					
-					console.log('图片路径',res.path)
-					that.base=res.path
-                    console.log("1111",that.base)
+					if(that.cnt!=that.int)
+					{
+						console.log('图片路径',res.path)
+						that.base[that.cnt]=res.path
+						console.log("微信加工图片")
+						console.log("base数组",that.base)
+						that.cnt=that.cnt+1
+					}
+	
 				}
 			})
 		},
 		img() {
-			this.tempssasad(this.base)
+			// res.tempFiles.forEach((item)=>
+			
+			this.base.forEach((item)=>
+			{
+				this.tempssasad(item)
+			})
+		
+			
 			let that = this
 			console.log("this.big.picture_url",that.itemList[that.current])
 			console.log("base",that.base)
@@ -177,25 +163,27 @@
 				success(res) {
 					
 					console.log('图片路径',res.path)
-			       
-					console.log("2222",that.base)
+	
 					var ctx = uni.createCanvasContext("firstCanvas") // 使用画布创建上下文 图片
-					ctx.drawImage( res.path, 0, 0, 390,300) // 设置图片坐标及大小，括号里面的分别是（图片路径，x坐标，y坐标，width，height）
+					ctx.drawImage( res.path, 0, 0, 420,300) // 设置图片坐标及大小，括号里面的分别是（图片路径，x坐标，y坐标，width，height）
 					console.log('czhjknl',that.base)
 		            console.log(that.old.x,"这里是x")
 				   console.log("base内部",that.base)
 			          
-            ctx.drawImage(that.base,that.old.x,that.old.y, 50,100)
+                    ctx.drawImage(that.base[0],20,20, 50,100)
+					 ctx.drawImage(that.base[1],10,10, 50,100)
+					  ctx.drawImage(that.base[2],30,30, 50,100)
 					ctx.save(); //保存
-					ctx.draw() //绘制
+					ctx.draw()
+		      
 				}
 			})
-		
+		      
 		},
+
 		// canvas生成图片
 		canimg() {
-
-			this.img()
+             this.img()
 			let that = this
 			uni.canvasToTempFilePath({
 		
@@ -205,9 +193,6 @@
 				success: function(res) {
 					// 在H5平台下，tempFilePath 为 base64
 					console.log(res.tempFilePath, "//")
-		
-		
-		
 					// 保存本地
 					uni.saveImageToPhotosAlbum({
 						filePath: res.tempFilePath,
@@ -238,6 +223,7 @@
 		    })
 		},
 		onChange: function(e) {
+			console.log("onchange",e)
 		    this.old.x = e.detail.x
 		    this.old.y = e.detail.y
 		},
@@ -281,41 +267,42 @@
 								  }
 								  var _this = that;
 								  uni.chooseMedia({
-								    count: 1,// 最多可以选择的图片张数，默认9
+								    count: 3,// 最多可以选择的图片张数，默认9
 								    sizeType: ['original', 'compressed'],
 									mediaType:['image'],// original 原图，compressed 压缩图，默认二者都有
 								    sourceType: [sourceType],// album 从相册选图，camera 使用相机，默认二者都有
 									
 								    success:(res) =>{
+										console.log(res,'这里是照片res')
 										console.log('st',_this.base)
 										console.log(sourceType),
 										console.log('111', res.tempFiles[0].tempFilePath)
 										var _that=_this;
-										const tempFilePath = res.tempFiles[0].tempFilePath;
-												uni.uploadFile({
-													url: 'https://www.prxdong.top:8081/getface?openId='+_that.openid , //仅为示例，非真实的接口地址
-													filePath: tempFilePath,
-													header:{
-														'content-type':'multipart/form-data',
-													},
-													name: 'file',
-		
-													success: (uploadFileRes) => {
-														      uni.$showMsg('请耐心等待!')
-																console.log("uploadFileRes",uploadFileRes)
-														        /// 通过微信小程序自带方法将base64转为二进制去除特殊符号，再转回base64
-																// console.log(JSON.parse(uploadFileRes.data).data)
-																// var base64Image = uploadFileRes.data.data // 后台返回的base64数据
-																														
-															// var imgData = JSON.parse(uploadFileRes.data).data.replace(/[\r\n]/g, '').replace(/\ +/g, "")
-															
-														    // var base64Data = uni.arrayBufferToBase64(uni.base64ToArrayBuffer(JSON.parse(uploadFileRes.data).data));
-														        /// 拼接请求头，data格式可以为image/png或者image/jpeg等，看需求
-														    _that.base = JSON.parse(uploadFileRes.data).data
-							                          // console.log(uploadFileRes.data);
-														console.log('tt',_that.base)
-													}
-											});
+										// const tempFilePath = res.tempFiles;
+										res.tempFiles.forEach((item)=>
+										{   console.log('照片路径item.tempFilePath',item.tempFilePath)
+											uni.uploadFile({
+												url: 'https://www.prxdong.top:8081/getface?openId='+_that.openid , //仅为示例，非真实的接口地址
+												filePath: item.tempFilePath,
+												header:{
+													'content-type':'multipart/form-data',
+												},
+												name: 'file',
+												
+												success: (uploadFileRes) => {
+													      uni.$showMsg('请耐心等待!')
+															console.log("uploadFileRes",uploadFileRes)
+													
+													    _that.base[_that.int] = JSON.parse(uploadFileRes.data).data
+										       
+													console.log('tt',_that.base[_that.int])
+													_that.int=_that.int+1
+												}
+										});
+										}
+										)
+										 
+											
 								    },
 								  })
 								},

@@ -9,7 +9,7 @@
           style="margin-top: -2rem;margin-left: -5rem"
         />
         <view class="flex-col group_4" >
-          <text class="font_1 text" >当前位置：首页&gt;&gt;学院风采&gt;&gt;学科建设</text>
+          
           <view class="section"></view>
         </view>
       </view>

@@ -10,7 +10,7 @@
       <view class="flex-row justify-between">
         <view class="flex-col items-start space-y-4 group">
           <text class="font_1">我的班级：</text>
-          <text class="font_1">{{class_bk_t.grade}}级{{class_bk_t.stage}}{{class_bk_t.major}}{{class_bk_t.classNo}}班</text>
+          <text class="font_1" style="font-size: 1rem;">{{class_bk_t.grade}}级{{class_bk_t.stage}}{{class_bk_t.major}}{{class_bk_t.classNo}}班</text>
         </view>
         <view class="flex-col items-center text-wrapper" @click="outclass()"><text class="text">退出</text></view>
       </view>

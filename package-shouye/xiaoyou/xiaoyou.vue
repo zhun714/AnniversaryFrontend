@@ -10,7 +10,7 @@
       src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635646825a7e3f03100b3c41/6369c2cdf9b4a40011de4f01/16679828879459055625.png"
     />
     <view class="flex-col group_2">
-      <text class="font_1 text">当前位置：首页&gt;&gt;校友风采</text>
+      
       <view class="section"></view>
     </view>
   </view>

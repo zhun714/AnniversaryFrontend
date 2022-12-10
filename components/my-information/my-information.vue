@@ -2,7 +2,7 @@
 	<view >
 		<view class="flex-col section_5">
 
-		  <view class="section_7"></view>
+		  <view class="section_7" style="background-color: #db9f9c;"><text style="color: white;margin-left: 23%;font-size: 2rem;position: absolute;top: 45rpx;">{{classmate.name.substr(-2,2)}}</text></view>
 		  <view class="flex-col items-center space-y-18 group_4 view_3">
 		    <text class="text_2">{{classmate.name}}</text>
 		    <text class="font_2 text_3">{{classmate.sid}}</text>
@@ -11,9 +11,9 @@
 		    <view class="flex-row space-x-12">
 		      <image
 		        class="image_4"
-		        src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16679098327000888584.png"
+		        src="https://ts1.cn.mm.bing.net/th/id/R-C.75e4cecd9ed3b55c9ae81a9ad7a803d2?rik=p2CNcxjpqxW5xg&riu=http%3a%2f%2fbpic.588ku.com%2felement_pic%2f01%2f39%2f02%2f28573ca4c1dca02.jpg&ehk=DHTo7FZRpJHHkffxBOnuzt%2bTcAxkONkKxZb8OObhERE%3d&risl=&pid=ImgRaw&r=0"
 		      />
-		      <text class="text_4">abc</text>
+		      <text class="text_4">{{classmate.dormitory}}</text>
 		    </view>
 		    <view class="flex-row space-x-15">
 		      <image
