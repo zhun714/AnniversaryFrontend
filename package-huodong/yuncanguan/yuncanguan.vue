@@ -5,18 +5,18 @@
 	<swiper-item v-for="(big,index) in lists" :key="index">
     <image
       class="image"
-      :src="big.picture_url"
+      :src="big.photo"
 	  />
 	</swiper-item>
 	</swiper>
     <view class="flex-row equal-division space-x-2">
-      <view class="flex-col items-start equal-division-item space-y-8" :key="index" v-for="(small, index) in lists" @click='changeBigPic(index)'>
+      <view class="flex-col items-start equal-division-item space-y-8" :key="index" v-for="(small, index) in itemList" @click='changeBigPic(index)'>
         <image
           class="image_2"
-          :src="small.picture_url"
+          :src="small.photo"
 		  :class="[index == current ? 'active' : '']"
         />
-        <text class="font_1">{{small.picture_name}}</text>
+        <text class="font_1">{{small.name}}</text>
       </view>
     </view>
   </view>
@@ -30,6 +30,7 @@
       return {
 		  buttonRect: {},
 		  current: 0,//轮播图索引
+		  itemList: [],
 		  list_HkvqbhWP: [null, null, null, null, null, null],
 		  lists: [
 		  			{
@@ -65,7 +66,34 @@
 		  		],
 	  };
     },
+	onLoad() {
+	            /* 列表 */
+	            this.getList();
+	},
+	onPullDownRefresh() {
+	            /* 下拉的时候更新 */
+	            this.getList();
+	},
     methods: {
+		getList(){
+			uni.request({
+				url:'https://www.prxdong.top:8081/visit/page',
+				method:'POST',
+				header:{
+					'content-type':'application/json'
+				},
+				data:{
+					  pageNo: 1,
+					  pageSize:20
+					},
+				success:(res)=>{
+					console.log(res.data);
+					this.itemList =res.data.dataList;
+					console.log(this.itemList);
+				}
+			})
+			
+		},
 		changeBigPic(index){
 			this.current = index;
 		},
@@ -103,6 +131,7 @@
           font-size: 15.19rpx;
           font-family: SourceHanSansCN;
           line-height: 14.24rpx;
+		  align-self: center;
           color: #383838;
         }
       }

@@ -22,8 +22,17 @@
 		  :src="big.photo"
 		  mode="scaleToFill"
 		/>
-		<movable-view :x="x" :y="y" direction="all" :key="index" v-for="(small, index) in base"  @change="onChange()">
-			<image :src="small" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		
+		<movable-view :x="x1" :y="y1" direction="all" @change="onChange0">
+			<image :src="base[0]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		</movable-view>
+		
+		<movable-view :x="x2" :y="y2" direction="all"  @change="onChange1">
+			<image :src="base[1]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		</movable-view>
+		
+		<movable-view :x="x3" :y="y3" direction="all"  @change="onChange2">
+			<image :src="base[2]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
 		</movable-view>
 
 
@@ -71,9 +80,21 @@
 		  temp:100,
 		  x: 0,
 		  y: 0,
+	x1: 0,
+	y1: 0,
+	x2: 0,
+	y2: 0,
 		  old: [{
 		      x: 0,
 		      y: 0
+		  },
+		  {
+			  x:0,
+			  y:0
+		  },
+		  {
+		  			  x:0,
+		  			  y:0
 		  }],
 		  buttonRect: {},
 		  current: 0,//轮播图索引
@@ -123,6 +144,21 @@
 	            this.getList();
 	},
     methods: {
+		onChange0: function(e) {
+			console.log("onchangex0",e.detail.x)
+		    this.old[0].x = e.detail.x
+		    this.old[0].y = e.detail.y
+		},
+		onChange1: function(e) {
+			console.log("onchangex1",e.detail.x)
+		    this.old[1].x = e.detail.x
+		    this.old[1].y = e.detail.y
+		},
+		onChange2: function(e) {
+			console.log("onchangex2",e.detail.x)
+		    this.old[2].x = e.detail.x
+		    this.old[2].y = e.detail.y
+		},
 		tempssasad(val)
 		{
 			let that = this
@@ -167,12 +203,14 @@
 					var ctx = uni.createCanvasContext("firstCanvas") // 使用画布创建上下文 图片
 					ctx.drawImage( res.path, 0, 0, 420,300) // 设置图片坐标及大小，括号里面的分别是（图片路径，x坐标，y坐标，width，height）
 					console.log('czhjknl',that.base)
-		            console.log(that.old.x,"这里是x")
+		            console.log(that.old[0].x,"这里是x1")
+					if(that.old[1].x!=null)  console.log(that.old[1].x,"这里是x2")
+					 if(that.old[2].x!=null) console.log(that.old[2].x,"这里是x3")
 				   console.log("base内部",that.base)
-			          
-                    ctx.drawImage(that.base[0],20,20, 50,100)
-					 ctx.drawImage(that.base[1],10,10, 50,100)
-					  ctx.drawImage(that.base[2],30,30, 50,100)
+			                  ctx.drawImage(that.base[0],that.old[0].x,that.old[0].y, 50,100)
+			          if(that.base[1]!=null) ctx.drawImage(that.base[1],that.old[1].x,that.old[1].y, 50,100)
+			          	if(that.base[2]!=null)   ctx.drawImage(that.base[2],that.old[2].x,that.old[2].y, 50,100)
+            
 					ctx.save(); //保存
 					ctx.draw()
 		      
@@ -222,11 +260,7 @@
 		        this.y = 30
 		    })
 		},
-		onChange: function(e) {
-			console.log("onchange",e)
-		    this.old.x = e.detail.x
-		    this.old.y = e.detail.y
-		},
+
 		getList(){
 			
 			uni.request({
