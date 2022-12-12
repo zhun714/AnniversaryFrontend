@@ -1,1 +1,1 @@
-需要修改图片获取的路径则修改/component/Viewer组件里的images变量
+需要修改图片获取的路径则修改yuncanguan里的images变量
