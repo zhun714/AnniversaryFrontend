@@ -1,19 +1,26 @@
 <template>
-    <div class="box" @click="$emit('switchTo', props.index)">
-        <image :src="`/static/云参观/${props.name} (手机).jpg`" mode="aspectFill"></image>
+    <div class="box" @click="$emit('switchTo', index)">
+        <image :src="url" mode="aspectFill"></image>
         <div class="tag">
-            {{ props.name }}
+            {{ name }}
         </div>
-        <div v-if="props.active" class="active">
+        <div v-if="active" class="active">
             <image src="/static/round_check_fill.png"></image>
         </div>
     </div>
 </template>
 
-<script setup>
-const props = defineProps(['name', 'active', 'index'])
-</script>
 
+<script>
+export default{
+    props:{
+        name:String,
+        active:Boolean,
+        index:Number,
+        url:String,
+    }
+}
+</script>
 
 <style scoped>
 .box {

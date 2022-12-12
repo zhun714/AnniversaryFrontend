@@ -1,11 +1,11 @@
 <template>
     <div class="container">
         <div class="displayed">
-            <image :src="`/static/云参观/${images[displayed]}.jpg`" mode="heightFix"></image>
+            <image :src="images[displayed].picture_url" mode="heightFix"></image>
         </div>
         <div v-if="selector" class="selector">
-            <ImageSelect v-for="(image, i) in images" :name="image" :active="i === displayed" :index="i"
-                @switch-to="changeDisplayed"></ImageSelect>
+            <ImageSelect v-for="(image, i) in images" :name="image.picture_name" :active="i === displayed" :index="i"
+                :url="image.picture_url" @switch-to="changeDisplayed"></ImageSelect>
         </div>
         <div class="switch" @click="switchSelector">
             <image src="/static/map.png"></image>
@@ -14,28 +14,54 @@
 
 </template>
 
-
-<script setup>
-import { ref } from 'vue';
+<script>
 import ImageSelect from './ImageSelect.vue';
-const images = [
-    '不三不四湖',
-    '福友道',
-    '福友阁',
-    '山南行',
-    '卧龙桥',
-    '行政北楼',
-    '院楼背面',
-    '院楼正面'
-]
-const selector = ref(true)
-const displayed = ref(0)
-const switchSelector = () => {
-    selector.value = !selector.value
-}
 
-const changeDisplayed = (i) => {
-    displayed.value = i
+export default {
+    components:{
+        'ImageSelect':ImageSelect
+    },
+    data() {
+        return {
+            images: [
+                {
+                    picture_name: '东门',
+                    picture_url: "https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784402302093.png"
+                },
+                {
+                    picture_name: '北门',
+                    picture_url: "https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784447443523.png"
+                },
+                {
+                    picture_name: '西门',
+                    picture_url: "https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784426983374.png"
+                },
+                {
+                    picture_name: '南门',
+                    picture_url: "https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784433466945.png"
+                },
+                {
+                    picture_name: '福友阁',
+                    picture_url: "https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784456651986.png"
+                },
+                {
+                    picture_name: '图书馆',
+                    picture_url: "https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784456815493.png"
+                }
+            ],
+            selector: true,
+            displayed: 0,
+        }
+
+    },
+    methods: {
+        switchSelector() {
+            this.selector = !this.selector
+        },
+        changeDisplayed(i){
+            this.displayed = i
+        }
+    }
 }
 </script>
 
@@ -77,12 +103,12 @@ const changeDisplayed = (i) => {
     gap: 10px;
 }
 
-.displayed > image {
+.displayed>image {
     width: 100%;
     height: 100%;
 }
 
-.switch > image{
+.switch>image {
     width: 20px;
     height: 20px;
 }
