@@ -2,7 +2,7 @@
 <view class="flex-col page">
   <view class="flex-col group">
 	<swiper class="bigImg" :current="current">
-	<swiper-item v-for="(big,index) in lists" :key="index">
+	<swiper-item v-for="(big,index) in itemList" :key="index">
     <image
       class="image"
       :src="big.photo"
@@ -35,33 +35,33 @@
 		  lists: [
 		  			{
 		  						sp:1,
-		  				picture_name:'东门',
-		  				picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784402302093.png"
+		  				name:'东门',
+		  				photo:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784402302093.png"
 		  			},
 		  			{
 		  						sp:2,
-		  				picture_name:'北门',
-		  				picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784447443523.png"
+		  				name:'北门',
+		  				photo:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784447443523.png"
 		  			},
 		  			{
 		  						sp:3,
-		  				picture_name:'西门',
-		  				picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784426983374.png"
+		  				name:'西门',
+		  				photo:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784426983374.png"
 		  			},
 		  			{
 		  						sp:4,
-		  				picture_name:'南门',
-		  				picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784433466945.png"
+		  				name:'南门',
+		  				photo:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784433466945.png"
 		  			},
 		  			{
 		  						sp:5,
-		  				picture_name:'福友阁',
-		  				picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784456651986.png"
+		  				name:'福友阁',
+		  				photo:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784456651986.png"
 		  			},
 		  			{
 		  						sp:6,
-		  				picture_name:'图书馆',
-		  				picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784456815493.png"
+		  				name:'图书馆',
+		  				photo:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784456815493.png"
 		  			}		
 		  		],
 	  };
@@ -82,9 +82,11 @@
 				header:{
 					'content-type':'application/json'
 				},
+
 				data:{
 					  pageNo: 1,
-					  pageSize:20
+					  pageSize: 20
+
 					},
 				success:(res)=>{
 					console.log(res.data);
