@@ -15,7 +15,7 @@
 	    
 	},
 	{
-	    "path" : "pages/banji/banji",
+	    "path" : "pages/my/my",
 	    "style" :                                                                                    
 	    {
 	        "enablePullDownRefresh": false
@@ -23,14 +23,15 @@
 	    
 	},
 	{
-	    "path" : "pages/my/my",
+	    "path" : "pages/banji/banji",
 	    "style" :                                                                                    
 	    {
 	        "enablePullDownRefresh": false
 	    }
-	    
 	}
-	],
+	   
+        
+    ],
 	 "subPackages": [
 	        {
 	            "root": "package-shouye",
@@ -39,15 +40,100 @@
                     "path" : "xueyuan/xueyuan",
                     "style" :                                                                                    
                 {
+                
                     "navigationBarTitleText": "学院风采",
                     "enablePullDownRefresh": false
                 }
                 
                 }
+                ,{
+                    "path" : "xiaoyou/xiaoyou",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "校友风采",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "xiaoyou1/xiaoyou1",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "xiaoyou2/xiaoyou2",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "xiaoyou4/xiaoyou4",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "xiaoyou5/xiaoyou5",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "xiaoyou3/xiaoyou3",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "keyan/keyan",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                
+                ,{
+                    "path" : "jianshe1/jianshe1",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "jianshe2/jianshe2",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
             ]
-	          }, {
+	          }, 
+			  {
 	            "root": "package-huodong",
 	            "pages": [
+
 				{
 				    "path" : "jiemudan/jiemudan",
 				    "style" :                                                                                    
@@ -61,11 +147,12 @@
 				    "path" : "yunheying/yunheying",
 				    "style" :                                                                                    
 				{
-				    "navigationBarTitleText": "院庆活动",
+				    "navigationBarTitleText": "云合影",
 				    "enablePullDownRefresh": false
 				}
 				
 				},
+				
 				{
 				    "path" : "danrenyunheying/danrenyunheying",
 				    "style" :                                                                                    
@@ -120,15 +207,77 @@
 				}
 				
 				}
-					
-	        ]
-	          },{
+
+									
+									
+	            ]
+	          }, 
+				{
 	            "root": "package-banji",
 	            "pages": [
+			
+					{
+					"path" : "join_in_class/join_in_class",
+					    "style" :                                                                                    
+					{
+					    "navigationBarTitleText": "加入班级",
+					    "enablePullDownRefresh": false
+					}
+					},
+					{
+					"path" : "in_class/in_class",
+					    "style" :                                                                                    
+					{
+					    "navigationBarTitleText": "我的班级",
+					    "enablePullDownRefresh": false
+					}
+					},
+			
+					{
+					"path" : "classmateinformation/classmateinformation",
+					    "style" :                                                                                    
+					{
+					    "navigationBarTitleText": "同学资料",
+					    "enablePullDownRefresh": false
+					}
+					}
 	            ]
-	          },{
+	          },
+			  {
 	            "root": "package-my",
 	            "pages": [
+					{
+					"path" : "myinformation/myinformation",
+					    "style" :                                                                                    
+					{
+					    "navigationBarTitleText": "我的资料",
+					    "enablePullDownRefresh": false
+					}
+					},
+					{
+					"path" : "myphotos/myphotos",
+					    "style" :                                                                                    
+					{
+					    "navigationBarTitleText": "云合影照片",
+					    "enablePullDownRefresh": false
+					}
+					},
+					{
+					"path" : "yijianfankui/yijianfankui",
+					    "style" :                                                                                    
+					{
+					    "navigationBarTitleText": "反馈",
+					    "enablePullDownRefresh": false
+					}
+					},
+					{
+					"path" : "guanyuus/guanyuus",
+					    "style" :                                                                                    
+					{
+					    "navigationBarTitleText": "关于我们",
+					    "enablePullDownRefresh": false
+					}
+					}
 	            ]
 	          }
 	    ],
@@ -168,5 +317,15 @@
 	                "selectedIconPath": "/static/tabbar/我的2.png"
 	            }
 	        ]
-	    }
+	    },
+	"condition" : { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": [
+			{
+				"name": "", //模式名称
+				"path": "", //启动页面，必选
+				"query": "" //启动参数，在页面的onLoad函数里面得到
+			}
+		]
+	}
 }

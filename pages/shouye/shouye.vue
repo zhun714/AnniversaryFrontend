@@ -2,7 +2,7 @@
 	<scroll-view enable-flex="true" class="flex-col page" :scroll-top="scrollTop" scroll-y="true">
 	  <image
 	    class="image"
-	    src="/static/shouye/标题.png"
+	    src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6353f1ea5a7e3f0310e61ff3/6353f319fe65f70012e4f328/16669447039635294661.png"
 	  />
 	  <view class="flex-col space-y-31 section">
 	    <view class="flex-col space-y-9">
@@ -41,49 +41,93 @@
 	  </view>
 	  <view class="flex-col group_6">
 	    <view class="flex-col items-start space-y-8 section_2">
-	      <view class="flex-row group_7">
+	      <view class="flex-row group_7" style="">
 	        <view class="flex-col items-start group_8">
 	          <image
 	            class="image_5"
 	            src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6353f1ea5a7e3f0310e61ff3/6353f319fe65f70012e4f328/16669447039702860196.png"
 	          />
-	          <view class="flex-row justify-between section_3">
-	            <view class="flex-col space-y-29 group_9">
-	              <text class="font_4 text_9">林慧民</text>
-	              <text class="text_10">1977年入福州大学计算数学专业学习，1982年2月在福州大学计算机系计算机...</text>
+            
+            <!-- 轮播图 -->
+            
+	          <swiper 
+            autoplay="true" indicator-dots="true" interval="2000" class="flex-row justify-between section_3"
+             style="left: 3.4rem;border-radius: 37.01rpx;
+              overflow:hidden; height:350rpx"
+            
+             >
+              <swiper-item style=" border-radius: 37.01rpx;overflow:hidden;">
+                <view class="flex-row justify-between section_3" style="border-radius: 37.01rpx;">
+	            <view class="flex-col space-y-29 group_9" style=" border-radius: 37.01rpx;margin-left: 2rem;">
+	              <text class="font_4 text_9" >{{xiaoyous[0].name}}</text>
+	              <text class="text_10" style="margin-top: 10px;display:block;height:220rpx;overflow: hidden;text-overflow: ellipsis;">{{xiaoyous[0].brief}}</text>
 	            </view>
 	            <image
 	              class="image_4"
-	              src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6353f1ea5a7e3f0310e61ff3/6353f319fe65f70012e4f328/16669445132748524185.png"
+	              :src= "xiaoyous[0].photo"
+               
 	            />
-	          </view>
+              </view>
+              </swiper-item>
+              
+              <swiper-item style=" border-radius: 37.01rpx;overflow:hidden;">
+                <view class="flex-row justify-between section_3" style=" border-radius: 37.01rpx;">
+                <view class="flex-col space-y-29 group_9" style=" border-radius: 37.01rpx;margin-left: 2rem;">
+                  <text class="font_4 text_9">{{xiaoyous[1].name}}</text>
+                  <text class="text_10" style="margin-top: 10px;display:block;height:220rpx;overflow: hidden;text-overflow: ellipsis;">{{xiaoyous[1].brief}}</text>
+                </view>
+                <image
+                  class="image_4"
+                 :src= "xiaoyous[1].photo"
+                />
+                </view>
+                </swiper-item>
+              
+              <swiper-item style=" border-radius: 37.01rpx;overflow:hidden;">
+                <view class="flex-row justify-between section_3" style=" border-radius: 37.01rpx;">
+                <view class="flex-col space-y-29 group_9" style=" border-radius: 37.01rpx;margin-left: 2rem;">
+                  <text class="font_4 text_9" >{{xiaoyous[2].name}}</text>
+                  <text class="text_10" style="margin-top: 10px;display:block;height:220rpx;overflow: hidden;text-overflow: ellipsis;">{{xiaoyous[2].brief}}</text>
+                </view>
+                <image
+                  class="image_4"
+                 :src= "xiaoyous[2].photo"
+                />
+                </view>
+                </swiper-item>
+              
+	          </swiper>
+            
 	        </view>
-	        <view class="section_4"></view>
-	        <view class="section_5"></view>
-	        <view class="section_6"></view>
-	        <view class="flex-col items-start text-wrapper_3"><text class="font_4 text_11">更 多 +</text></view>
+
+	        <view class="flex-col items-start text-wrapper_3" style="margin-top: -3rem;" @click="gotoxiaoyoufc()"><text class="font_4 text_11">更 多 +</text></view>
 	        <image
 	          class="image_6"
 	          src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6353f1ea5a7e3f0310e61ff3/6353f319fe65f70012e4f328/16669445130077024615.png"
+           style="top: 14rem ;"
 	        />
-	        <text class="font_1 text_12">云祝福</text>
+	        <text class="font_1 text_12"  style="top: 15rem ;">云祝福</text>
 	      </view>
-	      <view class="flex-col items-end group_10">
+	      <view class="flex-col items-end group_10" style="margin-top: -3rem;margin-left: 0.05rem;">
 	        <view class="flex-col space-y-24 section_7">
-	          <view class="flex-col space-y-32 section_8">
-	            <view class="flex-col items-start space-y-18 group_11">
-	              <text class="font_5 text_13">祝福母校越来越好~~</text>
-	              <text class="font_5 text_14">祝福计算机与大数据学院越来越好~~</text>
-	            </view>
-	            <text class="font_5 text_15">四十载弦歌不辍、砥砺奋进~~</text>
-	            <view class="flex-col space-y-16 group_12">
-	              <text class="font_5 text_16">四十年风雨，积淀下沉沉步履~~</text>
-	              <text class="font_5 text_17">祝各位校友身体健康，万事顺意~~</text>
-	            </view>
+            
+            <!-- 弹幕 -->
+            
+            
+  
+            
+	         <view class="flex-col space-y-32 section_8" style="height: 20rem;white-space:pre-wrap;">
+   
+  <uni-notice-bar  v-if="bless[total-2].bless" :text="bless[total-2].bless+'。    —— ——  '+bless[total-2].createBy" speed="100"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar>
+         <uni-notice-bar  v-if="bless[total-3].bless" :text="bless[total-3].bless+'。    —— ——  '+bless[total-3].createBy"  speed="200"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar>
+           <uni-notice-bar  v-if="bless[total-4].bless" :text="bless[total-4].bless+'。    —— ——  '+bless[total-4].createBy"    speed="90"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar>
+             <uni-notice-bar  v-if="bless[total-5].bless" :text="bless[total-5].bless+'。    —— ——  '+bless[total-5].createBy"  speed="150"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar>
+               <uni-notice-bar  v-if="bless[total-6].bless" :text="bless[total-6].bless+'。    —— ——  '+bless[total-6].createBy"   speed="88"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar> 
 	          </view>
+            
 	          <view class="flex-row group_13">
-	            <view class="flex-col items-start text-wrapper_4"><text class="font_4 text_18">写下你的祝福</text></view>
-	            <view class="flex-col items-center text-wrapper_5"><text class="font_4">发送</text></view>
+	            <input class="flex-col items-center text-wrapper_5" style="width: 14rem;" @input="onKeyInput"></input>
+              <view class="font_4" style="padding-top: 0.8rem; background-color: blanchedalmond; width: 3rem;text-align: center;border-radius: 5px;" @click="submitzf()">发送</view>
 	          </view>
 	        </view>
 	        <image
@@ -98,15 +142,43 @@
 </template>
 
 <script>
+	
+import{mapState,mapMutations}from 'vuex'
+
 	export default {
+    computed:
+    {
+    	...mapState(['token'])
+    },
+
+    onShow() {
+      console.log(11111)
+      this.hanshu()
+      this.requestxyfc()
+    },
+   
+
+	
 		data() {
 			return {
+        img1:"",
+				 bless:
+         {
+           
+         },
+         blesstemp:"",
+         total:0,
+         xiaoyous:
+         {
+         },
 				scrollTop: 0,
 				old: {
 									scrollTop: 0
 								}
 			
+
 			}
+    
 		},
 		onLoad() {
 		            /* 列表 */
@@ -114,10 +186,90 @@
 		            if(data=='one'){this.gotobottom();}
 		},
 		methods: {
+      requestxyfc()
+      {
+        uni.request({
+          url:'https://www.prxdong.top:8081/alumnus',
+       
+          
+          method:'GET',
+          header:{
+            'content-type':'application/json' ,//自定义请求头信息
+          },
+          success: (res) => {
+           console.log('这里是杰出校友返回',res.data.dataList)
+           this.xiaoyous= res.data.dataList,
+           console.log('获得的杰出校友治疗',this.xiaoyous)
+            this.img1=this.xiaoyous[0].photo
+            console.log(this.img1)
+          }
+        })
+      },
+ onKeyInput: function(event) {
+            this.blesstemp = event.target.value
+        },
+      submitzf()
+      {
+		  console.log("这里是登录状态",this.token)
+
+		if(this.token==true)
+		{
+			   uni.$showMsg('亲，登录后才能发表祝福噢!')
+		}
+        else
+        {
+          uni.request({
+            url:'https://www.prxdong.top:8081/bless/save/11}',
+            data:this.blesstemp,
+            method:'POST',
+            header:{
+              'content-type':'application/json' ,//自定义请求头信息
+            },
+            success: (res) => {
+              console.log(res)
+           if(res.data.errMsg=="请求成功.")  
+           {
+             uni.$showMsg('已收到您的祝福!')
+             this.hanshu()
+           }
+              },
+              })
+        }
+      
+      },
+      
+      hanshu(){
+         uni.request({
+           url:'https://www.prxdong.top:8081/bless',
+           data:{
+              "pageNo": 2,
+               "pageSize": 1000//这里需要动态获得pagesize
+           },
+           
+           method:'POST',
+           header:{
+             'content-type':'application/json' ,//自定义请求头信息
+           },
+           success: (res) => {
+            console.log('这里是祝福返回',res)
+            this.total=res.data.total
+             this.bless=res.data.dataList
+              console.log(this.bless);
+           }
+         })
+       },
+      
+      
 			changetoxueyuann(){
 				uni.navigateTo({
 					url:'/package-shouye/xueyuan/xueyuan'
 				})
+			},
+			gotoxiaoyoufc(){
+			  console.log(1111),
+			  uni.navigateTo({
+			    url:'/package-shouye/xiaoyou/xiaoyou'
+			  })
 			},
 			gotobottom(){
 				 setTimeout(()=>{
@@ -138,76 +290,12 @@
 				
 			}
 			
-			
 		}
 	}
 </script>
 
 <style lang="scss">
 
-
-page {
-  width: 100vw;
-  height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', 'Microsoft Yahei', sans-serif;
-}
-scroll-view{
- height:auto!important;
- width: 100%;
-}
-view,
-image,
-text {
-  box-sizing: border-box;
-  flex-shrink: 0;
-}
-
-.flex-row {
-  display: flex;
-  flex-direction: row;
-}
-
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.justify-start {
-  justify-content: flex-start;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.justify-end {
-  justify-content: flex-end;
-}
-
-.justify-evenly {
-  justify-content: space-evenly;
-}
-
-.justify-around {
-  justify-content: space-around;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
-
-.items-start {
-  align-items: flex-start;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.items-end {
-  align-items: flex-end;
-}
 .page {
   background-color: #f4f4f4;
   height: 100%;
@@ -384,7 +472,7 @@ text {
           height: 225.97rpx;
         }
         .section_3 {
-          padding-left: 62.34rpx;
+
           background-color: #d14735;
           border-radius: 37.01rpx;
           width: 633.12rpx;
@@ -600,4 +688,8 @@ text {
     line-height: 32.14rpx;
   }
 }
+
+
+
+
 </style>

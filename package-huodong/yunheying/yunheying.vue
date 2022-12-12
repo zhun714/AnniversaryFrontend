@@ -77,6 +77,7 @@
     },
     methods: {
 		changetodanrenyunheying(){
+			console.log(12312)
 			uni.navigateTo({
 				url:'/package-huodong/danrenyunheying/danrenyunheying'
 			})
