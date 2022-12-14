@@ -109,7 +109,7 @@
 	        <text class="font_1 text_12"  style="top: 15rem ;">云祝福</text>
 	      </view>
 	      <view class="flex-col items-end group_10" style="margin-top: -3rem;margin-left: 0.05rem;">
-	        <view class="flex-col space-y-24 section_7">
+	        <view class="flex-col space-y-24 section_7" style="margin-bottom: 15px;">
             
             <!-- 弹幕 -->
             

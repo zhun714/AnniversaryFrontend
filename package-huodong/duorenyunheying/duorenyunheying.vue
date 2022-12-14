@@ -23,18 +23,41 @@
 		  mode="scaleToFill"
 		/>
 		
-		<movable-view :x="x1" :y="y1" direction="all" @change="onChange0">
-			<image :src="base[0]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		<movable-view :x="x1" :y="y1" direction="all" @change="onChange8">
+			<image :src="base[8]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
 		</movable-view>
 		
-		<movable-view :x="x2" :y="y2" direction="all"  @change="onChange1">
+		<movable-view :x="x2" :y="y2" direction="all"  @change="onChange7">
+			<image :src="base[7]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		</movable-view>
+		
+		<movable-view :x="x3" :y="y3" direction="all"  @change="onChange6">
+			<image :src="base[6]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		</movable-view>
+
+	<movable-view :x="x4" :y="y4" direction="all"  @change="onChange5">
+			<image :src="base[5]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		</movable-view>
+		
+		<movable-view :x="x5" :y="y5" direction="all"  @change="onChange4">
+			<image :src="base[4]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		</movable-view>
+		
+		<movable-view :x="x6" :y="y6" direction="all"  @change="onChange3">
+			<image :src="base[3]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		</movable-view>
+		
+		<movable-view :x="x7" :y="y7" direction="all"  @change="onChange2">
+			<image :src="base[2]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		</movable-view>
+		
+		<movable-view :x="x8" :y="y8" direction="all"  @change="onChange1">
 			<image :src="base[1]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
 		</movable-view>
 		
-		<movable-view :x="x3" :y="y3" direction="all"  @change="onChange2">
-			<image :src="base[2]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		<movable-view :x="x9" :y="y9" direction="all"  @change="onChange0">
+			<image :src="base[0]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
 		</movable-view>
-
 
 	    </swiper-item>
 	  </swiper>
@@ -84,6 +107,20 @@
 	y1: 0,
 	x2: 0,
 	y2: 0,
+	x3: 0,
+	y3: 0,
+	x4: 0,
+	y4: 0,
+	x5: 0,
+	y5: 0,
+	x6: 0,
+	y6: 0,
+	x7: 0,
+	y7: 0,	
+	x8: 0,
+	y8: 0,
+	x9: 0,
+	y9: 0,
 		  old: [{
 		      x: 0,
 		      y: 0
@@ -91,6 +128,30 @@
 		  {
 			  x:0,
 			  y:0
+		  },
+		  {
+		  			  x:0,
+		  			  y:0
+		  },
+		  {
+		  			  x:0,
+		  			  y:0
+		  },
+		  {
+		  			  x:0,
+		  			  y:0
+		  },
+		  {
+		  			  x:0,
+		  			  y:0
+		  },
+		  {
+		  			  x:0,
+		  			  y:0
+		  },
+		  {
+		  			  x:0,
+		  			  y:0
 		  },
 		  {
 		  			  x:0,
@@ -124,6 +185,7 @@
 	onShow() {
 
 	},
+
 	destroyed(){
 		var that=this
 		uni.request({
@@ -144,6 +206,10 @@
 	            this.getList();
 	},
     methods: {
+		ckxy()
+		{
+			console.log("(x,y) this.old",this.old)
+		},
 		onChange0: function(e) {
 			console.log("onchangex0",e.detail.x)
 		    this.old[0].x = e.detail.x
@@ -159,6 +225,36 @@
 		    this.old[2].x = e.detail.x
 		    this.old[2].y = e.detail.y
 		},
+		onChange3: function(e) {
+			console.log("onchangex3",e.detail.x)
+		    this.old[3].x = e.detail.x
+		    this.old[3].y = e.detail.y
+		},
+		onChange4: function(e) {
+			console.log("onchangex4",e.detail.x)
+		    this.old[4].x = e.detail.x
+		    this.old[4].y = e.detail.y
+		},
+		onChange5: function(e) {
+			console.log("onchangex5",e.detail.x)
+		    this.old[5].x = e.detail.x
+		    this.old[5].y = e.detail.y
+		},
+		onChange6: function(e) {
+			console.log("onchangex6",e.detail.x)
+		    this.old[6].x = e.detail.x
+		    this.old[6].y = e.detail.y
+		},
+		onChange7: function(e) {
+			console.log("onchangex7",e.detail.x)
+		    this.old[7].x = e.detail.x
+		    this.old[7].y = e.detail.y
+		},
+		onChange8: function(e) {
+			console.log("onchangex8",e.detail.x)
+		    this.old[8].x = e.detail.x
+		    this.old[8].y = e.detail.y
+		},
 		tempssasad(val)
 		{
 			let that = this
@@ -169,7 +265,7 @@
 				success(res) {
 					if(that.cnt!=that.int)
 					{
-						console.log('图片路径',res.path)
+						console.log(that.cnt,'cnt值')
 						that.base[that.cnt]=res.path
 						console.log("微信加工图片")
 						console.log("base数组",that.base)
@@ -181,11 +277,15 @@
 		},
 		img() {
 			// res.tempFiles.forEach((item)=>
-			
-			this.base.forEach((item)=>
+			this.ckxy()
+			if(this.cnt!=this.int)
 			{
-				this.tempssasad(item)
-			})
+				this.base.forEach((item)=>
+				{
+					this.tempssasad(item)
+				})
+			}
+
 		
 			
 			let that = this
@@ -206,11 +306,24 @@
 		            console.log(that.old[0].x,"这里是x1")
 					if(that.old[1].x!=null)  console.log(that.old[1].x,"这里是x2")
 					 if(that.old[2].x!=null) console.log(that.old[2].x,"这里是x3")
+					 	 if(that.old[3].x!=null) console.log(that.old[3].x,"这里是x4")
+						 	 if(that.old[4].x!=null) console.log(that.old[4].x,"这里是x5")
+							 	 if(that.old[5].x!=null) console.log(that.old[5].x,"这里是x6")
+								 	 if(that.old[6].x!=null) console.log(that.old[6].x,"这里是x7")
+									 	 if(that.old[7].x!=null) console.log(that.old[7].x,"这里是x8")
+										 	 if(that.old[8].x!=null) console.log(that.old[8].x,"这里是x9")
+										
 				   console.log("base内部",that.base)
-			                  ctx.drawImage(that.base[0],that.old[0].x,that.old[0].y, 50,100)
-			          if(that.base[1]!=null) ctx.drawImage(that.base[1],that.old[1].x,that.old[1].y, 50,100)
-			          	if(that.base[2]!=null)   ctx.drawImage(that.base[2],that.old[2].x,that.old[2].y, 50,100)
-            
+			      if(that.cnt>0)ctx.drawImage(that.base[0],that.old[0].x,that.old[0].y, 50,50)
+			    if(that.cnt>1) ctx.drawImage(that.base[1],that.old[1].x,that.old[1].y, 50,50)
+				if(that.cnt>2)   ctx.drawImage(that.base[2],that.old[2].x,that.old[2].y, 50,50)
+               	if(that.cnt>3)   ctx.drawImage(that.base[3],that.old[3].x,that.old[3].y, 50,50)
+				   	if(that.cnt>4)   ctx.drawImage(that.base[4],that.old[4].x,that.old[4].y, 50,50)
+					   	if(that.cnt>5)   ctx.drawImage(that.base[5],that.old[5].x,that.old[5].y, 50,50)
+						   	if(that.cnt>6)   ctx.drawImage(that.base[6],that.old[6].x,that.old[6].y, 50,50)
+							   	if(that.cnt>7)   ctx.drawImage(that.base[7],that.old[7].x,that.old[7].y, 50,50)
+								   	if(that.cnt>8)   ctx.drawImage(that.base[8],that.old[8].x,that.old[8].y, 50,50)
+						
 					ctx.save(); //保存
 					ctx.draw()
 		      
@@ -301,7 +414,7 @@
 								  }
 								  var _this = that;
 								  uni.chooseMedia({
-								    count: 3,// 最多可以选择的图片张数，默认9
+								    count: 9,// 最多可以选择的图片张数，默认9
 								    sizeType: ['original', 'compressed'],
 									mediaType:['image'],// original 原图，compressed 压缩图，默认二者都有
 								    sourceType: [sourceType],// album 从相册选图，camera 使用相机，默认二者都有

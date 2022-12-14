@@ -1,11 +1,11 @@
 <template>
     <div class="container">
         <div class="displayed">
-            <image :src="images[displayed].picture_url" mode="heightFix"></image>
+            <image :src="images[displayed].photo" mode="heightFix"></image>
         </div>
         <div v-if="selector" class="selector">
-            <ImageSelect v-for="(image, i) in images" :name="image.picture_name" :active="i === displayed" :index="i"
-                :url="image.picture_url" @switch-to="changeDisplayed"></ImageSelect>
+            <ImageSelect v-for="(image, i) in images" :name="image.name" :active="i === displayed" :index="i"
+                :url="image.photo" @switch-to="changeDisplayed"></ImageSelect>
         </div>
         <div class="switch" @click="switchSelector">
             <image src="/static/map.png"></image>
