@@ -23,40 +23,40 @@
 		  mode="scaleToFill"
 		/>
 		
-		<movable-view :x="x1" :y="y1" direction="all" @change="onChange8">
-			<image :src="base[8]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		<movable-view :x="x1" :y="y1" direction="all" @change="onChange8" style="height: 300rpx;width: 300rpx;">
+			<image :src="base[8]" alt="" style="height: 100%;width:100%;position: absolute;z-index: 10;">
 		</movable-view>
 		
-		<movable-view :x="x2" :y="y2" direction="all"  @change="onChange7">
-			<image :src="base[7]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		<movable-view :x="x2" :y="y2" direction="all"  @change="onChange7" style="height: 300rpx;width: 300rpx;">
+			<image :src="base[7]" alt="" style="height: 100%;width:100%;position: absolute;z-index: 10;">
 		</movable-view>
 		
-		<movable-view :x="x3" :y="y3" direction="all"  @change="onChange6">
-			<image :src="base[6]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		<movable-view :x="x3" :y="y3" direction="all"  @change="onChange6" style="height: 300rpx;width: 300rpx;">
+			<image :src="base[6]" alt="" style="height: 100%;width:100%;position: absolute;z-index: 10;">
 		</movable-view>
 
-	<movable-view :x="x4" :y="y4" direction="all"  @change="onChange5">
-			<image :src="base[5]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+	<movable-view :x="x4" :y="y4" direction="all"  @change="onChange5" style="height: 300rpx;width: 300rpx;">
+			<image :src="base[5]" alt="" style="height: 100%;width:100%;position: absolute;z-index: 10;">
 		</movable-view>
 		
-		<movable-view :x="x5" :y="y5" direction="all"  @change="onChange4">
-			<image :src="base[4]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		<movable-view :x="x5" :y="y5" direction="all"  @change="onChange4" style="height: 300rpx;width: 300rpx;">
+			<image :src="base[4]" alt="" style="height: 100%;width:100%;position: absolute;z-index: 10;">
 		</movable-view>
 		
-		<movable-view :x="x6" :y="y6" direction="all"  @change="onChange3">
-			<image :src="base[3]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		<movable-view :x="x6" :y="y6" direction="all"  @change="onChange3" style="height: 300rpx;width: 300rpx;">
+			<image :src="base[3]" alt="" style="height: 100%;width:100%;position: absolute;z-index: 10;">
 		</movable-view>
 		
-		<movable-view :x="x7" :y="y7" direction="all"  @change="onChange2">
-			<image :src="base[2]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		<movable-view :x="x7" :y="y7" direction="all"  @change="onChange2" style="height: 300rpx;width: 300rpx;">
+			<image :src="base[2]" alt="" style="height: 100%;width:100%;position: absolute;z-index: 10;">
 		</movable-view>
 		
-		<movable-view :x="x8" :y="y8" direction="all"  @change="onChange1">
-			<image :src="base[1]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		<movable-view :x="x8" :y="y8" direction="all"  @change="onChange1" style="height: 300rpx;width: 300rpx;">
+			<image :src="base[1]" alt="" style="height: 100r%;width:100%;position: absolute;z-index: 10;">
 		</movable-view>
 		
-		<movable-view :x="x9" :y="y9" direction="all"  @change="onChange0">
-			<image :src="base[0]" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		<movable-view :x="x9" :y="y9" direction="all"  @change="onChange0" style="height: 300rpx;width: 300rpx;">
+			<image :src="base[0]" alt="" style="height: 100%;width:100%;position: absolute;z-index: 10;">
 		</movable-view>
 
 	    </swiper-item>
@@ -157,6 +157,7 @@
 		  			  x:0,
 		  			  y:0
 		  }],
+		  pd:0,
 		  buttonRect: {},
 		  current: 0,//轮播图索引
 		  itemList: [],
@@ -182,9 +183,7 @@
 					}
 				})
 	},
-	onShow() {
 
-	},
 
 	destroyed(){
 		var that=this
@@ -278,14 +277,21 @@
 		img() {
 			// res.tempFiles.forEach((item)=>
 			this.ckxy()
-			if(this.cnt!=this.int)
+			console.log("pd输出",this.pd)
+			if(this.pd==0)
 			{
-				this.base.forEach((item)=>
+				if(this.cnt!=this.int)
 				{
-					this.tempssasad(item)
-				})
+					this.base.forEach((item)=>
+					{
+						this.tempssasad(item)
+					})
+					
+				}
+				console.log("加工结束")
+				         this.pd=1
 			}
-
+        
 		
 			
 			let that = this
@@ -301,28 +307,28 @@
 					console.log('图片路径',res.path)
 	
 					var ctx = uni.createCanvasContext("firstCanvas") // 使用画布创建上下文 图片
-					ctx.drawImage( res.path, 0, 0, 420,300) // 设置图片坐标及大小，括号里面的分别是（图片路径，x坐标，y坐标，width，height）
+					ctx.drawImage( res.path, 0, 0, 360,200) // 设置图片坐标及大小，括号里面的分别是（图片路径，x坐标，y坐标，width，height）
 					console.log('czhjknl',that.base)
 		            console.log(that.old[0].x,"这里是x1")
-					if(that.old[1].x!=null)  console.log(that.old[1].x,"这里是x2")
-					 if(that.old[2].x!=null) console.log(that.old[2].x,"这里是x3")
-					 	 if(that.old[3].x!=null) console.log(that.old[3].x,"这里是x4")
-						 	 if(that.old[4].x!=null) console.log(that.old[4].x,"这里是x5")
-							 	 if(that.old[5].x!=null) console.log(that.old[5].x,"这里是x6")
-								 	 if(that.old[6].x!=null) console.log(that.old[6].x,"这里是x7")
-									 	 if(that.old[7].x!=null) console.log(that.old[7].x,"这里是x8")
-										 	 if(that.old[8].x!=null) console.log(that.old[8].x,"这里是x9")
+					if(that.old[1].x!=0)  console.log(that.old[1].x,"这里是x2")
+					 if(that.old[2].x!=0) console.log(that.old[2].x,"这里是x3")
+					 	 if(that.old[3].x!=0) console.log(that.old[3].x,"这里是x4")
+						 	 if(that.old[4].x!=0) console.log(that.old[4].x,"这里是x5")
+							 	 if(that.old[5].x!=0) console.log(that.old[5].x,"这里是x6")
+								 	 if(that.old[6].x!=0) console.log(that.old[6].x,"这里是x7")
+									 	 if(that.old[7].x!=0) console.log(that.old[7].x,"这里是x8")
+										 	 if(that.old[8].x!=0) console.log(that.old[8].x,"这里是x9")
 										
 				   console.log("base内部",that.base)
-			      if(that.cnt>0)ctx.drawImage(that.base[0],that.old[0].x,that.old[0].y, 50,50)
-			    if(that.cnt>1) ctx.drawImage(that.base[1],that.old[1].x,that.old[1].y, 50,50)
-				if(that.cnt>2)   ctx.drawImage(that.base[2],that.old[2].x,that.old[2].y, 50,50)
-               	if(that.cnt>3)   ctx.drawImage(that.base[3],that.old[3].x,that.old[3].y, 50,50)
-				   	if(that.cnt>4)   ctx.drawImage(that.base[4],that.old[4].x,that.old[4].y, 50,50)
-					   	if(that.cnt>5)   ctx.drawImage(that.base[5],that.old[5].x,that.old[5].y, 50,50)
-						   	if(that.cnt>6)   ctx.drawImage(that.base[6],that.old[6].x,that.old[6].y, 50,50)
-							   	if(that.cnt>7)   ctx.drawImage(that.base[7],that.old[7].x,that.old[7].y, 50,50)
-								   	if(that.cnt>8)   ctx.drawImage(that.base[8],that.old[8].x,that.old[8].y, 50,50)
+			      if(that.cnt>0)ctx.drawImage(that.base[0],that.old[0].x+10,that.old[0].y-10, 80,130)
+			    if(that.cnt>1) ctx.drawImage(that.base[1],that.old[1].x+10,that.old[1].y-10, 80,130)
+				if(that.cnt>2)   ctx.drawImage(that.base[2],that.old[2].x+10,that.old[2].y-10, 80,130)
+               	if(that.cnt>3)   ctx.drawImage(that.base[3],that.old[3].x+10,that.old[3].y-10, 80,130)
+				   	if(that.cnt>4)   ctx.drawImage(that.base[4],that.old[4].x+10,that.old[4].y-10, 80,130)
+					   	if(that.cnt>5)   ctx.drawImage(that.base[5],that.old[5].x+10,that.old[5].y-10, 80,130)
+						   	if(that.cnt>6)   ctx.drawImage(that.base[6],that.old[6].x+10,that.old[6].y-10, 80,130)
+							   	if(that.cnt>7)   ctx.drawImage(that.base[7],that.old[7].x+10,that.old[7].y-10, 80,130)
+								   	if(that.cnt>8)   ctx.drawImage(that.base[8],that.old[8].x+10,that.old[8].y-10, 80,130)
 						
 					ctx.save(); //保存
 					ctx.draw()
@@ -444,6 +450,7 @@
 										       
 													console.log('tt',_that.base[_that.int])
 													_that.int=_that.int+1
+													console.log("int",_that.int)
 												}
 										});
 										}

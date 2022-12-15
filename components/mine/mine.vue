@@ -7,7 +7,7 @@
 		      <view class="flex-col items-center space-y-11 section_2">
 		        <text class="text">{{name}}</text>
 		      </view>
-		      <view class="flex-col items-center image-wrapper" style="height: 6rem;background-color: #db9f9c;">
+		      <view class="flex-col items-center image-wrapper" style="height: 6rem;background-color: #Db9f9c;">
 		       <text class="text" style="font-size: 1.8rem;color: white;padding-top: 24%">{{name.substr(-2,2)}}</text>
 		      </view>
 		    </view>
@@ -26,19 +26,7 @@
 		            src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16672829079406111125.png"
 		          />
 		        </view>
-		        <view class="flex-row justify-between section_5" @click="gotomyphotos()">
-		          <view class="flex-row">
-		            <image
-		              class="image_5"
-		              src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16672829079432749250.png"
-		            />
-		            <text class="font_1 text_4">我的照片</text>
-		          </view>
-		          <image
-		            class="image_3 image_6"
-		            src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635c9b255a7e3f031085335e/635c9b51fe65f70012e6634b/16672829079406111125.png"
-		          />
-		        </view>
+		   
 		      </view>
 		      <view class="flex-col items-center group_2">
 		        <view class="flex-col section_7">

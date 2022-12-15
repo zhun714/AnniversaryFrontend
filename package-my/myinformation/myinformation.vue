@@ -34,7 +34,7 @@
 				</uni-forms-item>
 				
 				<uni-forms-item label="邮箱" name="email">
-					<uni-easyinput type="text" v-model="formData.email" placeholder="dcloud@email.com" />
+					<uni-easyinput type="text" v-model="formData.email" placeholder="请输入您的邮箱" />
 				</uni-forms-item>
 				
 				<uni-forms-item label="单位名称" name="danwei" >
@@ -59,7 +59,7 @@
 			
 				
 	  		</uni-forms>
-	  		<button @click="submit" style="background-color: red;width: 45%;border-radius: 15px;">提交</button>
+	  		<button @click="submit" style="background-color:#D24735;width: 45%;border-radius: 15px;color: white;">提交</button>
 	  	</view>
 	  
 	  
@@ -67,10 +67,13 @@
 		 
 		 <!-- 弹出层视图，注意这里的ref="popup"，这里背景特意标红了，方便看到效果 -->
 		 <uni-popup ref="popupDialog" type="dialog" >
-		 		   <view style="background-color:white;border-radius: 10px;width: 18rem;height: 4rem;">
-		 			<text style="margin-left: 6.5rem;">请输入姓名</text>
-					<input type="text" placeholder="张三" style="width: 80%;margin-left: 1.8rem;background-color:whitesmoke;" @input="oninput">
-					<button style="height: 2rem;border-radius: 10px;background-color: white;" @click="tijiao()">提交</button>
+		 		   <view style="background-color:white;border-radius: 10px;width: 18rem;height: 9rem;">
+					<view style="height:5%;"></view>
+		 			<text style="margin-left: 6.5rem;margin-top: 10rem;">请输入姓名</text>
+					<view style="margin-top: 1.7rem;">
+					<input type="text" placeholder="未命名" style="width: 80%;margin-left: 1.8rem;background-color:whitesmoke;" @input="oninput">
+					</view>
+					<view style="margin-top: 1.8rem; border: none; height: 2rem;background-color:white;text-align: center;width: 80%;margin-left: 10%;" @click="tijiao()">提交</view>
 		 		   </view>
 		 	</uni-popup>
 		 

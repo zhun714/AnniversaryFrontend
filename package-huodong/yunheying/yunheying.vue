@@ -35,18 +35,20 @@
         <image
           class="image_2"
           src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/63648eb5fe65f70012e7e999/16675345918739082861.png"
-        />
+			@click="changetodanrenyunheying()"
+		/>
         <view class="flex-col items-center text-wrapper" @click="changetodanrenyunheying()"><text class="font_2">单人云合影</text></view>
       </view>
       <text class="font_1 text_3">福州大学</text>
       <text class="font_1 text_5">40周年院庆</text>
       <view class="flex-col group_3">
         <view class="flex-col items-center section_8">
-          <view class="flex-col section_7"><view class="section_9"></view></view>
+          <view class="flex-col section_7"><view class="section_9" ></view></view>
         </view>
-        <view class="section_6"></view>
-        <view class="flex-col items-center text-wrapper_2" @click="changetoduorenyunheying()"><text class="font_2">多人云合影</text></view>
+        <view class="section_6" ></view>
+        <view  @click="changetoduorenyunheying()" class="flex-col items-center text-wrapper_2"><text class="font_2">多人云合影</text></view>
         <image
+		
           class="image_6"
           src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/63648eb5fe65f70012e7e999/16675345925336024096.png"
         />
@@ -54,7 +56,7 @@
           class="image_7"
           src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/63648eb5fe65f70012e7e999/16675345926562043369.png"
         />
-        <view class="flex-col items-end space-y-58 section_10">
+        <view class="flex-col items-end space-y-58 section_10"  @click="changetoduorenyunheying()">
           <image
             class="image_3"
             src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/63648eb5fe65f70012e7e999/16675345922049183211.png"
@@ -77,12 +79,13 @@
     },
     methods: {
 		changetodanrenyunheying(){
-			console.log(12312)
+			
 			uni.navigateTo({
 				url:'/package-huodong/danrenyunheying/danrenyunheying'
 			})
 		},
 		changetoduorenyunheying(){
+			console.log(12312)
 			uni.navigateTo({
 				url:'/package-huodong/duorenyunheying/duorenyunheying'
 			})

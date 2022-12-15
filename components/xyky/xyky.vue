@@ -1,15 +1,6 @@
 <template>
  <view class="flex-col space-y-18 page">
-   <view class="flex-row group">
-     <image
-       class="image"
-       src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635646825a7e3f03100b3c41/6369c2cdf9b4a40011de4f01/16679828879459055625.png"
-     />
-     <view class="flex-col group_2">
-       
-       <view class="section"> </view>
-     </view>
-   </view>
+  
    <view class="flex-col space-y-13 group_3" style="margin-top: 3rem;">
      <view class="flex-row justify-center group_4" >
        <image
@@ -17,7 +8,7 @@
          src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635646825a7e3f03100b3c41/6369c2cdf9b4a40011de4f01/16679820049614183363.png"
       style="margin-top: -4.5rem;"
        />
-       <text class="text_2"  style="margin-top: -9rem;">科研成果</text>
+       <text class="text_2"  style="margin-top: -9rem;margin-left: 30px;" >科研成果</text>
      </view>
      <view class="flex-col space-y-12">
        <view class="flex-col space-y-18 list-item" :key="i" v-for="(item, i) in list_kycg">

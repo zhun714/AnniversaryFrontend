@@ -7,7 +7,7 @@
 	
 
 		<view class="" style="">
-			<canvas style=" background-color: blue;width: 98%;height: 18rem; position: fixed;top: 9999999px;" canvas-id="firstCanvas"></canvas>
+			<canvas style=" background-color: blue;width: 98%;height: 18rem; position: fixed; top: 9999999px;" canvas-id="firstCanvas"></canvas>
 		</view>
 			
 
@@ -22,8 +22,8 @@
 		  :src="big.photo"
 		  mode="scaleToFill"
 		/>
-		<movable-view :x="x" :y="y" direction="all" @change="onChange" >
-			<image :src="base" alt="" style="height: 100rpx;width:100rpx;position: absolute;z-index: 10;">
+		<movable-view :x="x" :y="y" direction="all" @change="onChange" out-of-bounds="true" style="height: 300rpx;width: 300rpx;">
+			<image :src="base" alt="" style="height: 100%;width:100%;position: absolute;z-index: 10;">
 		</movable-view>
 
 
@@ -64,6 +64,7 @@
 	{
 		...mapState(['openid'])
 	},
+
     data() {
 	
       return {
@@ -81,36 +82,7 @@
 		  pageNo:1,
 		  pageSize:20,
 		  lists: [
-		  		// 	{
-						// sp:1,
-		  		// 		picture_name:'东门',
-		  		// 		picture_url:"https://tse1-mm.cn.bing.net/th/id/OIP-C.QPH1IBosDYBqaU3O6wV3YAHaEo?w=283&h=180&c=7&r=0&o=5&pid=1.7"
-		  		// 	},
-		  		// 	{
-						// sp:2,
-		  		// 		picture_name:'北门',
-		  		// 		picture_url:"https://ts1.cn.mm.bing.net/th/id/R-C.8e283246276fad2c01e8d0e300bb4540?rik=umflFIIvM%2f%2b%2b6Q&riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50118%2f7084.jpg_wh1200.jpg&ehk=1HQoa7wYy9xnf0HqsFbQQJAv79HJnBest1U0atuLHSQ%3d&risl=&pid=ImgRaw&r=0"
-		  		// 	},
-		  		// 	{
-						// sp:3,
-		  		// 		picture_name:'西门',
-		  		// 		picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784426983374.png"
-		  		// 	},
-		  		// 	{
-						// sp:4,
-		  		// 		picture_name:'南门',
-		  		// 		picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784433466945.png"
-		  		// 	},
-		  		// 	{
-						// sp:5,
-		  		// 		picture_name:'福友阁',
-		  		// 		picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784456651986.png"
-		  		// 	},
-		  		// 	{
-						// sp:6,
-		  		// 		picture_name:'图书馆',
-		  		// 		picture_url:"https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6360d2c65a7e3f0310d3abbb/636e0914f9b4a40011def608/16681556784456815493.png"
-		  		// 	}		
+		
 		  		],
 		
 	  };
@@ -127,7 +99,7 @@
 				})
 	},
 	onShow() {
-	
+
 	},
 	destroyed(){
 		var that=this
@@ -180,34 +152,32 @@
 			       
 					console.log("2222",that.base)
 					var ctx = uni.createCanvasContext("firstCanvas") // 使用画布创建上下文 图片
-					ctx.drawImage( res.path, 0, 0, 420,300) // 设置图片坐标及大小，括号里面的分别是（图片路径，x坐标，y坐标，width，height）
+					ctx.drawImage( res.path, 0, 0, 360,200) // 设置图片坐标及大小，括号里面的分别是（图片路径，x坐标，y坐标，width，height）
 					console.log('czhjknl',that.base)
 		            console.log(that.old.x,"这里是x")
 				   console.log("base内部",that.base)
 			          
-            ctx.drawImage(that.base,that.old.x,that.old.y, 50,100)
+                    ctx.drawImage(that.base,that.old.x+10,that.old.y-20, 80,150)
 					ctx.save(); //保存
-					ctx.draw() //绘制
+					ctx.draw()
+		      
 				}
 			})
-		
+		      
 		},
+
 		// canvas生成图片
 		canimg() {
-
-			this.img()
+             this.img()
 			let that = this
 			uni.canvasToTempFilePath({
 		
-				destWidth: 400,
-				destHeight: 400,
+				destWidth: 450,
+				destHeight: 350,
 				canvasId: 'firstCanvas',
 				success: function(res) {
 					// 在H5平台下，tempFilePath 为 base64
 					console.log(res.tempFilePath, "//")
-		
-		
-		
 					// 保存本地
 					uni.saveImageToPhotosAlbum({
 						filePath: res.tempFilePath,
@@ -238,6 +208,7 @@
 		    })
 		},
 		onChange: function(e) {
+			console.log("onchage",e)
 		    this.old.x = e.detail.x
 		    this.old.y = e.detail.y
 		},

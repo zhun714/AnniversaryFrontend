@@ -10,12 +10,14 @@
 			
 	  		<uni-forms ref="form" :modelValue="formData" :rules="rules" >
 				<uni-forms-item label="学号" name="xueyuan" >
-					<uni-easyinput type="text" v-model="formData.xuehao" placeholder="请输入学号" />
+					<view style="width: 95%;">
+					<uni-easyinput suffixIcon="search" :clearable="false"  type="text" v-model="formData.xuehao" placeholder="请输入学号"/>
+					</view>
 				</uni-forms-item>
 				
 			<uni-forms-item label="学历" name="xueyuan" >
 				
-				<view>
+				<view style="width: 95%;">
 				<uni-data-select v-model="value"
 				:localdata="range"
 				@change="change" >
@@ -24,7 +26,7 @@
 				</uni-forms-item>
 			
 			<uni-forms-item label="专业" name="xueyuan" >
-				<view>
+				<view style="width: 95%;">
 				<uni-data-select v-model="valuezy"
 				:localdata="rangezy"
 				@change="changezy" >
@@ -37,7 +39,7 @@
 				
 		
 				<picker mode="date" fields="year" value="valuenj" @change="changenj" >
-					<view style="background-color: white-space: inherit;;margin-top: 5%; font-size: smaller;margin-left: 3%;">
+					<view style="background-color: white-space: inherit;;margin-top: 5%; font-size: smaller;margin-left: 3%; width: 90%;">
 						请选择年份：{{valuenj}}         
 					</view>
 				</picker>
@@ -48,7 +50,7 @@
 				
 				<uni-forms-item label="班级	" name="xueyuan" >
 					
-				<view>
+				<view style="width: 95%;">
 				<uni-data-select v-model="valuebj"
 				:localdata="rangebj"
 				@change="changebj" >
@@ -157,7 +159,7 @@
 
 <style lang="scss">
 
-	
+
 .text1
 {
   align-self: center;

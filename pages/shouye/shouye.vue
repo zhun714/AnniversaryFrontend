@@ -118,11 +118,11 @@
             
 	         <view class="flex-col space-y-32 section_8" style="height: 20rem;white-space:pre-wrap;">
    
-  <uni-notice-bar  v-if="bless[total-2].bless" :text="bless[total-2].bless+'。    —— ——  '+bless[total-2].createBy" speed="100"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar>
-         <uni-notice-bar  v-if="bless[total-3].bless" :text="bless[total-3].bless+'。    —— ——  '+bless[total-3].createBy"  speed="200"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar>
-           <uni-notice-bar  v-if="bless[total-4].bless" :text="bless[total-4].bless+'。    —— ——  '+bless[total-4].createBy"    speed="90"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar>
-             <uni-notice-bar  v-if="bless[total-5].bless" :text="bless[total-5].bless+'。    —— ——  '+bless[total-5].createBy"  speed="150"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar>
-               <uni-notice-bar  v-if="bless[total-6].bless" :text="bless[total-6].bless+'。    —— ——  '+bless[total-6].createBy"   speed="88"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar> 
+  <uni-notice-bar  v-if="bless[total-2].bless" :text="bless[total-2].bless+'    —— ——  '+bless[total-2].createBy" speed="100"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar>
+         <uni-notice-bar  v-if="bless[total-3].bless" :text="bless[total-3].bless+'    —— ——  '+bless[total-3].createBy"  speed="200"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar>
+           <uni-notice-bar  v-if="bless[total-4].bless" :text="bless[total-4].bless+'    —— ——  '+bless[total-4].createBy"    speed="90"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar>
+             <uni-notice-bar  v-if="bless[total-5].bless" :text="bless[total-5].bless+'    —— ——  '+bless[total-5].createBy"  speed="150"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar>
+               <uni-notice-bar  v-if="bless[total-6].bless" :text="bless[total-6].bless+'    —— ——  '+bless[total-6].createBy"   speed="88"  scrollable="true" backgroundColor="#f2897b" color="white"></uni-notice-bar> 
 	          </view>
             
 	          <view class="flex-row group_13">

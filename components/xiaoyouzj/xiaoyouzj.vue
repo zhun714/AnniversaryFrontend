@@ -4,7 +4,7 @@
       class="image_4"
       :src=qrurl
     />
-    <view class="flex-col space-y-22 group_4">
+    <view class="flex-col space-y-22 group_4" style="margin-left: 40rpx;">
       <text class="font_1 text_3" style="margin-left: 100rpx;font-size: 30rpx;font-weight: bold;">{{xiaoyou.name}}</text>
           <text class="font_1 text_4" style="margin-left: 20rpx;font-size: 24rpx;font-weight: bold;margin-top:30rpx ;">{{xiaoyou.position}}</text>
       <text class="font_1 text_4" style="margin-top:10rpx ;">{{xiaoyou.brief}}</text>

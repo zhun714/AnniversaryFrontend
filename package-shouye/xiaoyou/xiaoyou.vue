@@ -4,22 +4,14 @@
     class="image"
     src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635646825a7e3f03100b3c41/6369c2cdf9b4a40011de4f01/16679820049749163892.png"
   />
-  <view class="flex-row group">
-    <image
-      class="image_2"
-      src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635646825a7e3f03100b3c41/6369c2cdf9b4a40011de4f01/16679828879459055625.png"
-    />
-    <view class="flex-col group_2">
-      
-      <view class="section"></view>
-    </view>
-  </view>
+
   <view class="flex-row justify-center group_3">
     <image
       class="image_3"
       src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635646825a7e3f03100b3c41/6369c2cdf9b4a40011de4f01/16679820049614183363.png"
-    />
-    <text class="text_2">校友风采</text>
+      
+	/>
+    <text class="text_2" style="margin-left: 30rpx;">校友风采</text>
   </view>
   
   <view class="">
@@ -74,7 +66,7 @@
 
 <style lang="scss">
 .page {
-  padding-bottom: 28.13rem;
+  padding-bottom: 2rem;
   background-color: #ffffff;
   overflow: hidden;
   width: 100%;

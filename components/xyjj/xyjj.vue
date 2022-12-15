@@ -1,21 +1,6 @@
 <template>
 <view class="flex-col page">
-  <view class="flex-col group">
-    <view class="flex-row space-x-14 group_2">
-      <image
-        class="image"
-        src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635646825a7e3f03100b3c41/6369c2cdf9b4a40011de4f01/f85431bc1401d232791936c09ca9e66f.png"
-        style="margin-left: -0.8rem;"
-      />
-      <view class="" style="margin-top: -0.5rem;">
-        
-        <image
-          class="image_2"
-          src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635646825a7e3f03100b3c41/6369c2cdf9b4a40011de4f01/3b5e13e71f57775b96e21ebad346710a.png"
-        />
-      </view>
-    </view>
-  </view>
+  
   <view class="flex-row justify-center group_4">
     <view class="flex-col items-center image-wrapper">
       <image
@@ -23,7 +8,7 @@
         src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/635646825a7e3f03100b3c41/6369c2cdf9b4a40011de4f01/16679820049614183363.png"
       />
     </view>
-    <text class="text_3">学院简介</text>
+    <text class="text_3" style="margin-left: 30px;">学院简介</text>
 
   </view>
 

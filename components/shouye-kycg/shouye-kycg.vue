@@ -1,7 +1,7 @@
 <template>
 	<view  class="flex-col space-y-18 list-item">
          <view class="flex-row justify-between">
-           <text class="font_1 text_3">{{kycg.title}}</text>
+           <text class="font_1 text_3" style="width: 440rpx;">{{kycg.title}}</text>
            <text class="font_2 text_4">{{kycg.rank}}</text>
          </view>
          <text class="font_3 text_5">{{kycg.description}}</text>
